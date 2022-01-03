@@ -36,6 +36,9 @@ namespace WindowsFormsApp1
 
         FindBox findBoxDialog;
         FilterBox filterBoxDialog;
+        SaveQuestionBox saveQuestionDialog;
+
+        bool bUnsavedChangesMade = false;
 
         // stolen from: https://stackoverflow.com/a/3301750
         // written by Dan Tao
@@ -141,6 +144,7 @@ namespace WindowsFormsApp1
             saveAsToolStripMenuItem.Enabled = false;
             comboBox1.Enabled = false;
             comboBox1.SelectedIndex = -1;
+            bUnsavedChangesMade = false;
         }
 
         public void UpdateTexts()
@@ -1426,6 +1430,37 @@ namespace WindowsFormsApp1
             InitializeComponent();
             findBoxDialog = new FindBox();
             filterBoxDialog = new FilterBox();
+            saveQuestionDialog = new SaveQuestionBox();
+        }
+
+        bool HandleUnsavedQuestion()
+        {
+            if (bUnsavedChangesMade)
+            {
+                saveQuestionDialog.Filename = Path.GetFileName(CurrentFilename).ToString();
+                DialogResult result = saveQuestionDialog.ShowDialog();
+                if (result == DialogResult.Cancel)
+                    return false;
+                if (result == DialogResult.OK)
+                {
+                    if (ImportedCardsCount > 0 && !string.IsNullOrEmpty(CurrentFilename))
+                    {
+                        toolStripStatusLabel1.Text = "Saving to: " + CurrentFilename;
+
+                        toolStripProgressBar1.Enabled = true;
+                        toolStripProgressBar1.Visible = true;
+
+                        DoTheSaving(CurrentFilename);
+
+                        toolStripProgressBar1.Visible = false;
+                        toolStripProgressBar1.Enabled = false;
+
+                        toolStripStatusLabel1.Text = "Saved to: " + CurrentFilename;
+                        bUnsavedChangesMade = false;
+                    }
+                }
+            }
+            return true;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -1439,16 +1474,16 @@ namespace WindowsFormsApp1
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Application.Exit();
-            
+            Close();
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!HandleUnsavedQuestion())
+                return;
+
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
                 OpenFile(openFileDialog1.FileName);
-            }
         }
 
         private void OpenFile(string FileName)
@@ -1553,8 +1588,7 @@ namespace WindowsFormsApp1
                 CurrentlySelectedCard = SearchCardIndexByID(Int32.Parse(listView1.SelectedItems[0].SubItems[0].Text));
                 propertyGrid1.SelectedObject = ImportDB[CurrentlySelectedCard];
 
-                // this never gets shown because of the update ordering...
-                //toolStripStatusLabel1.Text = "Selected: [" + ImportDB[CurrentlySelectedCard].CardID + "] " + ImportDB[CurrentlySelectedCard].Name;
+                toolStripStatusLabel1.Text = "Selected: [" + ImportDB[CurrentlySelectedCard].CardID + "] " + ImportDB[CurrentlySelectedCard].Name;
 
                 UpdateTexts();
             }
@@ -1673,12 +1707,12 @@ namespace WindowsFormsApp1
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            if (textBox1.Enabled)
+            if (textBox1.Enabled && textBox1.Focused)
             {
                 toolStripStatusLabel1.Text = "Editing: [" + ImportDB[CurrentlySelectedCard].CardID + "] " + ImportDB[CurrentlySelectedCard].Name;
                 ImportDB[CurrentlySelectedCard].Description = textBox1.Text.Replace("\r\n", "\n");
+                bUnsavedChangesMade = true;
             }
-
         }
 
         private void propertyGrid1_PropertyValueChanged(object sender, PropertyValueChangedEventArgs e)
@@ -1687,6 +1721,7 @@ namespace WindowsFormsApp1
             {
                 toolStripStatusLabel1.Text = "Editing: [" + ImportDB[CurrentlySelectedCard].CardID + "] " + ImportDB[CurrentlySelectedCard].Name;
                 UpdateTexts();
+                bUnsavedChangesMade = true;
             }
         }
 
@@ -1719,6 +1754,7 @@ namespace WindowsFormsApp1
                 toolStripProgressBar1.Enabled = false;
 
                 toolStripStatusLabel1.Text = "Saved to: " + CurrentFilename;
+                bUnsavedChangesMade = false;
             }
         }
 
@@ -1747,6 +1783,7 @@ namespace WindowsFormsApp1
 
             toolStripStatusLabel1.Text = "Saved to: " + saveFileDialog1.FileName;
             CurrentFilename = saveFileDialog1.FileName;
+            bUnsavedChangesMade = false;
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -1879,6 +1916,12 @@ namespace WindowsFormsApp1
                 string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
                 OpenFile(files[0]);
             }
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!HandleUnsavedQuestion())
+                e.Cancel = true;
         }
     }
 }
