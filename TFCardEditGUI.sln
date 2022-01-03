@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32002.261
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFCardEditGUI", "TFCardEditGUI.csproj", "{FF067653-356B-45A7-99C0-4E8CE85A5C4A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FF067653-356B-45A7-99C0-4E8CE85A5C4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF067653-356B-45A7-99C0-4E8CE85A5C4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF067653-356B-45A7-99C0-4E8CE85A5C4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF067653-356B-45A7-99C0-4E8CE85A5C4A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F2DBA334-0114-48D2-959A-DF7810C9AD08}
+	EndGlobalSection
+EndGlobal
