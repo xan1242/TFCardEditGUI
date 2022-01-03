@@ -1447,18 +1447,18 @@ namespace WindowsFormsApp1
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                openFileDialog1_Ok();
+                OpenFile(openFileDialog1.FileName);
             }
         }
 
-        private void openFileDialog1_Ok()
+        private void OpenFile(string FileName)
         {
-            //Console.WriteLine("Importing: " + openFileDialog1.FileName);
-            CurrentFilename = openFileDialog1.FileName;
-            toolStripStatusLabel1.Text = "Opening: " + openFileDialog1.FileName;
-            CurrentLang = DetectLangFromFilename(openFileDialog1.FileName);
+            //Console.WriteLine("Importing: " + FileName);
+            CurrentFilename = FileName;
+            toolStripStatusLabel1.Text = "Opening: " + FileName;
+            CurrentLang = DetectLangFromFilename(FileName);
 
-            if (string.Compare(Path.GetExtension(openFileDialog1.FileName), ".ehp") == 0)
+            if (string.Compare(Path.GetExtension(FileName), ".ehp") == 0)
             {
                 if (File.Exists("workehp.ini"))
                     File.Delete("workehp.ini");
@@ -1467,7 +1467,7 @@ namespace WindowsFormsApp1
 
 
                 // invoke the toolchain...
-                ExtractEHP(openFileDialog1.FileName, "workehp");
+                ExtractEHP(FileName, "workehp");
                 if (!File.Exists("workehp\\CARD_Name_" + CurrentLang.ToString() + ".bin"))
                 {
                     toolStripStatusLabel1.Text = "Invalid EhFolder! Please use only cardinfo_* ehp files.";
@@ -1481,9 +1481,9 @@ namespace WindowsFormsApp1
                 ConvertDBToIni("workehp", "workehp.ini", CurrentLang.ToString());
                 ImportCardDB("workehp.ini");
             }
-            else if (string.Compare(Path.GetExtension(openFileDialog1.FileName), ".bin") == 0) // opened an extracted folder...
+            else if (string.Compare(Path.GetExtension(FileName), ".bin") == 0) // opened an extracted folder...
             {
-                string currentDirectory = Path.GetDirectoryName(openFileDialog1.FileName);
+                string currentDirectory = Path.GetDirectoryName(FileName);
 
                 //checking one by one since there's only so many files that this tool needs work with, so no need to complicate things
                 if (!File.Exists(currentDirectory + "\\CARD_Desc_" + CurrentLang.ToString() + ".bin"))
@@ -1501,7 +1501,7 @@ namespace WindowsFormsApp1
                     toolStripStatusLabel1.Text = "Missing: " + currentDirectory + "\\CARD_Prop.bin! Please check if all files are present.";
                     return;
                 }
-                if( !File.Exists(currentDirectory + "\\CARD_Pass.bin") )
+                if (!File.Exists(currentDirectory + "\\CARD_Pass.bin"))
                 {
                     toolStripStatusLabel1.Text = "Missing: " + currentDirectory + "\\CARD_Pass.bin! You will not see card passwords.";
                 }
@@ -1514,9 +1514,13 @@ namespace WindowsFormsApp1
                 ConvertDBToIni(currentDirectory, "workehp.ini", CurrentLang.ToString());
                 ImportCardDB("workehp.ini");
             }
+            else if (string.Compare(Path.GetExtension(FileName), ".ini") == 0)
+                ImportCardDB(FileName); // TODO: add error handling...
             else
-                ImportCardDB(openFileDialog1.FileName); // TODO: add error handling...
-
+            {
+                toolStripStatusLabel1.Text = "Unknown extension: " + Path.GetExtension(FileName);
+                return;
+            }
             // Console.WriteLine("Imported " + ImportedCardsCount + " cards");
             GenerateListView();
             toolStripStatusLabel1.Text = "Imported " + ImportedCardsCount + " cards";
@@ -1860,6 +1864,21 @@ namespace WindowsFormsApp1
             Properties.Settings.Default.ShowStatusBar = statusStrip1.Visible;
             Properties.Settings.Default.Save();
             //ConfigurationManager.AppSettings.Set("ShowStatusBar", statusStrip1.Visible.ToString());
+        }
+
+        private void Form1_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop)) 
+                e.Effect = DragDropEffects.Copy;
+        }
+
+        private void Form1_DragDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+                OpenFile(files[0]);
+            }
         }
     }
 }
