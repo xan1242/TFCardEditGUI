@@ -394,14 +394,21 @@ namespace WindowsFormsApp1
             set { p_SearchString = value; }
         }
 
-        bool p_bSearchCardID = true;
+        string p_ReplaceString;
+        public string ReplaceString
+        {
+            get { return p_ReplaceString; }
+            set { p_ReplaceString = value; }
+        }
+
+        bool p_bSearchCardID;
         public bool bSearchCardID
         {
             get { return p_bSearchCardID; }
             set { p_bSearchCardID = value; }
         }
 
-        bool p_bSearchName = true;
+        bool p_bSearchName;
         public bool bSearchName
         {
             get { return p_bSearchName; }

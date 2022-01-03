@@ -20,6 +20,8 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
             searchParams = new CardSearchParams();
+            searchParams.bSearchCardID = true;
+            searchParams.bSearchName = true;
         }
 
         void SaveCheckboxes()

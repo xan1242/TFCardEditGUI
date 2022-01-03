@@ -232,6 +232,7 @@ namespace WindowsFormsApp1
             this.replaceToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.H)));
             this.replaceToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.replaceToolStripMenuItem.Text = "&Replace";
+            this.replaceToolStripMenuItem.Click += new System.EventHandler(this.replaceToolStripMenuItem_Click);
             this.replaceToolStripMenuItem.MouseHover += new System.EventHandler(this.replaceToolStripMenuItem_MouseHover);
             // 
             // toolStripSeparator1
@@ -821,6 +822,7 @@ namespace WindowsFormsApp1
             this.toolStripButtonReplace.Name = "toolStripButtonReplace";
             this.toolStripButtonReplace.Size = new System.Drawing.Size(23, 27);
             this.toolStripButtonReplace.Text = "Replace...";
+            this.toolStripButtonReplace.Click += new System.EventHandler(this.replaceToolStripMenuItem_Click);
             this.toolStripButtonReplace.MouseHover += new System.EventHandler(this.replaceToolStripMenuItem_MouseHover);
             // 
             // toolStripSeparator3
@@ -847,7 +849,7 @@ namespace WindowsFormsApp1
             this.toolStripButtonRemoveFilter.Image = global::WindowsFormsApp1.Properties.Resources.resetnarrowsearch_result;
             this.toolStripButtonRemoveFilter.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.toolStripButtonRemoveFilter.Name = "toolStripButtonRemoveFilter";
-            this.toolStripButtonRemoveFilter.Size = new System.Drawing.Size(23, 27);
+            this.toolStripButtonRemoveFilter.Size = new System.Drawing.Size(23, 21);
             this.toolStripButtonRemoveFilter.Text = "Remove filter";
             this.toolStripButtonRemoveFilter.Click += new System.EventHandler(this.removeFilterToolStripMenuItem_Click);
             this.toolStripButtonRemoveFilter.MouseHover += new System.EventHandler(this.removeFilterToolStripMenuItem_MouseHover);

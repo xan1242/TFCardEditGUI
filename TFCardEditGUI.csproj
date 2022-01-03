@@ -89,6 +89,12 @@
     <Compile Include="FilterBox.Designer.cs">
       <DependentUpon>FilterBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReplaceBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReplaceBox.Designer.cs">
+      <DependentUpon>ReplaceBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="FindBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,6 +121,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FilterBox.resx">
       <DependentUpon>FilterBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReplaceBox.resx">
+      <DependentUpon>ReplaceBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FindBox.resx">
       <DependentUpon>FindBox.cs</DependentUpon>

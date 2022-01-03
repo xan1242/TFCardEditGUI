@@ -38,6 +38,8 @@ namespace WindowsFormsApp1
         FilterBox filterBoxDialog;
         SaveQuestionBox saveQuestionDialog;
 
+        CardSearchParams replaceParams;
+
         bool bUnsavedChangesMade = false;
 
         // stolen from: https://stackoverflow.com/a/3301750
@@ -1431,6 +1433,8 @@ namespace WindowsFormsApp1
             findBoxDialog = new FindBox();
             filterBoxDialog = new FilterBox();
             saveQuestionDialog = new SaveQuestionBox();
+            replaceParams = new CardSearchParams();
+            replaceParams.bSearchName = true;
         }
 
         bool HandleUnsavedQuestion()
@@ -1860,7 +1864,7 @@ namespace WindowsFormsApp1
 
         private void replaceToolStripMenuItem_MouseHover(object sender, EventArgs e)
         {
-            toolStripStatusLabel1.Text = "Search a parameter and replace it (unimplemented)";
+            toolStripStatusLabel1.Text = "Search a parameter and replace it";
         }
 
         private void filterToolStripMenuItem_MouseHover(object sender, EventArgs e)
@@ -1922,6 +1926,15 @@ namespace WindowsFormsApp1
         {
             if (!HandleUnsavedQuestion())
                 e.Cancel = true;
+        }
+
+        private void replaceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var replace = new ReplaceBox(replaceParams, this);
+            if (Application.OpenForms[replace.Name] == null)
+                replace.Show(this);
+            else
+                Application.OpenForms[replace.Name].Activate();
         }
     }
 }
