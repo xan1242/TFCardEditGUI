@@ -33,6 +33,18 @@ namespace WindowsFormsApp1
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReplaceBox));
             this.findLabel = new System.Windows.Forms.Label();
             this.lookatBox = new System.Windows.Forms.GroupBox();
+            this.radioButtonCardExists = new System.Windows.Forms.RadioButton();
+            this.radioButtonRarity = new System.Windows.Forms.RadioButton();
+            this.radioButtonPassword = new System.Windows.Forms.RadioButton();
+            this.radioButtonIcon = new System.Windows.Forms.RadioButton();
+            this.radioButtonAttr = new System.Windows.Forms.RadioButton();
+            this.radioButtonType = new System.Windows.Forms.RadioButton();
+            this.radioButtonDEF = new System.Windows.Forms.RadioButton();
+            this.radioButtonATK = new System.Windows.Forms.RadioButton();
+            this.radioButtonLevel = new System.Windows.Forms.RadioButton();
+            this.radioButtonKind = new System.Windows.Forms.RadioButton();
+            this.radioButtonName = new System.Windows.Forms.RadioButton();
+            this.radioButtonDescription = new System.Windows.Forms.RadioButton();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.checkBoxMatch = new System.Windows.Forms.CheckBox();
@@ -41,18 +53,8 @@ namespace WindowsFormsApp1
             this.label1 = new System.Windows.Forms.Label();
             this.buttonReplace = new System.Windows.Forms.Button();
             this.buttonReplaceAll = new System.Windows.Forms.Button();
-            this.radioButtonCardID = new System.Windows.Forms.RadioButton();
-            this.radioButtonName = new System.Windows.Forms.RadioButton();
-            this.radioButtonKind = new System.Windows.Forms.RadioButton();
-            this.radioButtonLevel = new System.Windows.Forms.RadioButton();
-            this.radioButtonATK = new System.Windows.Forms.RadioButton();
-            this.radioButtonDEF = new System.Windows.Forms.RadioButton();
-            this.radioButtonType = new System.Windows.Forms.RadioButton();
-            this.radioButtonAttr = new System.Windows.Forms.RadioButton();
-            this.radioButtonIcon = new System.Windows.Forms.RadioButton();
-            this.radioButtonPassword = new System.Windows.Forms.RadioButton();
-            this.radioButtonRarity = new System.Windows.Forms.RadioButton();
-            this.radioButtonCardExists = new System.Windows.Forms.RadioButton();
+            this.comboBoxFind = new System.Windows.Forms.ComboBox();
+            this.comboBoxReplace = new System.Windows.Forms.ComboBox();
             this.fastTextBoxFind = new WindowsFormsApp1.FastTextBox();
             this.fastTextBoxReplace = new WindowsFormsApp1.FastTextBox();
             this.lookatBox.SuspendLayout();
@@ -81,13 +83,159 @@ namespace WindowsFormsApp1
             this.lookatBox.Controls.Add(this.radioButtonLevel);
             this.lookatBox.Controls.Add(this.radioButtonKind);
             this.lookatBox.Controls.Add(this.radioButtonName);
-            this.lookatBox.Controls.Add(this.radioButtonCardID);
+            this.lookatBox.Controls.Add(this.radioButtonDescription);
             this.lookatBox.Location = new System.Drawing.Point(9, 69);
             this.lookatBox.Name = "lookatBox";
             this.lookatBox.Size = new System.Drawing.Size(281, 81);
             this.lookatBox.TabIndex = 2;
             this.lookatBox.TabStop = false;
             this.lookatBox.Text = "Look at";
+            // 
+            // radioButtonCardExists
+            // 
+            this.radioButtonCardExists.AutoSize = true;
+            this.radioButtonCardExists.Location = new System.Drawing.Point(196, 50);
+            this.radioButtonCardExists.Margin = new System.Windows.Forms.Padding(0);
+            this.radioButtonCardExists.Name = "radioButtonCardExists";
+            this.radioButtonCardExists.Size = new System.Drawing.Size(74, 17);
+            this.radioButtonCardExists.TabIndex = 35;
+            this.radioButtonCardExists.Text = "CardExists";
+            this.radioButtonCardExists.UseVisualStyleBackColor = true;
+            this.radioButtonCardExists.CheckedChanged += new System.EventHandler(this.radioButtonCardExists_CheckedChanged);
+            // 
+            // radioButtonRarity
+            // 
+            this.radioButtonRarity.AutoSize = true;
+            this.radioButtonRarity.Location = new System.Drawing.Point(196, 16);
+            this.radioButtonRarity.Margin = new System.Windows.Forms.Padding(0);
+            this.radioButtonRarity.Name = "radioButtonRarity";
+            this.radioButtonRarity.Size = new System.Drawing.Size(52, 17);
+            this.radioButtonRarity.TabIndex = 34;
+            this.radioButtonRarity.Text = "Rarity";
+            this.radioButtonRarity.UseVisualStyleBackColor = true;
+            this.radioButtonRarity.CheckedChanged += new System.EventHandler(this.radioButtonRarity_CheckedChanged);
+            // 
+            // radioButtonPassword
+            // 
+            this.radioButtonPassword.AutoSize = true;
+            this.radioButtonPassword.Location = new System.Drawing.Point(196, 33);
+            this.radioButtonPassword.Margin = new System.Windows.Forms.Padding(0);
+            this.radioButtonPassword.Name = "radioButtonPassword";
+            this.radioButtonPassword.Size = new System.Drawing.Size(71, 17);
+            this.radioButtonPassword.TabIndex = 33;
+            this.radioButtonPassword.Text = "Password";
+            this.radioButtonPassword.UseVisualStyleBackColor = true;
+            this.radioButtonPassword.CheckedChanged += new System.EventHandler(this.SwitchToTextBox);
+            // 
+            // radioButtonIcon
+            // 
+            this.radioButtonIcon.AutoSize = true;
+            this.radioButtonIcon.Location = new System.Drawing.Point(132, 50);
+            this.radioButtonIcon.Margin = new System.Windows.Forms.Padding(0);
+            this.radioButtonIcon.Name = "radioButtonIcon";
+            this.radioButtonIcon.Size = new System.Drawing.Size(46, 17);
+            this.radioButtonIcon.TabIndex = 32;
+            this.radioButtonIcon.Text = "Icon";
+            this.radioButtonIcon.UseVisualStyleBackColor = true;
+            this.radioButtonIcon.CheckedChanged += new System.EventHandler(this.radioButtonIcon_CheckedChanged);
+            // 
+            // radioButtonAttr
+            // 
+            this.radioButtonAttr.AutoSize = true;
+            this.radioButtonAttr.Location = new System.Drawing.Point(132, 33);
+            this.radioButtonAttr.Margin = new System.Windows.Forms.Padding(0);
+            this.radioButtonAttr.Name = "radioButtonAttr";
+            this.radioButtonAttr.Size = new System.Drawing.Size(64, 17);
+            this.radioButtonAttr.TabIndex = 31;
+            this.radioButtonAttr.Text = "Attribute";
+            this.radioButtonAttr.UseVisualStyleBackColor = true;
+            this.radioButtonAttr.CheckedChanged += new System.EventHandler(this.radioButtonAttr_CheckedChanged);
+            // 
+            // radioButtonType
+            // 
+            this.radioButtonType.AutoSize = true;
+            this.radioButtonType.Location = new System.Drawing.Point(132, 16);
+            this.radioButtonType.Margin = new System.Windows.Forms.Padding(0);
+            this.radioButtonType.Name = "radioButtonType";
+            this.radioButtonType.Size = new System.Drawing.Size(49, 17);
+            this.radioButtonType.TabIndex = 30;
+            this.radioButtonType.Text = "Type";
+            this.radioButtonType.UseVisualStyleBackColor = true;
+            this.radioButtonType.CheckedChanged += new System.EventHandler(this.radioButtonType_CheckedChanged);
+            // 
+            // radioButtonDEF
+            // 
+            this.radioButtonDEF.AutoSize = true;
+            this.radioButtonDEF.Location = new System.Drawing.Point(81, 50);
+            this.radioButtonDEF.Margin = new System.Windows.Forms.Padding(0);
+            this.radioButtonDEF.Name = "radioButtonDEF";
+            this.radioButtonDEF.Size = new System.Drawing.Size(46, 17);
+            this.radioButtonDEF.TabIndex = 29;
+            this.radioButtonDEF.Text = "DEF";
+            this.radioButtonDEF.UseVisualStyleBackColor = true;
+            this.radioButtonDEF.CheckedChanged += new System.EventHandler(this.SwitchToTextBox);
+            // 
+            // radioButtonATK
+            // 
+            this.radioButtonATK.AutoSize = true;
+            this.radioButtonATK.Location = new System.Drawing.Point(81, 33);
+            this.radioButtonATK.Margin = new System.Windows.Forms.Padding(0);
+            this.radioButtonATK.Name = "radioButtonATK";
+            this.radioButtonATK.Size = new System.Drawing.Size(46, 17);
+            this.radioButtonATK.TabIndex = 28;
+            this.radioButtonATK.Text = "ATK";
+            this.radioButtonATK.UseVisualStyleBackColor = true;
+            this.radioButtonATK.CheckedChanged += new System.EventHandler(this.SwitchToTextBox);
+            // 
+            // radioButtonLevel
+            // 
+            this.radioButtonLevel.AutoSize = true;
+            this.radioButtonLevel.Location = new System.Drawing.Point(81, 16);
+            this.radioButtonLevel.Margin = new System.Windows.Forms.Padding(0);
+            this.radioButtonLevel.Name = "radioButtonLevel";
+            this.radioButtonLevel.Size = new System.Drawing.Size(51, 17);
+            this.radioButtonLevel.TabIndex = 27;
+            this.radioButtonLevel.Text = "Level";
+            this.radioButtonLevel.UseVisualStyleBackColor = true;
+            this.radioButtonLevel.CheckedChanged += new System.EventHandler(this.SwitchToTextBox);
+            // 
+            // radioButtonKind
+            // 
+            this.radioButtonKind.AutoSize = true;
+            this.radioButtonKind.Location = new System.Drawing.Point(3, 50);
+            this.radioButtonKind.Margin = new System.Windows.Forms.Padding(0);
+            this.radioButtonKind.Name = "radioButtonKind";
+            this.radioButtonKind.Size = new System.Drawing.Size(46, 17);
+            this.radioButtonKind.TabIndex = 26;
+            this.radioButtonKind.Text = "Kind";
+            this.radioButtonKind.UseVisualStyleBackColor = true;
+            this.radioButtonKind.CheckedChanged += new System.EventHandler(this.radioButtonKind_CheckedChanged);
+            // 
+            // radioButtonName
+            // 
+            this.radioButtonName.AutoSize = true;
+            this.radioButtonName.Checked = true;
+            this.radioButtonName.Location = new System.Drawing.Point(3, 16);
+            this.radioButtonName.Margin = new System.Windows.Forms.Padding(0);
+            this.radioButtonName.Name = "radioButtonName";
+            this.radioButtonName.Size = new System.Drawing.Size(53, 17);
+            this.radioButtonName.TabIndex = 25;
+            this.radioButtonName.TabStop = true;
+            this.radioButtonName.Text = "Name";
+            this.radioButtonName.UseVisualStyleBackColor = true;
+            this.radioButtonName.CheckedChanged += new System.EventHandler(this.SwitchToTextBox);
+            // 
+            // radioButtonDescription
+            // 
+            this.radioButtonDescription.AutoSize = true;
+            this.radioButtonDescription.Location = new System.Drawing.Point(3, 33);
+            this.radioButtonDescription.Margin = new System.Windows.Forms.Padding(0);
+            this.radioButtonDescription.Name = "radioButtonDescription";
+            this.radioButtonDescription.Size = new System.Drawing.Size(78, 17);
+            this.radioButtonDescription.TabIndex = 24;
+            this.radioButtonDescription.Text = "Description";
+            this.radioButtonDescription.UseVisualStyleBackColor = true;
+            this.radioButtonDescription.CheckedChanged += new System.EventHandler(this.SwitchToTextBox);
             // 
             // button1
             // 
@@ -172,139 +320,25 @@ namespace WindowsFormsApp1
             this.buttonReplaceAll.Text = "Replace &All";
             this.buttonReplaceAll.UseVisualStyleBackColor = true;
             // 
-            // radioButtonCardID
+            // comboBoxFind
             // 
-            this.radioButtonCardID.AutoSize = true;
-            this.radioButtonCardID.Location = new System.Drawing.Point(3, 16);
-            this.radioButtonCardID.Margin = new System.Windows.Forms.Padding(0);
-            this.radioButtonCardID.Name = "radioButtonCardID";
-            this.radioButtonCardID.Size = new System.Drawing.Size(58, 17);
-            this.radioButtonCardID.TabIndex = 24;
-            this.radioButtonCardID.Text = "CardID";
-            this.radioButtonCardID.UseVisualStyleBackColor = true;
+            this.comboBoxFind.FormattingEnabled = true;
+            this.comboBoxFind.Location = new System.Drawing.Point(84, 10);
+            this.comboBoxFind.Name = "comboBoxFind";
+            this.comboBoxFind.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxFind.TabIndex = 24;
+            this.comboBoxFind.Visible = false;
+            this.comboBoxFind.TextChanged += new System.EventHandler(this.comboBoxFind_TextChanged);
             // 
-            // radioButtonName
+            // comboBoxReplace
             // 
-            this.radioButtonName.AutoSize = true;
-            this.radioButtonName.Checked = true;
-            this.radioButtonName.Location = new System.Drawing.Point(3, 33);
-            this.radioButtonName.Margin = new System.Windows.Forms.Padding(0);
-            this.radioButtonName.Name = "radioButtonName";
-            this.radioButtonName.Size = new System.Drawing.Size(53, 17);
-            this.radioButtonName.TabIndex = 25;
-            this.radioButtonName.TabStop = true;
-            this.radioButtonName.Text = "Name";
-            this.radioButtonName.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonKind
-            // 
-            this.radioButtonKind.AutoSize = true;
-            this.radioButtonKind.Location = new System.Drawing.Point(3, 50);
-            this.radioButtonKind.Margin = new System.Windows.Forms.Padding(0);
-            this.radioButtonKind.Name = "radioButtonKind";
-            this.radioButtonKind.Size = new System.Drawing.Size(46, 17);
-            this.radioButtonKind.TabIndex = 26;
-            this.radioButtonKind.Text = "Kind";
-            this.radioButtonKind.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonLevel
-            // 
-            this.radioButtonLevel.AutoSize = true;
-            this.radioButtonLevel.Location = new System.Drawing.Point(61, 16);
-            this.radioButtonLevel.Margin = new System.Windows.Forms.Padding(0);
-            this.radioButtonLevel.Name = "radioButtonLevel";
-            this.radioButtonLevel.Size = new System.Drawing.Size(51, 17);
-            this.radioButtonLevel.TabIndex = 27;
-            this.radioButtonLevel.Text = "Level";
-            this.radioButtonLevel.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonATK
-            // 
-            this.radioButtonATK.AutoSize = true;
-            this.radioButtonATK.Location = new System.Drawing.Point(61, 33);
-            this.radioButtonATK.Margin = new System.Windows.Forms.Padding(0);
-            this.radioButtonATK.Name = "radioButtonATK";
-            this.radioButtonATK.Size = new System.Drawing.Size(46, 17);
-            this.radioButtonATK.TabIndex = 28;
-            this.radioButtonATK.Text = "ATK";
-            this.radioButtonATK.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonDEF
-            // 
-            this.radioButtonDEF.AutoSize = true;
-            this.radioButtonDEF.Location = new System.Drawing.Point(61, 50);
-            this.radioButtonDEF.Margin = new System.Windows.Forms.Padding(0);
-            this.radioButtonDEF.Name = "radioButtonDEF";
-            this.radioButtonDEF.Size = new System.Drawing.Size(46, 17);
-            this.radioButtonDEF.TabIndex = 29;
-            this.radioButtonDEF.Text = "DEF";
-            this.radioButtonDEF.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonType
-            // 
-            this.radioButtonType.AutoSize = true;
-            this.radioButtonType.Location = new System.Drawing.Point(112, 16);
-            this.radioButtonType.Margin = new System.Windows.Forms.Padding(0);
-            this.radioButtonType.Name = "radioButtonType";
-            this.radioButtonType.Size = new System.Drawing.Size(49, 17);
-            this.radioButtonType.TabIndex = 30;
-            this.radioButtonType.Text = "Type";
-            this.radioButtonType.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonAttr
-            // 
-            this.radioButtonAttr.AutoSize = true;
-            this.radioButtonAttr.Location = new System.Drawing.Point(112, 33);
-            this.radioButtonAttr.Margin = new System.Windows.Forms.Padding(0);
-            this.radioButtonAttr.Name = "radioButtonAttr";
-            this.radioButtonAttr.Size = new System.Drawing.Size(64, 17);
-            this.radioButtonAttr.TabIndex = 31;
-            this.radioButtonAttr.Text = "Attribute";
-            this.radioButtonAttr.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonIcon
-            // 
-            this.radioButtonIcon.AutoSize = true;
-            this.radioButtonIcon.Location = new System.Drawing.Point(112, 50);
-            this.radioButtonIcon.Margin = new System.Windows.Forms.Padding(0);
-            this.radioButtonIcon.Name = "radioButtonIcon";
-            this.radioButtonIcon.Size = new System.Drawing.Size(46, 17);
-            this.radioButtonIcon.TabIndex = 32;
-            this.radioButtonIcon.Text = "Icon";
-            this.radioButtonIcon.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonPassword
-            // 
-            this.radioButtonPassword.AutoSize = true;
-            this.radioButtonPassword.Location = new System.Drawing.Point(176, 33);
-            this.radioButtonPassword.Margin = new System.Windows.Forms.Padding(0);
-            this.radioButtonPassword.Name = "radioButtonPassword";
-            this.radioButtonPassword.Size = new System.Drawing.Size(71, 17);
-            this.radioButtonPassword.TabIndex = 33;
-            this.radioButtonPassword.Text = "Password";
-            this.radioButtonPassword.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonRarity
-            // 
-            this.radioButtonRarity.AutoSize = true;
-            this.radioButtonRarity.Location = new System.Drawing.Point(176, 16);
-            this.radioButtonRarity.Margin = new System.Windows.Forms.Padding(0);
-            this.radioButtonRarity.Name = "radioButtonRarity";
-            this.radioButtonRarity.Size = new System.Drawing.Size(52, 17);
-            this.radioButtonRarity.TabIndex = 34;
-            this.radioButtonRarity.Text = "Rarity";
-            this.radioButtonRarity.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonCardExists
-            // 
-            this.radioButtonCardExists.AutoSize = true;
-            this.radioButtonCardExists.Location = new System.Drawing.Point(176, 50);
-            this.radioButtonCardExists.Margin = new System.Windows.Forms.Padding(0);
-            this.radioButtonCardExists.Name = "radioButtonCardExists";
-            this.radioButtonCardExists.Size = new System.Drawing.Size(74, 17);
-            this.radioButtonCardExists.TabIndex = 35;
-            this.radioButtonCardExists.Text = "CardExists";
-            this.radioButtonCardExists.UseVisualStyleBackColor = true;
+            this.comboBoxReplace.FormattingEnabled = true;
+            this.comboBoxReplace.Location = new System.Drawing.Point(84, 39);
+            this.comboBoxReplace.Name = "comboBoxReplace";
+            this.comboBoxReplace.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxReplace.TabIndex = 25;
+            this.comboBoxReplace.Visible = false;
+            this.comboBoxReplace.TextChanged += new System.EventHandler(this.comboBoxReplace_TextChanged);
             // 
             // fastTextBoxFind
             // 
@@ -324,6 +358,7 @@ namespace WindowsFormsApp1
             this.fastTextBoxReplace.Size = new System.Drawing.Size(222, 20);
             this.fastTextBoxReplace.TabIndex = 20;
             this.fastTextBoxReplace.TextAcceptor = null;
+            this.fastTextBoxReplace.TextChanged += new System.EventHandler(this.fastTextBoxReplace_TextChanged);
             // 
             // ReplaceBox
             // 
@@ -332,6 +367,8 @@ namespace WindowsFormsApp1
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.button2;
             this.ClientSize = new System.Drawing.Size(401, 175);
+            this.Controls.Add(this.comboBoxReplace);
+            this.Controls.Add(this.comboBoxFind);
             this.Controls.Add(this.buttonReplaceAll);
             this.Controls.Add(this.buttonReplace);
             this.Controls.Add(this.fastTextBoxFind);
@@ -376,7 +413,7 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.Button buttonReplace;
         private System.Windows.Forms.Button buttonReplaceAll;
         private System.Windows.Forms.RadioButton radioButtonName;
-        private System.Windows.Forms.RadioButton radioButtonCardID;
+        private System.Windows.Forms.RadioButton radioButtonDescription;
         private System.Windows.Forms.RadioButton radioButtonCardExists;
         private System.Windows.Forms.RadioButton radioButtonRarity;
         private System.Windows.Forms.RadioButton radioButtonPassword;
@@ -387,5 +424,7 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.RadioButton radioButtonATK;
         private System.Windows.Forms.RadioButton radioButtonLevel;
         private System.Windows.Forms.RadioButton radioButtonKind;
+        private System.Windows.Forms.ComboBox comboBoxFind;
+        private System.Windows.Forms.ComboBox comboBoxReplace;
     }
 }

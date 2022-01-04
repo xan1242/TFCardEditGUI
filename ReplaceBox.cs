@@ -15,6 +15,8 @@ namespace WindowsFormsApp1
     {
         public CardSearchParams searchParams; // this needs to be defined outside because we're using Show() to display this dialog, and when it's closed it purges it from memory...
         Form1 form1;
+        bool bSetNumericAcceptors = false;
+        bool bInComboBoxMode = false;
 
         public ReplaceBox(CardSearchParams inSearchParams, Form1 inForm1)
         {
@@ -27,7 +29,7 @@ namespace WindowsFormsApp1
 
         void SaveCheckboxes()
         {
-            searchParams.bSearchCardID =        radioButtonCardID.Checked;
+            searchParams.bSearchDescription =   radioButtonDescription.Checked;
             searchParams.bSearchName =          radioButtonName.Checked;
             searchParams.bSearchKind =          radioButtonKind.Checked;
             searchParams.bSearchLevel =         radioButtonLevel.Checked;
@@ -46,7 +48,7 @@ namespace WindowsFormsApp1
 
         void LoadCheckboxes()
         {
-            radioButtonCardID.Checked = searchParams.bSearchCardID;
+            radioButtonDescription.Checked = searchParams.bSearchDescription;
             radioButtonName.Checked = searchParams.bSearchName;
             radioButtonKind.Checked = searchParams.bSearchKind;
             radioButtonLevel.Checked = searchParams.bSearchLevel;
@@ -63,10 +65,64 @@ namespace WindowsFormsApp1
             checkBoxCase.Checked = searchParams.bMatchCase;
         }
 
+        bool IsANumericBoxTicked()
+        {
+            return radioButtonLevel.Checked
+                || radioButtonATK.Checked
+                || radioButtonDEF.Checked
+                || radioButtonPassword.Checked;
+        }
+
+        void SetSearchContext() // since there can only be one for replace action, we can define it here
+        {
+            if (radioButtonName.Checked)
+                searchParams.SearchContext = CardProps.Name;
+            if (radioButtonDescription.Checked)
+                searchParams.SearchContext = CardProps.Description;
+            if (radioButtonKind.Checked)
+                searchParams.SearchContext = CardProps.Kind;
+            if (radioButtonLevel.Checked)
+                searchParams.SearchContext = CardProps.Level;
+            if (radioButtonATK.Checked)
+                searchParams.SearchContext = CardProps.ATK;
+            if (radioButtonDEF.Checked)
+                searchParams.SearchContext = CardProps.DEF;
+            if (radioButtonType.Checked)
+                searchParams.SearchContext = CardProps.Type;
+            if (radioButtonAttr.Checked)
+                searchParams.SearchContext = CardProps.Attr;
+            if (radioButtonIcon.Checked)
+                searchParams.SearchContext = CardProps.Icon;
+            if (radioButtonRarity.Checked)
+                searchParams.SearchContext = CardProps.Rarity;
+            if (radioButtonPassword.Checked)
+                searchParams.SearchContext = CardProps.Password;
+            if (radioButtonCardExists.Checked)
+                searchParams.SearchContext = CardProps.CardExists;
+        }
+
+        private bool Int32TextAcceptor(string oldText, string newText, string input, int offset, int length)
+        {
+            int value = 0;
+            return Int32.TryParse(newText, out value); ;
+        }
+
+        void SetAcceptors()
+        {
+            fastTextBoxFind.TextAcceptor = Int32TextAcceptor;
+            fastTextBoxReplace.TextAcceptor = Int32TextAcceptor;
+        }
+
+        void UnSetAcceptors()
+        {
+            fastTextBoxFind.TextAcceptor = null;
+            fastTextBoxReplace.TextAcceptor = null;
+        }
 
         private void ReplaceBox_Load(object sender, EventArgs e)
         {
             fastTextBoxFind.Text = searchParams.SearchString;
+            fastTextBoxReplace.Text = searchParams.ReplaceString;
 
             LoadCheckboxes();
 
@@ -77,14 +133,41 @@ namespace WindowsFormsApp1
         private void button2_Click(object sender, EventArgs e)
         {
             SaveCheckboxes();
+            SetSearchContext();
 
             DialogResult = DialogResult.Cancel;
             Close();
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+
+
+        void CheckFindString()
         {
-            if (string.IsNullOrEmpty(fastTextBoxFind.Text))
+            string str;
+
+            if (bInComboBoxMode)
+                str = comboBoxFind.Text;
+            else
+                str = fastTextBoxFind.Text;
+
+            if ((radioButtonName.Checked || radioButtonDescription.Checked) && bSetNumericAcceptors)
+            {
+                UnSetAcceptors();
+                bSetNumericAcceptors = false;
+            }
+
+            if (IsANumericBoxTicked() && !bSetNumericAcceptors)
+            {
+                SetAcceptors();
+                if (!string.IsNullOrEmpty(fastTextBoxFind.Text))
+                {
+                    if (!Int32TextAcceptor(null, fastTextBoxFind.Text, null, 0, 0))
+                        fastTextBoxFind.Text = "";
+                }
+                bSetNumericAcceptors = true;
+            }
+
+            if (string.IsNullOrEmpty(str))
             {
                 button1.Enabled = false;
                 buttonReplace.Enabled = false;
@@ -98,9 +181,16 @@ namespace WindowsFormsApp1
             }
         }
 
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            CheckFindString();
+           // CheckReplaceString();
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             SaveCheckboxes();
+            SetSearchContext();
 
             DialogResult = DialogResult.OK;
             form1.InitiateCardSearch(searchParams);
@@ -114,6 +204,129 @@ namespace WindowsFormsApp1
         private void ReplaceBox_Activated(object sender, EventArgs e)
         {
             fastTextBoxFind.Focus();
+        }
+
+        private void fastTextBoxReplace_TextChanged(object sender, EventArgs e)
+        {
+            searchParams.ReplaceString = fastTextBoxReplace.Text;
+        }
+
+        private void SwitchToTextBox(object sender, EventArgs e)
+        {
+            if (radioButtonDescription.Checked || radioButtonName.Checked || IsANumericBoxTicked())
+            {
+                comboBoxFind.Visible = false;
+                comboBoxReplace.Visible = false;
+                fastTextBoxFind.Visible = true;
+                fastTextBoxReplace.Visible = true;
+
+                bInComboBoxMode = false;
+                fastTextBoxFind.Text = "";
+                fastTextBoxReplace.Text = "";
+                searchParams.SearchString = "";
+                searchParams.ReplaceString = "";
+            }
+        }
+
+        private void SwitchToComboBox()
+        {
+            fastTextBoxFind.Visible = false;
+            fastTextBoxReplace.Visible = false;
+            comboBoxFind.Visible = true;
+            comboBoxReplace.Visible = true;
+            bInComboBoxMode = true;
+            comboBoxFind.Text = "";
+            comboBoxReplace.Text = "";
+            searchParams.SearchString = "";
+            searchParams.ReplaceString = "";
+        }
+
+        static T ConvertToEnum<T>(object value)
+        {
+            return (T)Enum.Parse(typeof(T), Enum.GetName(typeof(T), value));
+        }
+
+        private void GenerateComboBox(Type EnumType)
+        {
+            var enumcount = Enum.GetNames(EnumType).Length;
+            comboBoxFind.Items.Clear();
+            comboBoxReplace.Items.Clear();
+
+            for (int i = 0; i < enumcount; i++)
+            {
+                comboBoxFind.Items.Add(TypeDescriptor.GetConverter(EnumType).ConvertToString(i));
+                comboBoxReplace.Items.Add(TypeDescriptor.GetConverter(EnumType).ConvertToString(i));
+            }
+        }
+
+        private void radioButtonKind_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonKind.Checked)
+            {
+                SwitchToComboBox();
+                GenerateComboBox(typeof(CardKinds));
+            }
+        }
+
+        private void radioButtonType_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonType.Checked)
+            {
+                SwitchToComboBox();
+                GenerateComboBox(typeof(CardTypes));
+            }
+        }
+
+        private void radioButtonAttr_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonAttr.Checked)
+            {
+                SwitchToComboBox();
+                GenerateComboBox(typeof(CardAttributes));
+            }
+        }
+
+        private void radioButtonIcon_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonIcon.Checked)
+            {
+                SwitchToComboBox();
+                GenerateComboBox(typeof(CardIcons));
+            }
+        }
+
+        private void radioButtonRarity_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonRarity.Checked)
+            {
+                SwitchToComboBox();
+                GenerateComboBox(typeof(CardRarity));
+            }
+        }
+
+        private void radioButtonCardExists_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonCardExists.Checked)
+            {
+                SwitchToComboBox();
+                comboBoxFind.Items.Clear();
+                comboBoxReplace.Items.Clear();
+
+                comboBoxFind.Items.Add("False");
+                comboBoxFind.Items.Add("True");
+                comboBoxReplace.Items.Add("False");
+                comboBoxReplace.Items.Add("True");
+            }
+        }
+
+        private void comboBoxFind_TextChanged(object sender, EventArgs e)
+        {
+            searchParams.SearchString = comboBoxFind.Text;
+        }
+
+        private void comboBoxReplace_TextChanged(object sender, EventArgs e)
+        {
+            searchParams.SearchString = comboBoxReplace.Text;
         }
     }
 }

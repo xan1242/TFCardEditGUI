@@ -240,7 +240,9 @@ namespace WindowsFormsApp1
         [Description("Password")]
         Password,
         [Description("CardExists")]
-        CardExists
+        CardExists,
+        [Description("Description")]
+        Description
     }
 
     public class TFCard
@@ -413,6 +415,13 @@ namespace WindowsFormsApp1
         {
             get { return p_bSearchName; }
             set { p_bSearchName = value; }
+        }
+
+        bool p_bSearchDescription;
+        public bool bSearchDescription
+        {
+            get { return p_bSearchDescription; }
+            set { p_bSearchDescription = value; }
         }
 
         bool p_bSearchKind;

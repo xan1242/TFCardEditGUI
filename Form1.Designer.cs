@@ -102,6 +102,7 @@ namespace WindowsFormsApp1
             this.toolStripButtonFilter = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonRemoveFilter = new System.Windows.Forms.ToolStripButton();
             this.panelMain = new System.Windows.Forms.Panel();
+            this.colDescription = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -340,7 +341,8 @@ namespace WindowsFormsApp1
             this.colIcon,
             this.colRarity,
             this.colPassword,
-            this.colCardExists});
+            this.colCardExists,
+            this.colDescription});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
@@ -849,7 +851,7 @@ namespace WindowsFormsApp1
             this.toolStripButtonRemoveFilter.Image = global::WindowsFormsApp1.Properties.Resources.resetnarrowsearch_result;
             this.toolStripButtonRemoveFilter.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.toolStripButtonRemoveFilter.Name = "toolStripButtonRemoveFilter";
-            this.toolStripButtonRemoveFilter.Size = new System.Drawing.Size(23, 21);
+            this.toolStripButtonRemoveFilter.Size = new System.Drawing.Size(23, 27);
             this.toolStripButtonRemoveFilter.Text = "Remove filter";
             this.toolStripButtonRemoveFilter.Click += new System.EventHandler(this.removeFilterToolStripMenuItem_Click);
             this.toolStripButtonRemoveFilter.MouseHover += new System.EventHandler(this.removeFilterToolStripMenuItem_MouseHover);
@@ -863,6 +865,11 @@ namespace WindowsFormsApp1
             this.panelMain.Name = "panelMain";
             this.panelMain.Size = new System.Drawing.Size(1269, 709);
             this.panelMain.TabIndex = 8;
+            // 
+            // colDescription
+            // 
+            this.colDescription.Text = "Description";
+            this.colDescription.Width = 120;
             // 
             // Form1
             // 
@@ -985,6 +992,7 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.ToolStripMenuItem statusBarToolStripMenuItem;
         private System.Windows.Forms.Panel panelMain;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ColumnHeader colDescription;
     }
 }
 

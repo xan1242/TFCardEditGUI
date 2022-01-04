@@ -28,6 +28,7 @@ namespace WindowsFormsApp1
         {
             searchParams.bSearchCardID = checkBoxCardID.Checked;
             searchParams.bSearchName = checkBoxName.Checked;
+            searchParams.bSearchDescription = checkBoxDescription.Checked;
             searchParams.bSearchKind = checkBoxKind.Checked;
             searchParams.bSearchLevel = checkBoxLevel.Checked;
             searchParams.bSearchATK = checkBoxATK.Checked;
@@ -47,6 +48,7 @@ namespace WindowsFormsApp1
         {
             checkBoxCardID.Checked = searchParams.bSearchCardID;
             checkBoxName.Checked = searchParams.bSearchName;
+            checkBoxDescription.Checked = searchParams.bSearchDescription;
             checkBoxKind.Checked = searchParams.bSearchKind;
             checkBoxLevel.Checked = searchParams.bSearchLevel;
             checkBoxATK.Checked = searchParams.bSearchATK;
@@ -84,6 +86,7 @@ namespace WindowsFormsApp1
         {
             return checkBoxCardID.Checked 
                 || checkBoxName.Checked
+                || checkBoxDescription.Checked
                 || checkBoxKind.Checked
                 || checkBoxLevel.Checked
                 || checkBoxATK.Checked

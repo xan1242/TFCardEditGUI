@@ -51,6 +51,7 @@ namespace WindowsFormsApp1
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.checkBoxCase = new System.Windows.Forms.CheckBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.checkBoxDescription = new System.Windows.Forms.CheckBox();
             this.lookatBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,21 +66,22 @@ namespace WindowsFormsApp1
             // 
             // lookatBox
             // 
+            this.lookatBox.Controls.Add(this.checkBoxDescription);
             this.lookatBox.Controls.Add(this.checkBoxExists);
             this.lookatBox.Controls.Add(this.checkBoxPass);
             this.lookatBox.Controls.Add(this.checkBoxRarity);
             this.lookatBox.Controls.Add(this.checkBoxIcon);
             this.lookatBox.Controls.Add(this.checkBoxAttr);
             this.lookatBox.Controls.Add(this.checkBoxType);
+            this.lookatBox.Controls.Add(this.checkBoxCardID);
             this.lookatBox.Controls.Add(this.checkBoxDEF);
             this.lookatBox.Controls.Add(this.checkBoxATK);
             this.lookatBox.Controls.Add(this.checkBoxLevel);
             this.lookatBox.Controls.Add(this.checkBoxKind);
             this.lookatBox.Controls.Add(this.checkBoxName);
-            this.lookatBox.Controls.Add(this.checkBoxCardID);
             this.lookatBox.Location = new System.Drawing.Point(9, 45);
             this.lookatBox.Name = "lookatBox";
-            this.lookatBox.Size = new System.Drawing.Size(281, 81);
+            this.lookatBox.Size = new System.Drawing.Size(336, 81);
             this.lookatBox.TabIndex = 2;
             this.lookatBox.TabStop = false;
             this.lookatBox.Text = "Look at";
@@ -87,7 +89,7 @@ namespace WindowsFormsApp1
             // checkBoxExists
             // 
             this.checkBoxExists.AutoSize = true;
-            this.checkBoxExists.Location = new System.Drawing.Point(183, 57);
+            this.checkBoxExists.Location = new System.Drawing.Point(203, 57);
             this.checkBoxExists.Margin = new System.Windows.Forms.Padding(0);
             this.checkBoxExists.Name = "checkBoxExists";
             this.checkBoxExists.Size = new System.Drawing.Size(75, 17);
@@ -98,7 +100,7 @@ namespace WindowsFormsApp1
             // checkBoxPass
             // 
             this.checkBoxPass.AutoSize = true;
-            this.checkBoxPass.Location = new System.Drawing.Point(183, 38);
+            this.checkBoxPass.Location = new System.Drawing.Point(203, 38);
             this.checkBoxPass.Margin = new System.Windows.Forms.Padding(0);
             this.checkBoxPass.Name = "checkBoxPass";
             this.checkBoxPass.Size = new System.Drawing.Size(72, 17);
@@ -109,7 +111,7 @@ namespace WindowsFormsApp1
             // checkBoxRarity
             // 
             this.checkBoxRarity.AutoSize = true;
-            this.checkBoxRarity.Location = new System.Drawing.Point(183, 19);
+            this.checkBoxRarity.Location = new System.Drawing.Point(203, 19);
             this.checkBoxRarity.Margin = new System.Windows.Forms.Padding(0);
             this.checkBoxRarity.Name = "checkBoxRarity";
             this.checkBoxRarity.Size = new System.Drawing.Size(53, 17);
@@ -120,7 +122,7 @@ namespace WindowsFormsApp1
             // checkBoxIcon
             // 
             this.checkBoxIcon.AutoSize = true;
-            this.checkBoxIcon.Location = new System.Drawing.Point(118, 57);
+            this.checkBoxIcon.Location = new System.Drawing.Point(138, 57);
             this.checkBoxIcon.Margin = new System.Windows.Forms.Padding(0);
             this.checkBoxIcon.Name = "checkBoxIcon";
             this.checkBoxIcon.Size = new System.Drawing.Size(47, 17);
@@ -131,7 +133,7 @@ namespace WindowsFormsApp1
             // checkBoxAttr
             // 
             this.checkBoxAttr.AutoSize = true;
-            this.checkBoxAttr.Location = new System.Drawing.Point(118, 38);
+            this.checkBoxAttr.Location = new System.Drawing.Point(138, 38);
             this.checkBoxAttr.Margin = new System.Windows.Forms.Padding(0);
             this.checkBoxAttr.Name = "checkBoxAttr";
             this.checkBoxAttr.Size = new System.Drawing.Size(65, 17);
@@ -142,7 +144,7 @@ namespace WindowsFormsApp1
             // checkBoxType
             // 
             this.checkBoxType.AutoSize = true;
-            this.checkBoxType.Location = new System.Drawing.Point(118, 19);
+            this.checkBoxType.Location = new System.Drawing.Point(138, 19);
             this.checkBoxType.Margin = new System.Windows.Forms.Padding(0);
             this.checkBoxType.Name = "checkBoxType";
             this.checkBoxType.Size = new System.Drawing.Size(50, 17);
@@ -153,7 +155,7 @@ namespace WindowsFormsApp1
             // checkBoxDEF
             // 
             this.checkBoxDEF.AutoSize = true;
-            this.checkBoxDEF.Location = new System.Drawing.Point(66, 57);
+            this.checkBoxDEF.Location = new System.Drawing.Point(86, 57);
             this.checkBoxDEF.Margin = new System.Windows.Forms.Padding(0);
             this.checkBoxDEF.Name = "checkBoxDEF";
             this.checkBoxDEF.Size = new System.Drawing.Size(47, 17);
@@ -164,7 +166,7 @@ namespace WindowsFormsApp1
             // checkBoxATK
             // 
             this.checkBoxATK.AutoSize = true;
-            this.checkBoxATK.Location = new System.Drawing.Point(66, 38);
+            this.checkBoxATK.Location = new System.Drawing.Point(86, 38);
             this.checkBoxATK.Margin = new System.Windows.Forms.Padding(0);
             this.checkBoxATK.Name = "checkBoxATK";
             this.checkBoxATK.Size = new System.Drawing.Size(47, 17);
@@ -175,7 +177,7 @@ namespace WindowsFormsApp1
             // checkBoxLevel
             // 
             this.checkBoxLevel.AutoSize = true;
-            this.checkBoxLevel.Location = new System.Drawing.Point(66, 19);
+            this.checkBoxLevel.Location = new System.Drawing.Point(86, 19);
             this.checkBoxLevel.Margin = new System.Windows.Forms.Padding(0);
             this.checkBoxLevel.Name = "checkBoxLevel";
             this.checkBoxLevel.Size = new System.Drawing.Size(52, 17);
@@ -197,7 +199,7 @@ namespace WindowsFormsApp1
             // checkBoxName
             // 
             this.checkBoxName.AutoSize = true;
-            this.checkBoxName.Location = new System.Drawing.Point(7, 38);
+            this.checkBoxName.Location = new System.Drawing.Point(7, 19);
             this.checkBoxName.Margin = new System.Windows.Forms.Padding(0);
             this.checkBoxName.Name = "checkBoxName";
             this.checkBoxName.Size = new System.Drawing.Size(54, 17);
@@ -208,7 +210,7 @@ namespace WindowsFormsApp1
             // checkBoxCardID
             // 
             this.checkBoxCardID.AutoSize = true;
-            this.checkBoxCardID.Location = new System.Drawing.Point(7, 19);
+            this.checkBoxCardID.Location = new System.Drawing.Point(275, 19);
             this.checkBoxCardID.Margin = new System.Windows.Forms.Padding(0);
             this.checkBoxCardID.Name = "checkBoxCardID";
             this.checkBoxCardID.Size = new System.Drawing.Size(59, 17);
@@ -220,7 +222,7 @@ namespace WindowsFormsApp1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.Enabled = false;
-            this.button1.Location = new System.Drawing.Point(306, 8);
+            this.button1.Location = new System.Drawing.Point(353, 8);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 16;
@@ -232,7 +234,7 @@ namespace WindowsFormsApp1
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button2.Location = new System.Drawing.Point(306, 37);
+            this.button2.Location = new System.Drawing.Point(353, 37);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 17;
@@ -242,6 +244,7 @@ namespace WindowsFormsApp1
             // 
             // checkBoxMatch
             // 
+            this.checkBoxMatch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.checkBoxMatch.AutoSize = true;
             this.checkBoxMatch.Location = new System.Drawing.Point(9, 129);
             this.checkBoxMatch.Margin = new System.Windows.Forms.Padding(0);
@@ -259,6 +262,7 @@ namespace WindowsFormsApp1
             // 
             // checkBoxCase
             // 
+            this.checkBoxCase.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.checkBoxCase.AutoSize = true;
             this.checkBoxCase.Location = new System.Drawing.Point(146, 129);
             this.checkBoxCase.Margin = new System.Windows.Forms.Padding(0);
@@ -272,9 +276,20 @@ namespace WindowsFormsApp1
             // 
             this.textBox1.Location = new System.Drawing.Point(69, 11);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(222, 20);
+            this.textBox1.Size = new System.Drawing.Size(274, 20);
             this.textBox1.TabIndex = 18;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // checkBoxDescription
+            // 
+            this.checkBoxDescription.AutoSize = true;
+            this.checkBoxDescription.Location = new System.Drawing.Point(7, 38);
+            this.checkBoxDescription.Margin = new System.Windows.Forms.Padding(0);
+            this.checkBoxDescription.Name = "checkBoxDescription";
+            this.checkBoxDescription.Size = new System.Drawing.Size(79, 17);
+            this.checkBoxDescription.TabIndex = 14;
+            this.checkBoxDescription.Text = "De&scription";
+            this.checkBoxDescription.UseVisualStyleBackColor = true;
             // 
             // FindBox
             // 
@@ -282,7 +297,7 @@ namespace WindowsFormsApp1
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.button2;
-            this.ClientSize = new System.Drawing.Size(391, 151);
+            this.ClientSize = new System.Drawing.Size(438, 151);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.checkBoxCase);
             this.Controls.Add(this.checkBoxMatch);
@@ -330,5 +345,6 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.CheckBox checkBoxCase;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.CheckBox checkBoxDescription;
     }
 }
