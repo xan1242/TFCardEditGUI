@@ -686,7 +686,7 @@ namespace WindowsFormsApp1
             return false;
         }
 
-        void FilterListView(CardFilterParams filterParams)
+        void FilterListView(CardFilterParams filterParams) // TODO: MAKE THIS WITH VIRTUAL LISTVIEW!!!
         {
             int li = 0;
             int ci; // curr. card index
@@ -1315,7 +1315,7 @@ namespace WindowsFormsApp1
             }
         }
 
-        bool HandleSearch(CardSearchParams inParams) // TODO: make this with Virtual Mode listview
+        bool HandleSearch(CardSearchParams inParams)
         {
             inParams.SearchResultIndex = -1;
             if (inParams.bMatchWhole)
@@ -1870,7 +1870,7 @@ namespace WindowsFormsApp1
                 System.Diagnostics.Process.Start(URL);
         }
 
-        private void linkLabel1_MouseHover(object sender, EventArgs e)
+        private void linkLabel1_MouseEnter(object sender, EventArgs e)
         {
             if (linkLabel1.Enabled)
             {
@@ -1926,7 +1926,7 @@ namespace WindowsFormsApp1
                 System.Diagnostics.Process.Start(URL);
         }
 
-        private void linkLabel2_MouseHover(object sender, EventArgs e)
+        private void linkLabel2_MouseEnter(object sender, EventArgs e)
         {
             if (linkLabel2.Enabled)
             {
@@ -2187,6 +2187,16 @@ namespace WindowsFormsApp1
                 replace.Show(this);
             else
                 Application.OpenForms[replace.Name].Activate();
+        }
+
+        private void statusBarToolStripMenuItem_MouseEnter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "Enable/disable this status bar";
+        }
+
+        private void toolbarToolStripMenuItem_MouseEnter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "Enable/disable the toolbar";
         }
     }
 }

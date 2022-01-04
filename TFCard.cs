@@ -149,6 +149,12 @@ namespace WindowsFormsApp1
         Union,
         [Description("Token")]
         Token,
+        [Description("(todo - unk1)")]
+        unk1,
+        [Description("(todo - unk2)")]
+        unk2,
+        [Description("(todo - unk3)")]
+        unk3,
         [Description("Spell")]
         Spell = 13,
         [Description("Trap")]

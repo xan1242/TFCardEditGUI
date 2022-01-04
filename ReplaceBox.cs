@@ -241,11 +241,6 @@ namespace WindowsFormsApp1
             searchParams.ReplaceString = "";
         }
 
-        static T ConvertToEnum<T>(object value)
-        {
-            return (T)Enum.Parse(typeof(T), Enum.GetName(typeof(T), value));
-        }
-
         private void GenerateComboBox(Type EnumType)
         {
             var enumcount = Enum.GetNames(EnumType).Length;
@@ -257,6 +252,8 @@ namespace WindowsFormsApp1
                 comboBoxFind.Items.Add(TypeDescriptor.GetConverter(EnumType).ConvertToString(i));
                 comboBoxReplace.Items.Add(TypeDescriptor.GetConverter(EnumType).ConvertToString(i));
             }
+            comboBoxFind.SelectedIndex = 0;
+            comboBoxReplace.SelectedIndex = 0;
         }
 
         private void radioButtonKind_CheckedChanged(object sender, EventArgs e)
@@ -316,6 +313,9 @@ namespace WindowsFormsApp1
                 comboBoxFind.Items.Add("True");
                 comboBoxReplace.Items.Add("False");
                 comboBoxReplace.Items.Add("True");
+
+                comboBoxFind.SelectedIndex = 0;
+                comboBoxReplace.SelectedIndex = 0;
             }
         }
 

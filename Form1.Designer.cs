@@ -64,6 +64,7 @@ namespace WindowsFormsApp1
             this.colRarity = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colPassword = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colCardExists = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colDescription = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -102,7 +103,6 @@ namespace WindowsFormsApp1
             this.toolStripButtonFilter = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonRemoveFilter = new System.Windows.Forms.ToolStripButton();
             this.panelMain = new System.Windows.Forms.Panel();
-            this.colDescription = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -155,7 +155,7 @@ namespace WindowsFormsApp1
             this.openToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.openToolStripMenuItem.Text = "&Open...";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
-            this.openToolStripMenuItem.MouseHover += new System.EventHandler(this.openToolStripMenuItem_MouseHover);
+            this.openToolStripMenuItem.MouseEnter += new System.EventHandler(this.openToolStripMenuItem_MouseHover);
             // 
             // saveToolStripMenuItem
             // 
@@ -166,7 +166,7 @@ namespace WindowsFormsApp1
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.saveToolStripMenuItem.Text = "&Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
-            this.saveToolStripMenuItem.MouseHover += new System.EventHandler(this.saveToolStripMenuItem_MouseHover);
+            this.saveToolStripMenuItem.MouseEnter += new System.EventHandler(this.saveToolStripMenuItem_MouseHover);
             // 
             // saveAsToolStripMenuItem
             // 
@@ -178,7 +178,7 @@ namespace WindowsFormsApp1
             this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.saveAsToolStripMenuItem.Text = "Save &As...";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
-            this.saveAsToolStripMenuItem.MouseHover += new System.EventHandler(this.saveAsToolStripMenuItem_MouseHover);
+            this.saveAsToolStripMenuItem.MouseEnter += new System.EventHandler(this.saveAsToolStripMenuItem_MouseHover);
             // 
             // exitToolStripMenuItem
             // 
@@ -188,7 +188,7 @@ namespace WindowsFormsApp1
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
-            this.exitToolStripMenuItem.MouseHover += new System.EventHandler(this.exitToolStripMenuItem_MouseHover);
+            this.exitToolStripMenuItem.MouseEnter += new System.EventHandler(this.exitToolStripMenuItem_MouseHover);
             // 
             // editToolStripMenuItem
             // 
@@ -212,7 +212,7 @@ namespace WindowsFormsApp1
             this.findToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.findToolStripMenuItem.Text = "&Find";
             this.findToolStripMenuItem.Click += new System.EventHandler(this.findToolStripMenuItem_Click);
-            this.findToolStripMenuItem.MouseHover += new System.EventHandler(this.findToolStripMenuItem_MouseHover);
+            this.findToolStripMenuItem.MouseEnter += new System.EventHandler(this.findToolStripMenuItem_MouseHover);
             // 
             // findNextToolStripMenuItem
             // 
@@ -223,7 +223,7 @@ namespace WindowsFormsApp1
             this.findNextToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.findNextToolStripMenuItem.Text = "Find &Next";
             this.findNextToolStripMenuItem.Click += new System.EventHandler(this.findNextToolStripMenuItem_Click);
-            this.findNextToolStripMenuItem.MouseHover += new System.EventHandler(this.findNextToolStripMenuItem_MouseHover);
+            this.findNextToolStripMenuItem.MouseEnter += new System.EventHandler(this.findNextToolStripMenuItem_MouseHover);
             // 
             // replaceToolStripMenuItem
             // 
@@ -234,7 +234,7 @@ namespace WindowsFormsApp1
             this.replaceToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.replaceToolStripMenuItem.Text = "&Replace";
             this.replaceToolStripMenuItem.Click += new System.EventHandler(this.replaceToolStripMenuItem_Click);
-            this.replaceToolStripMenuItem.MouseHover += new System.EventHandler(this.replaceToolStripMenuItem_MouseHover);
+            this.replaceToolStripMenuItem.MouseEnter += new System.EventHandler(this.replaceToolStripMenuItem_MouseHover);
             // 
             // toolStripSeparator1
             // 
@@ -250,7 +250,7 @@ namespace WindowsFormsApp1
             this.filterToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.filterToolStripMenuItem.Text = "Filte&r...";
             this.filterToolStripMenuItem.Click += new System.EventHandler(this.filterToolStripMenuItem_Click);
-            this.filterToolStripMenuItem.MouseHover += new System.EventHandler(this.filterToolStripMenuItem_MouseHover);
+            this.filterToolStripMenuItem.MouseEnter += new System.EventHandler(this.filterToolStripMenuItem_MouseHover);
             // 
             // removeFilterToolStripMenuItem
             // 
@@ -261,7 +261,7 @@ namespace WindowsFormsApp1
             this.removeFilterToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.removeFilterToolStripMenuItem.Text = "Rem&ove Filter";
             this.removeFilterToolStripMenuItem.Click += new System.EventHandler(this.removeFilterToolStripMenuItem_Click);
-            this.removeFilterToolStripMenuItem.MouseHover += new System.EventHandler(this.removeFilterToolStripMenuItem_MouseHover);
+            this.removeFilterToolStripMenuItem.MouseEnter += new System.EventHandler(this.removeFilterToolStripMenuItem_MouseHover);
             // 
             // viewToolStripMenuItem
             // 
@@ -281,6 +281,7 @@ namespace WindowsFormsApp1
             this.toolbarToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.toolbarToolStripMenuItem.Text = "&Toolbar";
             this.toolbarToolStripMenuItem.Click += new System.EventHandler(this.toolbarToolStripMenuItem_Click);
+            this.toolbarToolStripMenuItem.MouseEnter += new System.EventHandler(this.toolbarToolStripMenuItem_MouseEnter);
             // 
             // statusBarToolStripMenuItem
             // 
@@ -291,6 +292,7 @@ namespace WindowsFormsApp1
             this.statusBarToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.statusBarToolStripMenuItem.Text = "&Status Bar";
             this.statusBarToolStripMenuItem.Click += new System.EventHandler(this.statusBarToolStripMenuItem_Click);
+            this.statusBarToolStripMenuItem.MouseEnter += new System.EventHandler(this.statusBarToolStripMenuItem_MouseEnter);
             // 
             // helpToolStripMenuItem
             // 
@@ -306,7 +308,7 @@ namespace WindowsFormsApp1
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutToolStripMenuItem.Text = "&About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
-            this.aboutToolStripMenuItem.MouseHover += new System.EventHandler(this.aboutToolStripMenuItem_MouseHover);
+            this.aboutToolStripMenuItem.MouseEnter += new System.EventHandler(this.aboutToolStripMenuItem_MouseHover);
             // 
             // openFileDialog1
             // 
@@ -413,6 +415,11 @@ namespace WindowsFormsApp1
             // 
             this.colCardExists.Text = "CardExists";
             this.colCardExists.Width = 62;
+            // 
+            // colDescription
+            // 
+            this.colDescription.Text = "Description";
+            this.colDescription.Width = 120;
             // 
             // splitContainer1
             // 
@@ -611,7 +618,7 @@ namespace WindowsFormsApp1
             this.linkLabel2.TabStop = true;
             this.linkLabel2.Text = "Lookup card in Konami Card DB (by Name)";
             this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
-            this.linkLabel2.MouseHover += new System.EventHandler(this.linkLabel2_MouseHover);
+            this.linkLabel2.MouseEnter += new System.EventHandler(this.linkLabel2_MouseEnter);
             // 
             // linkLabel1
             // 
@@ -627,7 +634,7 @@ namespace WindowsFormsApp1
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Lookup card in Konami Card DB (by CardID)";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
-            this.linkLabel1.MouseHover += new System.EventHandler(this.linkLabel1_MouseHover);
+            this.linkLabel1.MouseEnter += new System.EventHandler(this.linkLabel1_MouseEnter);
             // 
             // statusStrip1
             // 
@@ -760,7 +767,7 @@ namespace WindowsFormsApp1
             this.toolStripButtonOpen.Size = new System.Drawing.Size(23, 27);
             this.toolStripButtonOpen.Text = "Open...";
             this.toolStripButtonOpen.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
-            this.toolStripButtonOpen.MouseHover += new System.EventHandler(this.openToolStripMenuItem_MouseHover);
+            this.toolStripButtonOpen.MouseEnter += new System.EventHandler(this.openToolStripMenuItem_MouseHover);
             // 
             // toolStripButtonSave
             // 
@@ -772,7 +779,7 @@ namespace WindowsFormsApp1
             this.toolStripButtonSave.Size = new System.Drawing.Size(23, 27);
             this.toolStripButtonSave.Text = "Save";
             this.toolStripButtonSave.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
-            this.toolStripButtonSave.MouseHover += new System.EventHandler(this.saveToolStripMenuItem_MouseHover);
+            this.toolStripButtonSave.MouseEnter += new System.EventHandler(this.saveToolStripMenuItem_MouseHover);
             // 
             // toolStripButtonSaveAs
             // 
@@ -784,7 +791,7 @@ namespace WindowsFormsApp1
             this.toolStripButtonSaveAs.Size = new System.Drawing.Size(23, 27);
             this.toolStripButtonSaveAs.Text = "Save As...";
             this.toolStripButtonSaveAs.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
-            this.toolStripButtonSaveAs.MouseHover += new System.EventHandler(this.saveAsToolStripMenuItem_MouseHover);
+            this.toolStripButtonSaveAs.MouseEnter += new System.EventHandler(this.saveAsToolStripMenuItem_MouseHover);
             // 
             // toolStripSeparator2
             // 
@@ -801,7 +808,7 @@ namespace WindowsFormsApp1
             this.toolStripButtonFind.Size = new System.Drawing.Size(23, 27);
             this.toolStripButtonFind.Text = "Find...";
             this.toolStripButtonFind.Click += new System.EventHandler(this.findToolStripMenuItem_Click);
-            this.toolStripButtonFind.MouseHover += new System.EventHandler(this.findToolStripMenuItem_MouseHover);
+            this.toolStripButtonFind.MouseEnter += new System.EventHandler(this.findToolStripMenuItem_MouseHover);
             // 
             // toolStripButtonFindNext
             // 
@@ -813,7 +820,7 @@ namespace WindowsFormsApp1
             this.toolStripButtonFindNext.Size = new System.Drawing.Size(23, 27);
             this.toolStripButtonFindNext.Text = "Find Next";
             this.toolStripButtonFindNext.Click += new System.EventHandler(this.findNextToolStripMenuItem_Click);
-            this.toolStripButtonFindNext.MouseHover += new System.EventHandler(this.findNextToolStripMenuItem_MouseHover);
+            this.toolStripButtonFindNext.MouseEnter += new System.EventHandler(this.findNextToolStripMenuItem_MouseHover);
             // 
             // toolStripButtonReplace
             // 
@@ -825,7 +832,7 @@ namespace WindowsFormsApp1
             this.toolStripButtonReplace.Size = new System.Drawing.Size(23, 27);
             this.toolStripButtonReplace.Text = "Replace...";
             this.toolStripButtonReplace.Click += new System.EventHandler(this.replaceToolStripMenuItem_Click);
-            this.toolStripButtonReplace.MouseHover += new System.EventHandler(this.replaceToolStripMenuItem_MouseHover);
+            this.toolStripButtonReplace.MouseEnter += new System.EventHandler(this.replaceToolStripMenuItem_MouseHover);
             // 
             // toolStripSeparator3
             // 
@@ -842,7 +849,7 @@ namespace WindowsFormsApp1
             this.toolStripButtonFilter.Size = new System.Drawing.Size(23, 27);
             this.toolStripButtonFilter.Text = "Filter...";
             this.toolStripButtonFilter.Click += new System.EventHandler(this.filterToolStripMenuItem_Click);
-            this.toolStripButtonFilter.MouseHover += new System.EventHandler(this.filterToolStripMenuItem_MouseHover);
+            this.toolStripButtonFilter.MouseEnter += new System.EventHandler(this.filterToolStripMenuItem_MouseHover);
             // 
             // toolStripButtonRemoveFilter
             // 
@@ -854,7 +861,7 @@ namespace WindowsFormsApp1
             this.toolStripButtonRemoveFilter.Size = new System.Drawing.Size(23, 27);
             this.toolStripButtonRemoveFilter.Text = "Remove filter";
             this.toolStripButtonRemoveFilter.Click += new System.EventHandler(this.removeFilterToolStripMenuItem_Click);
-            this.toolStripButtonRemoveFilter.MouseHover += new System.EventHandler(this.removeFilterToolStripMenuItem_MouseHover);
+            this.toolStripButtonRemoveFilter.MouseEnter += new System.EventHandler(this.removeFilterToolStripMenuItem_MouseHover);
             // 
             // panelMain
             // 
@@ -865,11 +872,6 @@ namespace WindowsFormsApp1
             this.panelMain.Name = "panelMain";
             this.panelMain.Size = new System.Drawing.Size(1269, 709);
             this.panelMain.TabIndex = 8;
-            // 
-            // colDescription
-            // 
-            this.colDescription.Text = "Description";
-            this.colDescription.Width = 120;
             // 
             // Form1
             // 
