@@ -139,8 +139,6 @@ namespace WindowsFormsApp1
             Close();
         }
 
-
-
         void CheckFindString()
         {
             string str;
@@ -196,6 +194,15 @@ namespace WindowsFormsApp1
             form1.InitiateCardSearch(searchParams);
         }
 
+        private void buttonReplace_Click(object sender, EventArgs e)
+        {
+            SaveCheckboxes();
+            SetSearchContext();
+
+            DialogResult = DialogResult.OK;
+            form1.InitiateReplacing(searchParams);
+        }
+
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             searchParams.SearchString = fastTextBoxFind.Text;
@@ -211,7 +218,7 @@ namespace WindowsFormsApp1
             searchParams.ReplaceString = fastTextBoxReplace.Text;
         }
 
-        private void SwitchToTextBox(object sender, EventArgs e)
+        private void SwitchToTextBox(object sender, EventArgs e) // defined in events for text inputs...
         {
             if (radioButtonDescription.Checked || radioButtonName.Checked || IsANumericBoxTicked())
             {
@@ -254,6 +261,8 @@ namespace WindowsFormsApp1
             }
             comboBoxFind.SelectedIndex = 0;
             comboBoxReplace.SelectedIndex = 0;
+            searchParams.SearchComboBoxIndex = 0;
+            searchParams.ReplaceComboBoxIndex = 0;
         }
 
         private void radioButtonKind_CheckedChanged(object sender, EventArgs e)
@@ -316,6 +325,8 @@ namespace WindowsFormsApp1
 
                 comboBoxFind.SelectedIndex = 0;
                 comboBoxReplace.SelectedIndex = 0;
+                searchParams.SearchComboBoxIndex = 0;
+                searchParams.ReplaceComboBoxIndex = 0;
             }
         }
 
@@ -326,7 +337,19 @@ namespace WindowsFormsApp1
 
         private void comboBoxReplace_TextChanged(object sender, EventArgs e)
         {
-            searchParams.SearchString = comboBoxReplace.Text;
+            searchParams.ReplaceString = comboBoxReplace.Text;
         }
+
+        private void comboBoxFind_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            searchParams.SearchComboBoxIndex = comboBoxFind.SelectedIndex;
+        }
+
+        private void comboBoxReplace_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            searchParams.ReplaceComboBoxIndex = comboBoxFind.SelectedIndex;
+        }
+
+
     }
 }

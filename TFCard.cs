@@ -402,11 +402,25 @@ namespace WindowsFormsApp1
             set { p_SearchString = value; }
         }
 
+        int p_SearchComboBoxIndex;
+        public int SearchComboBoxIndex
+        {
+            get { return p_SearchComboBoxIndex; }
+            set { p_SearchComboBoxIndex = value; }
+        }
+
         string p_ReplaceString;
         public string ReplaceString
         {
             get { return p_ReplaceString; }
             set { p_ReplaceString = value; }
+        }
+
+        int p_ReplaceComboBoxIndex;
+        public int ReplaceComboBoxIndex
+        {
+            get { return p_ReplaceComboBoxIndex; }
+            set { p_ReplaceComboBoxIndex = value; }
         }
 
         bool p_bSearchCardID;

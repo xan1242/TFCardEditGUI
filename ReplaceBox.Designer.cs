@@ -309,6 +309,7 @@ namespace WindowsFormsApp1
             this.buttonReplace.TabIndex = 22;
             this.buttonReplace.Text = "&Replace";
             this.buttonReplace.UseVisualStyleBackColor = true;
+            this.buttonReplace.Click += new System.EventHandler(this.buttonReplace_Click);
             // 
             // buttonReplaceAll
             // 
@@ -328,6 +329,7 @@ namespace WindowsFormsApp1
             this.comboBoxFind.Size = new System.Drawing.Size(121, 21);
             this.comboBoxFind.TabIndex = 24;
             this.comboBoxFind.Visible = false;
+            this.comboBoxFind.SelectedIndexChanged += new System.EventHandler(this.comboBoxFind_SelectedIndexChanged);
             this.comboBoxFind.TextChanged += new System.EventHandler(this.comboBoxFind_TextChanged);
             // 
             // comboBoxReplace
@@ -338,6 +340,7 @@ namespace WindowsFormsApp1
             this.comboBoxReplace.Size = new System.Drawing.Size(121, 21);
             this.comboBoxReplace.TabIndex = 25;
             this.comboBoxReplace.Visible = false;
+            this.comboBoxReplace.SelectedIndexChanged += new System.EventHandler(this.comboBoxReplace_SelectedIndexChanged);
             this.comboBoxReplace.TextChanged += new System.EventHandler(this.comboBoxReplace_TextChanged);
             // 
             // fastTextBoxFind

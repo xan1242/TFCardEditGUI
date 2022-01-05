@@ -1339,7 +1339,7 @@ namespace WindowsFormsApp1
                 return false;
         }
 
-        public void InitiateCardSearch(CardSearchParams searchParams)
+        public bool InitiateCardSearch(CardSearchParams searchParams)
         {
             bCurrentlySearching = true;
             if (HandleSearch(searchParams))
@@ -1394,56 +1394,76 @@ namespace WindowsFormsApp1
                 }
 
                 toolStripStatusLabel1.Text += " at item [" + (searchParams.SearchResultIndex + 1) + "]";
+                bCurrentlySearching = false;
+                return true;
             }
             else
                 toolStripStatusLabel1.Text = "String: \"" + searchParams.SearchString + "\" not found.";
             bCurrentlySearching = false;
+            return false;
         }
 
-        void DoReplaceAction(ListView inListView, CardSearchParams searchParams)
+        void DoReplaceAction(CardSearchParams searchParams)
         {
-            string str;
+            int ci = SearchCardIndexByID(Int32.Parse(listView1.SelectedItems[0].SubItems[0].Text));
 
-            switch(searchParams.SearchContext)
+            switch (searchParams.SearchContext)
             {
-                case CardProps.Name:
-                    ImportDB[SearchCardIndexByID(Int32.Parse(inListView.SelectedItems[0].SubItems[0].Text))].Name.Replace(searchParams.SearchString, searchParams.ReplaceString);
-                    break;
+                // comboBoxes
                 case CardProps.Kind:
-                    ImportDB[SearchCardIndexByID(Int32.Parse(inListView.SelectedItems[0].SubItems[0].Text))].Kind = (CardKinds)Enum.Parse(typeof(CardKinds), searchParams.ReplaceString);
+                    ImportDB[ci].Kind = (CardKinds)Enum.ToObject(typeof(CardKinds), searchParams.ReplaceComboBoxIndex);
                     break;
+                case CardProps.Type:
+                    ImportDB[ci].Type = (CardTypes)Enum.ToObject(typeof(CardTypes), searchParams.ReplaceComboBoxIndex);
+                    break;
+                case CardProps.Attr:
+                    ImportDB[ci].Attr = (CardAttributes)Enum.ToObject(typeof(CardAttributes), searchParams.ReplaceComboBoxIndex);
+                    break;
+                case CardProps.Icon:
+                    ImportDB[ci].Icon = (CardIcons)Enum.ToObject(typeof(CardIcons), searchParams.ReplaceComboBoxIndex);
+                    break;
+                case CardProps.Rarity:
+                    ImportDB[ci].Rarity = (CardRarity)Enum.ToObject(typeof(CardRarity), searchParams.ReplaceComboBoxIndex);
+                    break;
+                case CardProps.CardExists:
+                    ImportDB[ci].CardExistFlag = Boolean.Parse(searchParams.ReplaceString);
+                    break;
+
+                // textboxes
+                case CardProps.Name:
+                    ImportDB[ci].Name = searchParams.ReplaceString;
+                    break;
+                case CardProps.Description:
+                    ImportDB[ci].Description = searchParams.ReplaceString;
+                    break;
+                case CardProps.Level:
+                    ImportDB[ci].Level = Int32.Parse(searchParams.ReplaceString);
+                    break;
+                case CardProps.ATK:
+                    ImportDB[ci].ATK = Int32.Parse(searchParams.ReplaceString);
+                    break;
+                case CardProps.DEF:
+                    ImportDB[ci].DEF = Int32.Parse(searchParams.ReplaceString);
+                    break;
+                case CardProps.Password:
+                    ImportDB[ci].Password = Int32.Parse(searchParams.ReplaceString);
+                    break;
+
                 default:
                     break;
             }
+
         }
 
-        public void HandleReplace(CardSearchParams searchParams)
+        public void InitiateReplacing(CardSearchParams searchParams)
         {
-            // if the currently selected item contains the string, replace it
-            if (searchParams.bMatchWhole)
+            if (CurrentlySelectedSubItem == -1 || searchParams.SearchResultIndex == -1) // if a card is unselected / index has changed, search without replacing....
+                InitiateCardSearch(searchParams);
+            else if (searchParams.SearchResultIndex != -1) // else if we have a search result, replace and continue searching again...
             {
-                if (searchParams.bMatchCase)
-                {
-                    if (listView1.SelectedItems[0].SubItems[(int)searchParams.SearchContext].Text.Equals(searchParams.SearchString))
-                    {
-
-                    }
-                }
-                else if (listView1.SelectedItems[0].SubItems[(int)searchParams.SearchContext].Text.ToUpper().Equals(searchParams.SearchString.ToUpper()))
-                {
-
-                }
-            }
-            if (searchParams.bMatchCase)
-            {
-                if (listView1.SelectedItems[0].SubItems[(int)searchParams.SearchContext].Text.Contains(searchParams.SearchString))
-                {
-
-                }
-            }
-            else if (listView1.SelectedItems[0].SubItems[(int)searchParams.SearchContext].Text.ToUpper().Contains(searchParams.SearchString.ToUpper()))
-            {
-                
+                DoReplaceAction(searchParams);
+                UpdateTexts();
+                InitiateCardSearch(searchParams);
             }
         }
 
