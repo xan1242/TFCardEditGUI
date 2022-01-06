@@ -220,7 +220,7 @@ namespace WindowsFormsApp1
 
         private void SwitchToTextBox(object sender, EventArgs e) // defined in events for text inputs...
         {
-            if (radioButtonDescription.Checked || radioButtonName.Checked || IsANumericBoxTicked())
+            if ((radioButtonDescription.Checked || radioButtonName.Checked || IsANumericBoxTicked()) && bInComboBoxMode)
             {
                 comboBoxFind.Visible = false;
                 comboBoxReplace.Visible = false;
@@ -233,12 +233,29 @@ namespace WindowsFormsApp1
                 searchParams.SearchString = "";
                 searchParams.ReplaceString = "";
             }
+
+            if (IsANumericBoxTicked())
+            {
+                checkBoxCase.Enabled = false;
+                checkBoxMatch.Enabled = false;
+                fastTextBoxFind.Text = "";
+                fastTextBoxReplace.Text = "";
+                searchParams.SearchString = "";
+                searchParams.ReplaceString = "";
+            }
+            else
+            {
+                checkBoxCase.Enabled = true;
+                checkBoxMatch.Enabled = true;
+            }
         }
 
         private void SwitchToComboBox()
         {
             fastTextBoxFind.Visible = false;
             fastTextBoxReplace.Visible = false;
+            checkBoxCase.Enabled = false;
+            checkBoxMatch.Enabled = false;
             comboBoxFind.Visible = true;
             comboBoxReplace.Visible = true;
             bInComboBoxMode = true;
@@ -349,7 +366,5 @@ namespace WindowsFormsApp1
         {
             searchParams.ReplaceComboBoxIndex = comboBoxReplace.SelectedIndex;
         }
-
-
     }
 }

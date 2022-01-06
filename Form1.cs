@@ -803,6 +803,7 @@ namespace WindowsFormsApp1
                     dispstr = listView1.Items[searchParams.SearchResultIndex].SubItems[(int)Enum.ToObject(typeof(CardProps), searchParams.SearchContext)].Text;
 
                 toolStripStatusLabel1.Text = "Found: " + "[" + searchParams.SearchContext.ToString() + "] " + dispstr + " at item [" + (searchParams.SearchResultIndex + 1) + "]";
+                bCurrentlySearching = false;
                 return true;
             }
             else
@@ -811,65 +812,14 @@ namespace WindowsFormsApp1
             return false;
         }
 
-        void DoReplaceAction(CardSearchParams searchParams)
-        {
-            int ci = SearchCardIndexByID(Int32.Parse(listView1.SelectedItems[0].SubItems[0].Text));
-
-            switch (searchParams.SearchContext)
-            {
-                // comboBoxes
-                case CardProps.Kind:
-                    ImportDB[ci].Kind = (CardKinds)Enum.ToObject(typeof(CardKinds), searchParams.ReplaceComboBoxIndex);
-                    break;
-                case CardProps.Type:
-                    ImportDB[ci].Type = (CardTypes)Enum.ToObject(typeof(CardTypes), searchParams.ReplaceComboBoxIndex);
-                    break;
-                case CardProps.Attr:
-                    ImportDB[ci].Attr = (CardAttributes)Enum.ToObject(typeof(CardAttributes), searchParams.ReplaceComboBoxIndex);
-                    break;
-                case CardProps.Icon:
-                    ImportDB[ci].Icon = (CardIcons)Enum.ToObject(typeof(CardIcons), searchParams.ReplaceComboBoxIndex);
-                    break;
-                case CardProps.Rarity:
-                    ImportDB[ci].Rarity = (CardRarity)Enum.ToObject(typeof(CardRarity), searchParams.ReplaceComboBoxIndex);
-                    break;
-                case CardProps.CardExists:
-                    ImportDB[ci].CardExistFlag = Boolean.Parse(searchParams.ReplaceString);
-                    break;
-
-                // textboxes
-                case CardProps.Name:
-                    ImportDB[ci].Name = searchParams.ReplaceString;
-                    break;
-                case CardProps.Description:
-                    ImportDB[ci].Description = searchParams.ReplaceString;
-                    break;
-                case CardProps.Level:
-                    ImportDB[ci].Level = Int32.Parse(searchParams.ReplaceString);
-                    break;
-                case CardProps.ATK:
-                    ImportDB[ci].ATK = Int32.Parse(searchParams.ReplaceString);
-                    break;
-                case CardProps.DEF:
-                    ImportDB[ci].DEF = Int32.Parse(searchParams.ReplaceString);
-                    break;
-                case CardProps.Password:
-                    ImportDB[ci].Password = Int32.Parse(searchParams.ReplaceString);
-                    break;
-
-                default:
-                    break;
-            }
-
-        }
-
         public void InitiateReplacing(CardSearchParams searchParams)
         {
-            if (searchParams.SearchResultIndex == -1) // if a card is unselected / index has changed, search without replacing....
+            if (searchParams.SearchResultIndex < 0) // if a card is unselected / index has changed, search without replacing....
                 InitiateCardSearch(searchParams);
-            else if (searchParams.SearchResultIndex != -1) // else if we have a search result, replace and continue searching again...
+            else // else if we have a search result, replace and continue searching again...
             {
-                DoReplaceAction(searchParams);
+                int ci = SearchCardIndexByID(Int32.Parse(listView1.SelectedItems[0].SubItems[0].Text));
+                cardSearch.Replace(searchParams, ImportDB[ci]);
                 UpdateTexts();
                 InitiateCardSearch(searchParams);
             }
@@ -1271,7 +1221,11 @@ namespace WindowsFormsApp1
                 propertyGrid1.SelectedObject = ImportDB[CurrentlySelectedCard];
 
                 if (!bCurrentlySearching)
+                {
                     toolStripStatusLabel1.Text = "Selected: [" + ImportDB[CurrentlySelectedCard].CardID + "] " + ImportDB[CurrentlySelectedCard].Name;
+                    replaceParams.SearchResultIndex = -1;
+                    replaceParams.SearchResultSubStrIndex = -1;
+                }
 
                 UpdateTexts();
             }

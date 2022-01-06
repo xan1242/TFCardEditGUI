@@ -1202,6 +1202,69 @@ namespace WindowsFormsApp1
             else
                 return false;
         }
+    
+        public void Replace(CardSearchParams inParams, TFCard card)
+        {
+            switch (inParams.SearchContext)
+            {
+                // comboBoxes
+                case CardProps.Kind:
+                    card.Kind = (CardKinds)Enum.ToObject(typeof(CardKinds), inParams.ReplaceComboBoxIndex);
+                    break;
+                case CardProps.Type:
+                    card.Type = (CardTypes)Enum.ToObject(typeof(CardTypes), inParams.ReplaceComboBoxIndex);
+                    break;
+                case CardProps.Attr:
+                    card.Attr = (CardAttributes)Enum.ToObject(typeof(CardAttributes), inParams.ReplaceComboBoxIndex);
+                    break;
+                case CardProps.Icon:
+                    card.Icon = (CardIcons)Enum.ToObject(typeof(CardIcons), inParams.ReplaceComboBoxIndex);
+                    break;
+                case CardProps.Rarity:
+                    card.Rarity = (CardRarity)Enum.ToObject(typeof(CardRarity), inParams.ReplaceComboBoxIndex);
+                    break;
+                case CardProps.CardExists:
+                    card.CardExistFlag = Boolean.Parse(inParams.ReplaceString);
+                    break;
+
+                // textboxes
+                case CardProps.Name:
+                    if (inParams.bMatchWhole)
+                        card.Name = inParams.ReplaceString;
+                    else
+                    {
+                        string newstr = card.Name.Substring(0, inParams.SearchResultSubStrIndex);
+                        newstr += inParams.ReplaceString + card.Name.Substring(inParams.SearchResultSubStrIndex + inParams.SearchString.Length);
+                        card.Name = newstr;
+                    }
+                    break;
+                case CardProps.Description:
+                    if (inParams.bMatchWhole)
+                        card.Description = inParams.ReplaceString;
+                    else
+                    {
+                        string newstr = card.Description.Substring(0, inParams.SearchResultSubStrIndex);
+                        newstr += inParams.ReplaceString + card.Description.Substring(inParams.SearchResultSubStrIndex + inParams.SearchString.Length);
+                        card.Description = newstr;
+                    }
+                    break;
+                case CardProps.Level:
+                    card.Level = Int32.Parse(inParams.ReplaceString);
+                    break;
+                case CardProps.ATK:
+                    card.ATK = Int32.Parse(inParams.ReplaceString);
+                    break;
+                case CardProps.DEF:
+                    card.DEF = Int32.Parse(inParams.ReplaceString);
+                    break;
+                case CardProps.Password:
+                    card.Password = Int32.Parse(inParams.ReplaceString);
+                    break;
+
+                default:
+                    break;
+            }
+        }
     }
 
     public class CardFilterParams

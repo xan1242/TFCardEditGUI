@@ -87,7 +87,7 @@ namespace WindowsFormsApp1
             this.lookatBox.Location = new System.Drawing.Point(9, 69);
             this.lookatBox.Name = "lookatBox";
             this.lookatBox.Size = new System.Drawing.Size(281, 81);
-            this.lookatBox.TabIndex = 2;
+            this.lookatBox.TabIndex = 7;
             this.lookatBox.TabStop = false;
             this.lookatBox.Text = "Look at";
             // 
@@ -98,7 +98,7 @@ namespace WindowsFormsApp1
             this.radioButtonCardExists.Margin = new System.Windows.Forms.Padding(0);
             this.radioButtonCardExists.Name = "radioButtonCardExists";
             this.radioButtonCardExists.Size = new System.Drawing.Size(74, 17);
-            this.radioButtonCardExists.TabIndex = 35;
+            this.radioButtonCardExists.TabIndex = 19;
             this.radioButtonCardExists.Text = "CardExists";
             this.radioButtonCardExists.UseVisualStyleBackColor = true;
             this.radioButtonCardExists.CheckedChanged += new System.EventHandler(this.radioButtonCardExists_CheckedChanged);
@@ -110,7 +110,7 @@ namespace WindowsFormsApp1
             this.radioButtonRarity.Margin = new System.Windows.Forms.Padding(0);
             this.radioButtonRarity.Name = "radioButtonRarity";
             this.radioButtonRarity.Size = new System.Drawing.Size(52, 17);
-            this.radioButtonRarity.TabIndex = 34;
+            this.radioButtonRarity.TabIndex = 17;
             this.radioButtonRarity.Text = "Rarity";
             this.radioButtonRarity.UseVisualStyleBackColor = true;
             this.radioButtonRarity.CheckedChanged += new System.EventHandler(this.radioButtonRarity_CheckedChanged);
@@ -122,7 +122,7 @@ namespace WindowsFormsApp1
             this.radioButtonPassword.Margin = new System.Windows.Forms.Padding(0);
             this.radioButtonPassword.Name = "radioButtonPassword";
             this.radioButtonPassword.Size = new System.Drawing.Size(71, 17);
-            this.radioButtonPassword.TabIndex = 33;
+            this.radioButtonPassword.TabIndex = 18;
             this.radioButtonPassword.Text = "Password";
             this.radioButtonPassword.UseVisualStyleBackColor = true;
             this.radioButtonPassword.CheckedChanged += new System.EventHandler(this.SwitchToTextBox);
@@ -134,7 +134,7 @@ namespace WindowsFormsApp1
             this.radioButtonIcon.Margin = new System.Windows.Forms.Padding(0);
             this.radioButtonIcon.Name = "radioButtonIcon";
             this.radioButtonIcon.Size = new System.Drawing.Size(46, 17);
-            this.radioButtonIcon.TabIndex = 32;
+            this.radioButtonIcon.TabIndex = 16;
             this.radioButtonIcon.Text = "Icon";
             this.radioButtonIcon.UseVisualStyleBackColor = true;
             this.radioButtonIcon.CheckedChanged += new System.EventHandler(this.radioButtonIcon_CheckedChanged);
@@ -146,7 +146,7 @@ namespace WindowsFormsApp1
             this.radioButtonAttr.Margin = new System.Windows.Forms.Padding(0);
             this.radioButtonAttr.Name = "radioButtonAttr";
             this.radioButtonAttr.Size = new System.Drawing.Size(64, 17);
-            this.radioButtonAttr.TabIndex = 31;
+            this.radioButtonAttr.TabIndex = 15;
             this.radioButtonAttr.Text = "Attribute";
             this.radioButtonAttr.UseVisualStyleBackColor = true;
             this.radioButtonAttr.CheckedChanged += new System.EventHandler(this.radioButtonAttr_CheckedChanged);
@@ -158,7 +158,7 @@ namespace WindowsFormsApp1
             this.radioButtonType.Margin = new System.Windows.Forms.Padding(0);
             this.radioButtonType.Name = "radioButtonType";
             this.radioButtonType.Size = new System.Drawing.Size(49, 17);
-            this.radioButtonType.TabIndex = 30;
+            this.radioButtonType.TabIndex = 14;
             this.radioButtonType.Text = "Type";
             this.radioButtonType.UseVisualStyleBackColor = true;
             this.radioButtonType.CheckedChanged += new System.EventHandler(this.radioButtonType_CheckedChanged);
@@ -170,7 +170,7 @@ namespace WindowsFormsApp1
             this.radioButtonDEF.Margin = new System.Windows.Forms.Padding(0);
             this.radioButtonDEF.Name = "radioButtonDEF";
             this.radioButtonDEF.Size = new System.Drawing.Size(46, 17);
-            this.radioButtonDEF.TabIndex = 29;
+            this.radioButtonDEF.TabIndex = 13;
             this.radioButtonDEF.Text = "DEF";
             this.radioButtonDEF.UseVisualStyleBackColor = true;
             this.radioButtonDEF.CheckedChanged += new System.EventHandler(this.SwitchToTextBox);
@@ -182,7 +182,7 @@ namespace WindowsFormsApp1
             this.radioButtonATK.Margin = new System.Windows.Forms.Padding(0);
             this.radioButtonATK.Name = "radioButtonATK";
             this.radioButtonATK.Size = new System.Drawing.Size(46, 17);
-            this.radioButtonATK.TabIndex = 28;
+            this.radioButtonATK.TabIndex = 12;
             this.radioButtonATK.Text = "ATK";
             this.radioButtonATK.UseVisualStyleBackColor = true;
             this.radioButtonATK.CheckedChanged += new System.EventHandler(this.SwitchToTextBox);
@@ -194,7 +194,7 @@ namespace WindowsFormsApp1
             this.radioButtonLevel.Margin = new System.Windows.Forms.Padding(0);
             this.radioButtonLevel.Name = "radioButtonLevel";
             this.radioButtonLevel.Size = new System.Drawing.Size(51, 17);
-            this.radioButtonLevel.TabIndex = 27;
+            this.radioButtonLevel.TabIndex = 11;
             this.radioButtonLevel.Text = "Level";
             this.radioButtonLevel.UseVisualStyleBackColor = true;
             this.radioButtonLevel.CheckedChanged += new System.EventHandler(this.SwitchToTextBox);
@@ -206,7 +206,7 @@ namespace WindowsFormsApp1
             this.radioButtonKind.Margin = new System.Windows.Forms.Padding(0);
             this.radioButtonKind.Name = "radioButtonKind";
             this.radioButtonKind.Size = new System.Drawing.Size(46, 17);
-            this.radioButtonKind.TabIndex = 26;
+            this.radioButtonKind.TabIndex = 10;
             this.radioButtonKind.Text = "Kind";
             this.radioButtonKind.UseVisualStyleBackColor = true;
             this.radioButtonKind.CheckedChanged += new System.EventHandler(this.radioButtonKind_CheckedChanged);
@@ -219,7 +219,7 @@ namespace WindowsFormsApp1
             this.radioButtonName.Margin = new System.Windows.Forms.Padding(0);
             this.radioButtonName.Name = "radioButtonName";
             this.radioButtonName.Size = new System.Drawing.Size(53, 17);
-            this.radioButtonName.TabIndex = 25;
+            this.radioButtonName.TabIndex = 8;
             this.radioButtonName.TabStop = true;
             this.radioButtonName.Text = "Name";
             this.radioButtonName.UseVisualStyleBackColor = true;
@@ -232,7 +232,7 @@ namespace WindowsFormsApp1
             this.radioButtonDescription.Margin = new System.Windows.Forms.Padding(0);
             this.radioButtonDescription.Name = "radioButtonDescription";
             this.radioButtonDescription.Size = new System.Drawing.Size(78, 17);
-            this.radioButtonDescription.TabIndex = 24;
+            this.radioButtonDescription.TabIndex = 9;
             this.radioButtonDescription.Text = "Description";
             this.radioButtonDescription.UseVisualStyleBackColor = true;
             this.radioButtonDescription.CheckedChanged += new System.EventHandler(this.SwitchToTextBox);
@@ -244,7 +244,7 @@ namespace WindowsFormsApp1
             this.button1.Location = new System.Drawing.Point(316, 8);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 16;
+            this.button1.TabIndex = 4;
             this.button1.Text = "&Find Next";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -256,7 +256,7 @@ namespace WindowsFormsApp1
             this.button2.Location = new System.Drawing.Point(316, 95);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 17;
+            this.button2.TabIndex = 22;
             this.button2.Text = "Cancel";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -269,7 +269,7 @@ namespace WindowsFormsApp1
             this.checkBoxMatch.Margin = new System.Windows.Forms.Padding(0);
             this.checkBoxMatch.Name = "checkBoxMatch";
             this.checkBoxMatch.Size = new System.Drawing.Size(137, 17);
-            this.checkBoxMatch.TabIndex = 14;
+            this.checkBoxMatch.TabIndex = 20;
             this.checkBoxMatch.Text = "Match &whole string only";
             this.checkBoxMatch.UseVisualStyleBackColor = true;
             // 
@@ -287,7 +287,7 @@ namespace WindowsFormsApp1
             this.checkBoxCase.Margin = new System.Windows.Forms.Padding(0);
             this.checkBoxCase.Name = "checkBoxCase";
             this.checkBoxCase.Size = new System.Drawing.Size(82, 17);
-            this.checkBoxCase.TabIndex = 15;
+            this.checkBoxCase.TabIndex = 21;
             this.checkBoxCase.Text = "Matc&h case";
             this.checkBoxCase.UseVisualStyleBackColor = true;
             // 
@@ -297,8 +297,8 @@ namespace WindowsFormsApp1
             this.label1.Location = new System.Drawing.Point(6, 42);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(72, 13);
-            this.label1.TabIndex = 19;
-            this.label1.Text = "Replace with:";
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Re&place with:";
             // 
             // buttonReplace
             // 
@@ -306,7 +306,7 @@ namespace WindowsFormsApp1
             this.buttonReplace.Location = new System.Drawing.Point(316, 37);
             this.buttonReplace.Name = "buttonReplace";
             this.buttonReplace.Size = new System.Drawing.Size(75, 23);
-            this.buttonReplace.TabIndex = 22;
+            this.buttonReplace.TabIndex = 5;
             this.buttonReplace.Text = "&Replace";
             this.buttonReplace.UseVisualStyleBackColor = true;
             this.buttonReplace.Click += new System.EventHandler(this.buttonReplace_Click);
@@ -317,7 +317,7 @@ namespace WindowsFormsApp1
             this.buttonReplaceAll.Location = new System.Drawing.Point(316, 66);
             this.buttonReplaceAll.Name = "buttonReplaceAll";
             this.buttonReplaceAll.Size = new System.Drawing.Size(75, 23);
-            this.buttonReplaceAll.TabIndex = 23;
+            this.buttonReplaceAll.TabIndex = 6;
             this.buttonReplaceAll.Text = "Replace &All";
             this.buttonReplaceAll.UseVisualStyleBackColor = true;
             // 
@@ -327,7 +327,7 @@ namespace WindowsFormsApp1
             this.comboBoxFind.Location = new System.Drawing.Point(84, 10);
             this.comboBoxFind.Name = "comboBoxFind";
             this.comboBoxFind.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxFind.TabIndex = 24;
+            this.comboBoxFind.TabIndex = 1;
             this.comboBoxFind.Visible = false;
             this.comboBoxFind.SelectedIndexChanged += new System.EventHandler(this.comboBoxFind_SelectedIndexChanged);
             this.comboBoxFind.TextChanged += new System.EventHandler(this.comboBoxFind_TextChanged);
@@ -338,7 +338,7 @@ namespace WindowsFormsApp1
             this.comboBoxReplace.Location = new System.Drawing.Point(84, 39);
             this.comboBoxReplace.Name = "comboBoxReplace";
             this.comboBoxReplace.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxReplace.TabIndex = 25;
+            this.comboBoxReplace.TabIndex = 3;
             this.comboBoxReplace.Visible = false;
             this.comboBoxReplace.SelectedIndexChanged += new System.EventHandler(this.comboBoxReplace_SelectedIndexChanged);
             this.comboBoxReplace.TextChanged += new System.EventHandler(this.comboBoxReplace_TextChanged);
@@ -349,7 +349,7 @@ namespace WindowsFormsApp1
             this.fastTextBoxFind.Location = new System.Drawing.Point(84, 10);
             this.fastTextBoxFind.Name = "fastTextBoxFind";
             this.fastTextBoxFind.Size = new System.Drawing.Size(222, 20);
-            this.fastTextBoxFind.TabIndex = 21;
+            this.fastTextBoxFind.TabIndex = 1;
             this.fastTextBoxFind.TextAcceptor = null;
             this.fastTextBoxFind.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -359,7 +359,7 @@ namespace WindowsFormsApp1
             this.fastTextBoxReplace.Location = new System.Drawing.Point(84, 39);
             this.fastTextBoxReplace.Name = "fastTextBoxReplace";
             this.fastTextBoxReplace.Size = new System.Drawing.Size(222, 20);
-            this.fastTextBoxReplace.TabIndex = 20;
+            this.fastTextBoxReplace.TabIndex = 3;
             this.fastTextBoxReplace.TextAcceptor = null;
             this.fastTextBoxReplace.TextChanged += new System.EventHandler(this.fastTextBoxReplace_TextChanged);
             // 
