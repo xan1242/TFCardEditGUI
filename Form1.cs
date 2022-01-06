@@ -290,6 +290,33 @@ namespace WindowsFormsApp1
             listView1.SelectedItems[0].SubItems[(int)CardProps.Description].Text = ImportDB[CurrentlySelectedCard].Description;
         }
 
+        void UpdateListView(bool[] UpdateFlags, bool bUpdateAll)
+        {
+            int ci;
+            if (UpdateFlags == null)
+                UpdateFlags = new bool[listView1.Items.Count];
+
+            for (int i = 0; i < listView1.Items.Count; i++)
+            {
+                if (UpdateFlags[i] || bUpdateAll)
+                {
+                    ci = SearchCardIndexByID(Int32.Parse(listView1.Items[i].SubItems[0].Text));
+                    listView1.Items[i].SubItems[(int)CardProps.Name].Text = ImportDB[ci].Name;
+                    listView1.Items[i].SubItems[(int)CardProps.Kind].Text = TypeDescriptor.GetConverter(typeof(CardKinds)).ConvertToString(ImportDB[ci].Kind);
+                    listView1.Items[i].SubItems[(int)CardProps.Level].Text = ImportDB[ci].Level.ToString();
+                    listView1.Items[i].SubItems[(int)CardProps.ATK].Text = ImportDB[ci].ATK.ToString();
+                    listView1.Items[i].SubItems[(int)CardProps.DEF].Text = ImportDB[ci].DEF.ToString();
+                    listView1.Items[i].SubItems[(int)CardProps.Type].Text = TypeDescriptor.GetConverter(typeof(CardTypes)).ConvertToString(ImportDB[ci].Type);
+                    listView1.Items[i].SubItems[(int)CardProps.Attr].Text = TypeDescriptor.GetConverter(typeof(CardAttributes)).ConvertToString(ImportDB[ci].Attr);
+                    listView1.Items[i].SubItems[(int)CardProps.Icon].Text = TypeDescriptor.GetConverter(typeof(CardIcons)).ConvertToString(ImportDB[ci].Icon);
+                    listView1.Items[i].SubItems[(int)CardProps.Rarity].Text = TypeDescriptor.GetConverter(typeof(CardRarity)).ConvertToString(ImportDB[ci].Rarity);
+                    listView1.Items[i].SubItems[(int)CardProps.Password].Text = ImportDB[ci].Password.ToString();
+                    listView1.Items[i].SubItems[(int)CardProps.CardExists].Text = ImportDB[ci].CardExistFlag.ToString();
+                    listView1.Items[i].SubItems[(int)CardProps.Description].Text = ImportDB[ci].Description;
+                }
+            }
+        }
+
         void AddListViewItem(int listview_index, int carddb_index)
         {
             listView1.Items.Add(ImportDB[carddb_index].CardID.ToString());
@@ -784,7 +811,7 @@ namespace WindowsFormsApp1
         {
             string dispstr;
             bCurrentlySearching = true;
-            if (cardSearch.Search(searchParams, listView1))
+            if (cardSearch.Search(searchParams, listView1, false, false))
             {
                 dispstr = searchParams.ResultString;
                 listView1.Items[searchParams.SearchResultIndex].Selected = true;
@@ -825,6 +852,34 @@ namespace WindowsFormsApp1
             }
         }
 
+        public void InitiateReplaceAll(CardSearchParams searchParams)
+        {
+            int ci;
+            int rc = 0;
+            bool[] lvUpdateFlags = new bool[listView1.Items.Count];
+
+            for (int i = 0; i < listView1.Items.Count; i++)
+            {
+                cardSearch.CurrentlySelectedItem = i;
+                cardSearch.CurrentlySelectedSubItem = -1;
+                searchParams.SearchResultSubStrIndex = -1;
+                searchParams.SearchResultSubStrIndex_Name = -1;
+                searchParams.SearchResultSubStrIndex_Desc = -1;
+
+                if (cardSearch.Search(searchParams, listView1, true, true))
+                {
+                    if (i < searchParams.SearchResultIndex)
+                        i = searchParams.SearchResultIndex; // boost the counter forward and only forward...
+                    ci = SearchCardIndexByID(Int32.Parse(listView1.Items[searchParams.SearchResultIndex].SubItems[0].Text));
+                    cardSearch.Replace(searchParams, ImportDB[ci]);
+                    lvUpdateFlags[i] = true;
+                    rc++;
+                }
+            }
+            UpdateTexts();
+            UpdateListView(lvUpdateFlags, false);
+            toolStripStatusLabel1.Text = "Replaced " + rc + " instances";
+        }
 
         void ExtractEHP(string InFilename, string OutFolder)
         {

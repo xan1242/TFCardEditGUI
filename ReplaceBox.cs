@@ -203,6 +203,15 @@ namespace WindowsFormsApp1
             form1.InitiateReplacing(searchParams);
         }
 
+        private void buttonReplaceAll_Click(object sender, EventArgs e)
+        {
+            SaveCheckboxes();
+            SetSearchContext();
+
+            DialogResult = DialogResult.OK;
+            form1.InitiateReplaceAll(searchParams);
+        }
+
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             searchParams.SearchString = fastTextBoxFind.Text;
@@ -237,7 +246,6 @@ namespace WindowsFormsApp1
             if (IsANumericBoxTicked())
             {
                 checkBoxCase.Enabled = false;
-                checkBoxMatch.Enabled = false;
                 fastTextBoxFind.Text = "";
                 fastTextBoxReplace.Text = "";
                 searchParams.SearchString = "";
@@ -246,7 +254,6 @@ namespace WindowsFormsApp1
             else
             {
                 checkBoxCase.Enabled = true;
-                checkBoxMatch.Enabled = true;
             }
         }
 

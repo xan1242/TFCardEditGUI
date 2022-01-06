@@ -320,6 +320,7 @@ namespace WindowsFormsApp1
             this.buttonReplaceAll.TabIndex = 6;
             this.buttonReplaceAll.Text = "Replace &All";
             this.buttonReplaceAll.UseVisualStyleBackColor = true;
+            this.buttonReplaceAll.Click += new System.EventHandler(this.buttonReplaceAll_Click);
             // 
             // comboBoxFind
             // 
