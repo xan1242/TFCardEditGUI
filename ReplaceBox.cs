@@ -347,7 +347,7 @@ namespace WindowsFormsApp1
 
         private void comboBoxReplace_SelectedIndexChanged(object sender, EventArgs e)
         {
-            searchParams.ReplaceComboBoxIndex = comboBoxFind.SelectedIndex;
+            searchParams.ReplaceComboBoxIndex = comboBoxReplace.SelectedIndex;
         }
 
 

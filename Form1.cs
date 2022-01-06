@@ -1315,7 +1315,7 @@ namespace WindowsFormsApp1
             }
         }
 
-        bool HandleSearch(CardSearchParams inParams)
+        bool HandleSearch(CardSearchParams inParams) // integrate substring searching for name and desc...
         {
             inParams.SearchResultIndex = -1;
             if (inParams.bMatchWhole)
