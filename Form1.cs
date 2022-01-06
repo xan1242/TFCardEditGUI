@@ -830,7 +830,7 @@ namespace WindowsFormsApp1
                 ImportDB[CardImporterCounter].Rarity = (CardRarity)Int32.Parse(s.Keys.GetKeyData("Rarity").Value);
 
                 // also replace the newline character in card descriptions as we're loading them...
-                ImportDB[CardImporterCounter].Description = ImportDB[CardImporterCounter].Description.Replace('^', '\n');
+                ImportDB[CardImporterCounter].Description = ImportDB[CardImporterCounter].Description.Replace('^', '\n').Replace('˘', '\r');
 
                 toolStripProgressBar1.Value++;
                 CardImporterCounter++;
@@ -852,7 +852,6 @@ namespace WindowsFormsApp1
             {
                 ExportIni.Sections.AddSection(ImportDB[i].CardID.ToString());
                 ExportIni.Sections.GetSectionData(ImportDB[i].CardID.ToString()).Keys.AddKey("Name", ImportDB[i].Name);
-
                 ExportIni.Sections.GetSectionData(ImportDB[i].CardID.ToString()).Keys.AddKey("Description", ImportDB[i].Description.Replace('\n', '^').Replace('\r', '˘'));
                 ExportIni.Sections.GetSectionData(ImportDB[i].CardID.ToString()).Keys.AddKey("ATK", ImportDB[i].ATK.ToString());
                 ExportIni.Sections.GetSectionData(ImportDB[i].CardID.ToString()).Keys.AddKey("DEF", ImportDB[i].DEF.ToString());
