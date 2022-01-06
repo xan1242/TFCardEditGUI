@@ -583,7 +583,7 @@ namespace WindowsFormsApp1
 
                     if (sk != -1)
                     {
-                        if (inParams.SearchResultSubStrIndex != -1 && (CurrentlySelectedItem == si)) // if we're still in the same item, we must move the substring location by the original amount...
+                        if (inParams.SearchResultSubStrIndex != -1 && (CurrentlySelectedItem == si) && (CurrentlySelectedSubItem == j)) // if we're still in the same item, we must move the substring location by the original amount...
                             sk += inParams.SearchResultSubStrIndex + 1;
 
                         switch (Enum.ToObject(typeof(CardProps), j))
@@ -884,7 +884,7 @@ namespace WindowsFormsApp1
 
                     if (sk != -1)
                     {
-                        if (inParams.SearchResultSubStrIndex != -1 && (CurrentlySelectedItem == si)) // if we're still in the same item, we must move the substring location by the original amount...
+                        if (inParams.SearchResultSubStrIndex != -1 && (CurrentlySelectedItem == si) && (CurrentlySelectedSubItem == j)) // if we're still in the same item, we must move the substring location by the original amount...
                             sk += inParams.SearchResultSubStrIndex + 1;
 
                         switch (Enum.ToObject(typeof(CardProps), j))
