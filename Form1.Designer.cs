@@ -51,20 +51,6 @@ namespace WindowsFormsApp1
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.colCardID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colKind = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colLevel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colATK = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colDEF = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colAttr = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colIcon = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colRarity = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colPassword = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colCardExists = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colDescription = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -103,6 +89,20 @@ namespace WindowsFormsApp1
             this.toolStripButtonFilter = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonRemoveFilter = new System.Windows.Forms.ToolStripButton();
             this.panelMain = new System.Windows.Forms.Panel();
+            this.listView1 = new BrightIdeasSoftware.ObjectListView();
+            this.olvColumnCardID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumnName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumnKind = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumnLevel = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumnATK = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumnDEF = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumnType = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumnAttrib = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumnIcon = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumnRarity = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumnPassword = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumnCardExists = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumnDescr = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -119,6 +119,7 @@ namespace WindowsFormsApp1
             this.contextMenuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.panelMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.listView1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -327,99 +328,6 @@ namespace WindowsFormsApp1
             this.propertyGrid1.Size = new System.Drawing.Size(353, 399);
             this.propertyGrid1.TabIndex = 3;
             this.propertyGrid1.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.propertyGrid1_PropertyValueChanged);
-            // 
-            // listView1
-            // 
-            this.listView1.AllowColumnReorder = true;
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.colCardID,
-            this.colName,
-            this.colKind,
-            this.colLevel,
-            this.colATK,
-            this.colDEF,
-            this.colType,
-            this.colAttr,
-            this.colIcon,
-            this.colRarity,
-            this.colPassword,
-            this.colCardExists,
-            this.colDescription});
-            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView1.FullRowSelect = true;
-            this.listView1.GridLines = true;
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(0, 0);
-            this.listView1.MultiSelect = false;
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(912, 709);
-            this.listView1.TabIndex = 2;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
-            // 
-            // colCardID
-            // 
-            this.colCardID.Text = "ID";
-            this.colCardID.Width = 38;
-            // 
-            // colName
-            // 
-            this.colName.Text = "Name";
-            this.colName.Width = 250;
-            // 
-            // colKind
-            // 
-            this.colKind.Text = "Kind";
-            this.colKind.Width = 78;
-            // 
-            // colLevel
-            // 
-            this.colLevel.Text = "Level";
-            this.colLevel.Width = 40;
-            // 
-            // colATK
-            // 
-            this.colATK.Text = "ATK";
-            this.colATK.Width = 40;
-            // 
-            // colDEF
-            // 
-            this.colDEF.Text = "DEF";
-            this.colDEF.Width = 40;
-            // 
-            // colType
-            // 
-            this.colType.Text = "Type";
-            this.colType.Width = 80;
-            // 
-            // colAttr
-            // 
-            this.colAttr.Text = "Attribute";
-            // 
-            // colIcon
-            // 
-            this.colIcon.Text = "Icon";
-            this.colIcon.Width = 66;
-            // 
-            // colRarity
-            // 
-            this.colRarity.Text = "Rarity";
-            this.colRarity.Width = 76;
-            // 
-            // colPassword
-            // 
-            this.colPassword.Text = "Password";
-            // 
-            // colCardExists
-            // 
-            this.colCardExists.Text = "CardExists";
-            this.colCardExists.Width = 62;
-            // 
-            // colDescription
-            // 
-            this.colDescription.Text = "Description";
-            this.colDescription.Width = 120;
             // 
             // splitContainer1
             // 
@@ -873,6 +781,133 @@ namespace WindowsFormsApp1
             this.panelMain.Size = new System.Drawing.Size(1269, 709);
             this.panelMain.TabIndex = 8;
             // 
+            // listView1
+            // 
+            this.listView1.AllColumns.Add(this.olvColumnCardID);
+            this.listView1.AllColumns.Add(this.olvColumnName);
+            this.listView1.AllColumns.Add(this.olvColumnKind);
+            this.listView1.AllColumns.Add(this.olvColumnLevel);
+            this.listView1.AllColumns.Add(this.olvColumnATK);
+            this.listView1.AllColumns.Add(this.olvColumnDEF);
+            this.listView1.AllColumns.Add(this.olvColumnType);
+            this.listView1.AllColumns.Add(this.olvColumnAttrib);
+            this.listView1.AllColumns.Add(this.olvColumnIcon);
+            this.listView1.AllColumns.Add(this.olvColumnRarity);
+            this.listView1.AllColumns.Add(this.olvColumnPassword);
+            this.listView1.AllColumns.Add(this.olvColumnCardExists);
+            this.listView1.AllColumns.Add(this.olvColumnDescr);
+            this.listView1.AutoArrange = false;
+            this.listView1.CellEditUseWholeCell = false;
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.olvColumnCardID,
+            this.olvColumnName,
+            this.olvColumnKind,
+            this.olvColumnLevel,
+            this.olvColumnATK,
+            this.olvColumnDEF,
+            this.olvColumnType,
+            this.olvColumnAttrib,
+            this.olvColumnIcon,
+            this.olvColumnRarity,
+            this.olvColumnPassword,
+            this.olvColumnCardExists,
+            this.olvColumnDescr});
+            this.listView1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listView1.FullRowSelect = true;
+            this.listView1.GridLines = true;
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(0, 0);
+            this.listView1.MultiSelect = false;
+            this.listView1.Name = "listView1";
+            this.listView1.SelectAllOnControlA = false;
+            this.listView1.ShowGroups = false;
+            this.listView1.Size = new System.Drawing.Size(912, 709);
+            this.listView1.TabIndex = 3;
+            this.listView1.UpdateSpaceFillingColumnsWhenDraggingColumnDivider = false;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.UseFiltering = true;
+            this.listView1.UseHotControls = false;
+            this.listView1.UseOverlays = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            // 
+            // olvColumnCardID
+            // 
+            this.olvColumnCardID.AspectName = "CardID";
+            this.olvColumnCardID.Text = "ID";
+            this.olvColumnCardID.Width = 38;
+            // 
+            // olvColumnName
+            // 
+            this.olvColumnName.AspectName = "Name";
+            this.olvColumnName.Text = "Name";
+            this.olvColumnName.Width = 250;
+            // 
+            // olvColumnKind
+            // 
+            this.olvColumnKind.AspectName = "Kind";
+            this.olvColumnKind.Text = "Kind";
+            this.olvColumnKind.Width = 78;
+            // 
+            // olvColumnLevel
+            // 
+            this.olvColumnLevel.AspectName = "Level";
+            this.olvColumnLevel.Text = "Level";
+            this.olvColumnLevel.Width = 40;
+            // 
+            // olvColumnATK
+            // 
+            this.olvColumnATK.AspectName = "ATK";
+            this.olvColumnATK.Text = "ATK";
+            this.olvColumnATK.Width = 40;
+            // 
+            // olvColumnDEF
+            // 
+            this.olvColumnDEF.AspectName = "DEF";
+            this.olvColumnDEF.Text = "DEF";
+            this.olvColumnDEF.Width = 40;
+            // 
+            // olvColumnType
+            // 
+            this.olvColumnType.AspectName = "Type";
+            this.olvColumnType.Text = "Type";
+            this.olvColumnType.Width = 80;
+            // 
+            // olvColumnAttrib
+            // 
+            this.olvColumnAttrib.AspectName = "Attr";
+            this.olvColumnAttrib.Text = "Attribute";
+            // 
+            // olvColumnIcon
+            // 
+            this.olvColumnIcon.AspectName = "Icon";
+            this.olvColumnIcon.Text = "Icon";
+            this.olvColumnIcon.Width = 66;
+            // 
+            // olvColumnRarity
+            // 
+            this.olvColumnRarity.AspectName = "Rarity";
+            this.olvColumnRarity.Text = "Rarity";
+            this.olvColumnRarity.Width = 76;
+            // 
+            // olvColumnPassword
+            // 
+            this.olvColumnPassword.AspectName = "Password";
+            this.olvColumnPassword.Text = "Password";
+            // 
+            // olvColumnCardExists
+            // 
+            this.olvColumnCardExists.AspectName = "CardExistFlag";
+            this.olvColumnCardExists.Text = "CardExist";
+            this.olvColumnCardExists.Width = 62;
+            // 
+            // olvColumnDescr
+            // 
+            this.olvColumnDescr.AspectName = "Description";
+            this.olvColumnDescr.Text = "Description";
+            this.olvColumnDescr.Width = 120;
+            // 
             // Form1
             // 
             this.AllowDrop = true;
@@ -917,6 +952,7 @@ namespace WindowsFormsApp1
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.panelMain.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.listView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -930,9 +966,6 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         public System.Windows.Forms.PropertyGrid propertyGrid1;
-        private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.ColumnHeader colCardID;
-        private System.Windows.Forms.ColumnHeader colName;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabDesc;
@@ -941,16 +974,6 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.SplitContainer splitContainer2;
-        private System.Windows.Forms.ColumnHeader colKind;
-        private System.Windows.Forms.ColumnHeader colLevel;
-        private System.Windows.Forms.ColumnHeader colATK;
-        private System.Windows.Forms.ColumnHeader colDEF;
-        private System.Windows.Forms.ColumnHeader colType;
-        private System.Windows.Forms.ColumnHeader colAttr;
-        private System.Windows.Forms.ColumnHeader colIcon;
-        private System.Windows.Forms.ColumnHeader colRarity;
-        private System.Windows.Forms.ColumnHeader colPassword;
-        private System.Windows.Forms.ColumnHeader colCardExists;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
@@ -995,7 +1018,20 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.ToolStripMenuItem statusBarToolStripMenuItem;
         private System.Windows.Forms.Panel panelMain;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
-        private System.Windows.Forms.ColumnHeader colDescription;
+        private BrightIdeasSoftware.ObjectListView listView1;
+        private BrightIdeasSoftware.OLVColumn olvColumnCardID;
+        private BrightIdeasSoftware.OLVColumn olvColumnName;
+        private BrightIdeasSoftware.OLVColumn olvColumnKind;
+        private BrightIdeasSoftware.OLVColumn olvColumnLevel;
+        private BrightIdeasSoftware.OLVColumn olvColumnATK;
+        private BrightIdeasSoftware.OLVColumn olvColumnDEF;
+        private BrightIdeasSoftware.OLVColumn olvColumnType;
+        private BrightIdeasSoftware.OLVColumn olvColumnAttrib;
+        private BrightIdeasSoftware.OLVColumn olvColumnIcon;
+        private BrightIdeasSoftware.OLVColumn olvColumnRarity;
+        private BrightIdeasSoftware.OLVColumn olvColumnPassword;
+        private BrightIdeasSoftware.OLVColumn olvColumnCardExists;
+        private BrightIdeasSoftware.OLVColumn olvColumnDescr;
     }
 }
 

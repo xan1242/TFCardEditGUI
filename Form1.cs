@@ -39,6 +39,7 @@ namespace WindowsFormsApp1
         char CurrentLang = 'E';
         bool bJapaneseLangDetected = false;
         Font DefaultWestStyle = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+        Font DescWestStyle = new Font("Segoe UI Historic", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
         Font JapaneseStyle = new Font("MS UI Gothic", 10F, FontStyle.Regular, GraphicsUnit.Point);
 
         FindBox findBoxDialog;
@@ -116,21 +117,20 @@ namespace WindowsFormsApp1
 
         void ResetAppState()
         {
-            listView1.Clear();
             listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            colCardID,
-            colName,
-            colKind,
-            colLevel,
-            colATK,
-            colDEF,
-            colType,
-            colAttr,
-            colIcon,
-            colRarity,
-            colPassword,
-            colCardExists,
-            colDescription});
+            olvColumnCardID,
+            olvColumnName,
+            olvColumnKind,
+            olvColumnLevel,
+            olvColumnATK,
+            olvColumnDEF,
+            olvColumnType,
+            olvColumnAttrib,
+            olvColumnIcon,
+            olvColumnRarity,
+            olvColumnPassword,
+            olvColumnCardExists,
+            olvColumnDescr});
 
             linkLabel1.Enabled = false;
             linkLabel2.Enabled = false;
@@ -192,7 +192,7 @@ namespace WindowsFormsApp1
 
             textBox1.Text = ImportDB[CurrentlySelectedCard].Description.Replace("\n", "\r\n");
             if (ImportDB[CurrentlySelectedCard].Kind == CardKinds.Normal && (CurrentLang != 'J'))
-                textBox1.Font = new Font(DefaultWestStyle, FontStyle.Italic);
+                textBox1.Font = new Font(DescWestStyle, FontStyle.Italic);
             else if (CurrentLang == 'J')
                 textBox1.Font = JapaneseStyle;
             else
@@ -324,51 +324,52 @@ namespace WindowsFormsApp1
 
         void AddListViewItem(int listview_index, int carddb_index)
         {
-            listView1.Items.Add(ImportDB[carddb_index].CardID.ToString());
-            listView1.Items[listview_index].SubItems.Add(ImportDB[carddb_index].Name);
-            listView1.Items[listview_index].SubItems.Add(TypeDescriptor.GetConverter(typeof(CardKinds)).ConvertToString(ImportDB[carddb_index].Kind));
-            listView1.Items[listview_index].SubItems.Add(ImportDB[carddb_index].Level.ToString());
-            listView1.Items[listview_index].SubItems.Add(ImportDB[carddb_index].ATK.ToString());
-            listView1.Items[listview_index].SubItems.Add(ImportDB[carddb_index].DEF.ToString());
-            listView1.Items[listview_index].SubItems.Add(TypeDescriptor.GetConverter(typeof(CardTypes)).ConvertToString(ImportDB[carddb_index].Type));
-            listView1.Items[listview_index].SubItems.Add(TypeDescriptor.GetConverter(typeof(CardAttributes)).ConvertToString(ImportDB[carddb_index].Attr));
-            listView1.Items[listview_index].SubItems.Add(TypeDescriptor.GetConverter(typeof(CardIcons)).ConvertToString(ImportDB[carddb_index].Icon));
-            listView1.Items[listview_index].SubItems.Add(TypeDescriptor.GetConverter(typeof(CardRarity)).ConvertToString(ImportDB[carddb_index].Rarity));
-            listView1.Items[listview_index].SubItems.Add(ImportDB[carddb_index].Password.ToString());
-            listView1.Items[listview_index].SubItems.Add(ImportDB[carddb_index].CardExistFlag.ToString());
-            listView1.Items[listview_index].SubItems.Add(ImportDB[carddb_index].Description);
+           listView1.Items.Add(ImportDB[carddb_index].CardID.ToString());
+           listView1.Items[listview_index].SubItems.Add(ImportDB[carddb_index].Name);
+           listView1.Items[listview_index].SubItems.Add(TypeDescriptor.GetConverter(typeof(CardKinds)).ConvertToString(ImportDB[carddb_index].Kind));
+           listView1.Items[listview_index].SubItems.Add(ImportDB[carddb_index].Level.ToString());
+           listView1.Items[listview_index].SubItems.Add(ImportDB[carddb_index].ATK.ToString());
+           listView1.Items[listview_index].SubItems.Add(ImportDB[carddb_index].DEF.ToString());
+           listView1.Items[listview_index].SubItems.Add(TypeDescriptor.GetConverter(typeof(CardTypes)).ConvertToString(ImportDB[carddb_index].Type));
+           listView1.Items[listview_index].SubItems.Add(TypeDescriptor.GetConverter(typeof(CardAttributes)).ConvertToString(ImportDB[carddb_index].Attr));
+           listView1.Items[listview_index].SubItems.Add(TypeDescriptor.GetConverter(typeof(CardIcons)).ConvertToString(ImportDB[carddb_index].Icon));
+           listView1.Items[listview_index].SubItems.Add(TypeDescriptor.GetConverter(typeof(CardRarity)).ConvertToString(ImportDB[carddb_index].Rarity));
+           listView1.Items[listview_index].SubItems.Add(ImportDB[carddb_index].Password.ToString());
+           listView1.Items[listview_index].SubItems.Add(ImportDB[carddb_index].CardExistFlag.ToString());
+           listView1.Items[listview_index].SubItems.Add(ImportDB[carddb_index].Description);
         }
 
         void GenerateListView()
         {
-            int li = 0;
+            /*int li = 0;
 
             if (listView1.Items.Count != 0)
             {
                 listView1.Clear();
-                listView1.Columns.AddRange(new ColumnHeader[] {
-                colCardID,
-                colName,
-                colKind,
-                colLevel,
-                colATK,
-                colDEF,
-                colType,
-                colAttr,
-                colIcon,
-                colRarity,
-                colPassword,
-                colCardExists,
-                colDescription});
+                listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+                olvColumnCardID,
+                olvColumnName,
+                olvColumnKind,
+                olvColumnLevel,
+                olvColumnATK,
+                olvColumnDEF,
+                olvColumnType,
+                olvColumnAttrib,
+                olvColumnIcon,
+                olvColumnRarity,
+                olvColumnPassword,
+                olvColumnCardExists,
+                olvColumnDescr});
             }
 
             for (int i = 0; i < ImportedCardsCount; i++)
             {
                 AddListViewItem(li, i);
                 li++;
-
             }
-            DisplayedCardsCount = li;
+
+            DisplayedCardsCount = li;*/
+            listView1.SetObjects(ImportDB);
         }
 
         bool FilterCheckName(CardFilterParams filterParams, int ci)
@@ -581,20 +582,20 @@ namespace WindowsFormsApp1
             }
 
             listView1.Clear();
-            listView1.Columns.AddRange(new ColumnHeader[] {
-            colCardID,
-            colName,
-            colKind,
-            colLevel,
-            colATK,
-            colDEF,
-            colType,
-            colAttr,
-            colIcon,
-            colRarity,
-            colPassword,
-            colCardExists, 
-            colDescription});
+            listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            olvColumnCardID,
+            olvColumnName,
+            olvColumnKind,
+            olvColumnLevel,
+            olvColumnATK,
+            olvColumnDEF,
+            olvColumnType,
+            olvColumnAttrib,
+            olvColumnIcon,
+            olvColumnRarity,
+            olvColumnPassword,
+            olvColumnCardExists,
+            olvColumnDescr});
 
             for (int i = 0; i < DisplayedCardsCount; i++)
             {
@@ -648,6 +649,7 @@ namespace WindowsFormsApp1
 
                 if (bAdding)
                 {
+                    //listView1.ListFilter
                     AddListViewItem(li, ci);
                     li++;
                 }
