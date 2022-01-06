@@ -528,6 +528,8 @@ namespace WindowsFormsApp1
             set { p_bMatchCase = value; }
         }
 
+        // output values...
+
         int p_SearchResultIndex = -1;
         public int SearchResultIndex
         {
@@ -535,11 +537,670 @@ namespace WindowsFormsApp1
             set { p_SearchResultIndex = value; }
         }
 
+        int p_SearchResultSubStrIndex = -1;
+        public int SearchResultSubStrIndex
+        {
+            get { return p_SearchResultSubStrIndex; }
+            set { p_SearchResultSubStrIndex = value; }
+        }
+
         CardProps p_SearchContext;
         public CardProps SearchContext
         {
             get { return p_SearchContext; }
             set { p_SearchContext = value; }
+        }
+
+        string p_ResultString;
+        public string ResultString
+        {
+            get { return p_ResultString; }
+            set { p_ResultString = value; }
+        }
+    }
+
+    public class CardSearch
+    {
+        int CurrentlySelectedItem = -1;
+        int CurrentlySelectedSubItem = -1;
+
+        void SearchCaseSensitive(CardSearchParams inParams, ListView listView)
+        {
+            int si = listView.SelectedIndices[0];
+            int sj = CurrentlySelectedSubItem;
+            int sk = inParams.SearchResultSubStrIndex + 1;
+
+            if (sj == -1)
+                sj = 0;
+
+            for (int i = 0; i < listView.Items.Count; i++)
+            {
+                si %= listView.Items.Count;
+
+                for (int j = sj; j < Enum.GetNames(typeof(CardProps)).Length; j++)
+                {
+                    sk = listView.Items[si].SubItems[j].Text.Substring(sk).IndexOf(inParams.SearchString);
+
+                    if (sk != -1)
+                    {
+                        if (inParams.SearchResultSubStrIndex != -1 && (CurrentlySelectedItem == si)) // if we're still in the same item, we must move the substring location by the original amount...
+                            sk += inParams.SearchResultSubStrIndex + 1;
+
+                        switch (Enum.ToObject(typeof(CardProps), j))
+                        {
+                            case CardProps.CardID:
+                                if (inParams.bSearchCardID)
+                                {
+                                    inParams.SearchResultIndex = si;
+                                    inParams.SearchResultSubStrIndex = sk;
+                                    inParams.ResultString = listView.Items[si].SubItems[j].Text.Substring(sk, inParams.SearchString.Length);
+                                    CurrentlySelectedSubItem = j;
+                                    inParams.SearchContext = CardProps.CardID;
+                                    return;
+                                }
+                                break;
+                            case CardProps.Name:
+                                if (inParams.bSearchName)
+                                {
+                                    inParams.SearchResultIndex = si;
+                                    inParams.SearchResultSubStrIndex = sk;
+                                    inParams.ResultString = listView.Items[si].SubItems[j].Text.Substring(sk, inParams.SearchString.Length);
+                                    CurrentlySelectedSubItem = j;
+                                    inParams.SearchContext = CardProps.Name;
+                                    return;
+                                }
+                                break;
+                            case CardProps.Description:
+                                if (inParams.bSearchDescription)
+                                {
+                                    inParams.SearchResultIndex = si;
+                                    inParams.SearchResultSubStrIndex = sk;
+                                    inParams.ResultString = listView.Items[si].SubItems[j].Text.Substring(sk, inParams.SearchString.Length);
+                                    CurrentlySelectedSubItem = j;
+                                    inParams.SearchContext = CardProps.Description;
+                                    return;
+                                }
+                                break;
+                            case CardProps.Kind:
+                                if (inParams.bSearchKind)
+                                {
+                                    inParams.SearchResultIndex = si;
+                                    inParams.SearchResultSubStrIndex = sk;
+                                    inParams.ResultString = listView.Items[si].SubItems[j].Text.Substring(sk, inParams.SearchString.Length);
+                                    CurrentlySelectedSubItem = j;
+                                    inParams.SearchContext = CardProps.Kind;
+                                    return;
+                                }
+                                break;
+                            case CardProps.Level:
+                                if (inParams.bSearchLevel)
+                                {
+                                    inParams.SearchResultIndex = si;
+                                    inParams.SearchResultSubStrIndex = sk;
+                                    inParams.ResultString = listView.Items[si].SubItems[j].Text.Substring(sk, inParams.SearchString.Length);
+                                    CurrentlySelectedSubItem = j;
+                                    inParams.SearchContext = CardProps.Level;
+                                    return;
+                                }
+                                break;
+                            case CardProps.ATK:
+                                if (inParams.bSearchATK)
+                                {
+                                    inParams.SearchResultIndex = si;
+                                    inParams.SearchResultSubStrIndex = sk;
+                                    inParams.ResultString = listView.Items[si].SubItems[j].Text.Substring(sk, inParams.SearchString.Length);
+                                    CurrentlySelectedSubItem = j;
+                                    inParams.SearchContext = CardProps.ATK;
+                                    return;
+                                }
+                                break;
+                            case CardProps.DEF:
+                                if (inParams.bSearchDEF)
+                                {
+                                    inParams.SearchResultIndex = si;
+                                    inParams.SearchResultSubStrIndex = sk;
+                                    inParams.ResultString = listView.Items[si].SubItems[j].Text.Substring(sk, inParams.SearchString.Length);
+                                    CurrentlySelectedSubItem = j;
+                                    inParams.SearchContext = CardProps.DEF;
+                                    return;
+                                }
+                                break;
+                            case CardProps.Type:
+                                if (inParams.bSearchType)
+                                {
+                                    inParams.SearchResultIndex = si;
+                                    inParams.SearchResultSubStrIndex = sk;
+                                    inParams.ResultString = listView.Items[si].SubItems[j].Text.Substring(sk, inParams.SearchString.Length);
+                                    CurrentlySelectedSubItem = j;
+                                    inParams.SearchContext = CardProps.Type;
+                                    return;
+                                }
+                                break;
+                            case CardProps.Attr:
+                                if (inParams.bSearchAttr)
+                                {
+                                    inParams.SearchResultIndex = si;
+                                    inParams.SearchResultSubStrIndex = sk;
+                                    inParams.ResultString = listView.Items[si].SubItems[j].Text.Substring(sk, inParams.SearchString.Length);
+                                    CurrentlySelectedSubItem = j;
+                                    inParams.SearchContext = CardProps.Attr;
+                                    return;
+                                }
+                                break;
+                            case CardProps.Rarity:
+                                if (inParams.bSearchRarity)
+                                {
+                                    inParams.SearchResultIndex = si;
+                                    inParams.SearchResultSubStrIndex = sk;
+                                    inParams.ResultString = listView.Items[si].SubItems[j].Text.Substring(sk, inParams.SearchString.Length);
+                                    CurrentlySelectedSubItem = j;
+                                    inParams.SearchContext = CardProps.Rarity;
+                                    return;
+                                }
+                                break;
+                            case CardProps.Password:
+                                if (inParams.bSearchPassword)
+                                {
+                                    inParams.SearchResultIndex = si;
+                                    inParams.SearchResultSubStrIndex = sk;
+                                    inParams.ResultString = listView.Items[si].SubItems[j].Text.Substring(sk, inParams.SearchString.Length);
+                                    CurrentlySelectedSubItem = j;
+                                    inParams.SearchContext = CardProps.Password;
+                                    return;
+                                }
+                                break;
+                            case CardProps.CardExists:
+                                if (inParams.bSearchCardExists)
+                                {
+                                    inParams.SearchResultIndex = si;
+                                    inParams.SearchResultSubStrIndex = sk;
+                                    inParams.ResultString = listView.Items[si].SubItems[j].Text.Substring(sk, inParams.SearchString.Length);
+                                    CurrentlySelectedSubItem = j;
+                                    inParams.SearchContext = CardProps.CardExists;
+                                    return;
+                                }
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    sk = 0;
+                }
+                sj = 0;
+                si++;
+            }
+        }
+
+        void SearchExactCaseSensitive(CardSearchParams inParams, ListView listView)
+        {
+            int si = listView.SelectedIndices[0];
+            int sj = CurrentlySelectedSubItem + 1;
+
+            for (int i = 0; i < listView.Items.Count; i++)
+            {
+                si %= listView.Items.Count;
+
+                for (int j = sj; j < Enum.GetNames(typeof(CardProps)).Length; j++)
+                {
+                    if (listView.Items[si].SubItems[j].Text.Equals(inParams.SearchString))
+                    {
+                        switch (Enum.ToObject(typeof(CardProps), j))
+                        {
+                            case CardProps.CardID:
+                                if (inParams.bSearchCardID)
+                                {
+                                    inParams.SearchResultIndex = si;
+                                    CurrentlySelectedSubItem = j;
+                                    inParams.SearchContext = CardProps.CardID;
+                                    return;
+                                }
+                                break;
+                            case CardProps.Name:
+                                if (inParams.bSearchName)
+                                {
+                                    inParams.SearchResultIndex = si;
+                                    CurrentlySelectedSubItem = j;
+                                    inParams.SearchContext = CardProps.Name;
+                                    return;
+                                }
+                                break;
+                            case CardProps.Description:
+                                if (inParams.bSearchDescription)
+                                {
+                                    inParams.SearchResultIndex = si;
+                                    CurrentlySelectedSubItem = j;
+                                    inParams.SearchContext = CardProps.Description;
+                                    return;
+                                }
+                                break;
+                            case CardProps.Kind:
+                                if (inParams.bSearchKind)
+                                {
+                                    inParams.SearchResultIndex = si;
+                                    CurrentlySelectedSubItem = j;
+                                    inParams.SearchContext = CardProps.Kind;
+                                    return;
+                                }
+                                break;
+                            case CardProps.Level:
+                                if (inParams.bSearchLevel)
+                                {
+                                    inParams.SearchResultIndex = si;
+                                    CurrentlySelectedSubItem = j;
+                                    inParams.SearchContext = CardProps.Level;
+                                    return;
+                                }
+                                break;
+                            case CardProps.ATK:
+                                if (inParams.bSearchATK)
+                                {
+                                    inParams.SearchResultIndex = si;
+                                    CurrentlySelectedSubItem = j;
+                                    inParams.SearchContext = CardProps.ATK;
+                                    return;
+                                }
+                                break;
+                            case CardProps.DEF:
+                                if (inParams.bSearchDEF)
+                                {
+                                    inParams.SearchResultIndex = si;
+                                    CurrentlySelectedSubItem = j;
+                                    inParams.SearchContext = CardProps.DEF;
+                                    return;
+                                }
+                                break;
+                            case CardProps.Type:
+                                if (inParams.bSearchType)
+                                {
+                                    inParams.SearchResultIndex = si;
+                                    CurrentlySelectedSubItem = j;
+                                    inParams.SearchContext = CardProps.Type;
+                                    return;
+                                }
+                                break;
+                            case CardProps.Attr:
+                                if (inParams.bSearchAttr)
+                                {
+                                    inParams.SearchResultIndex = si;
+                                    CurrentlySelectedSubItem = j;
+                                    inParams.SearchContext = CardProps.Attr;
+                                    return;
+                                }
+                                break;
+                            case CardProps.Rarity:
+                                if (inParams.bSearchRarity)
+                                {
+                                    inParams.SearchResultIndex = si;
+                                    CurrentlySelectedSubItem = j;
+                                    inParams.SearchContext = CardProps.Rarity;
+                                    return;
+                                }
+                                break;
+                            case CardProps.Password:
+                                if (inParams.bSearchPassword)
+                                {
+                                    inParams.SearchResultIndex = si;
+                                    CurrentlySelectedSubItem = j;
+                                    inParams.SearchContext = CardProps.Password;
+                                    return;
+                                }
+                                break;
+                            case CardProps.CardExists:
+                                if (inParams.bSearchCardExists)
+                                {
+                                    inParams.SearchResultIndex = si;
+                                    CurrentlySelectedSubItem = j;
+                                    inParams.SearchContext = CardProps.CardExists;
+                                    return;
+                                }
+                                break;
+                            default:
+                                break;
+                        }
+
+                    }
+                }
+                sj = 0;
+                si++;
+            }
+        }
+
+        void SearchCaseless(CardSearchParams inParams, ListView listView)
+        {
+            int si = listView.SelectedIndices[0];
+            int sj = CurrentlySelectedSubItem;
+            int sk = inParams.SearchResultSubStrIndex + 1;
+
+            if (sj == -1)
+                sj = 0;
+
+            for (int i = 0; i < listView.Items.Count; i++)
+            {
+                si %= listView.Items.Count;
+
+                for (int j = sj; j < Enum.GetNames(typeof(CardProps)).Length; j++)
+                {
+                    sk = listView.Items[si].SubItems[j].Text.Substring(sk).ToUpper().IndexOf(inParams.SearchString.ToUpper());
+
+                    if (sk != -1)
+                    {
+                        if (inParams.SearchResultSubStrIndex != -1 && (CurrentlySelectedItem == si)) // if we're still in the same item, we must move the substring location by the original amount...
+                            sk += inParams.SearchResultSubStrIndex + 1;
+
+                        switch (Enum.ToObject(typeof(CardProps), j))
+                        {
+                            case CardProps.CardID:
+                                if (inParams.bSearchCardID)
+                                {
+                                    inParams.SearchResultIndex = si;
+                                    inParams.SearchResultSubStrIndex = sk;
+                                    inParams.ResultString = listView.Items[si].SubItems[j].Text.Substring(sk, inParams.SearchString.Length);
+                                    CurrentlySelectedSubItem = j;
+                                    inParams.SearchContext = CardProps.CardID;
+                                    return;
+                                }
+                                break;
+                            case CardProps.Name:
+                                if (inParams.bSearchName)
+                                {
+                                    inParams.SearchResultIndex = si;
+                                    inParams.SearchResultSubStrIndex = sk;
+                                    inParams.ResultString = listView.Items[si].SubItems[j].Text.Substring(sk, inParams.SearchString.Length);
+                                    CurrentlySelectedSubItem = j;
+                                    inParams.SearchContext = CardProps.Name;
+                                    return;
+                                }
+                                break;
+                            case CardProps.Description:
+                                if (inParams.bSearchDescription)
+                                {
+                                    inParams.SearchResultIndex = si;
+                                    inParams.SearchResultSubStrIndex = sk;
+                                    inParams.ResultString = listView.Items[si].SubItems[j].Text.Substring(sk, inParams.SearchString.Length);
+                                    CurrentlySelectedSubItem = j;
+                                    inParams.SearchContext = CardProps.Description;
+                                    return;
+                                }
+                                break;
+                            case CardProps.Kind:
+                                if (inParams.bSearchKind)
+                                {
+                                    inParams.SearchResultIndex = si;
+                                    inParams.SearchResultSubStrIndex = sk;
+                                    inParams.ResultString = listView.Items[si].SubItems[j].Text.Substring(sk, inParams.SearchString.Length);
+                                    CurrentlySelectedSubItem = j;
+                                    inParams.SearchContext = CardProps.Kind;
+                                    return;
+                                }
+                                break;
+                            case CardProps.Level:
+                                if (inParams.bSearchLevel)
+                                {
+                                    inParams.SearchResultIndex = si;
+                                    inParams.SearchResultSubStrIndex = sk;
+                                    inParams.ResultString = listView.Items[si].SubItems[j].Text.Substring(sk, inParams.SearchString.Length);
+                                    CurrentlySelectedSubItem = j;
+                                    inParams.SearchContext = CardProps.Level;
+                                    return;
+                                }
+                                break;
+                            case CardProps.ATK:
+                                if (inParams.bSearchATK)
+                                {
+                                    inParams.SearchResultIndex = si;
+                                    inParams.SearchResultSubStrIndex = sk;
+                                    inParams.ResultString = listView.Items[si].SubItems[j].Text.Substring(sk, inParams.SearchString.Length);
+                                    CurrentlySelectedSubItem = j;
+                                    inParams.SearchContext = CardProps.ATK;
+                                    return;
+                                }
+                                break;
+                            case CardProps.DEF:
+                                if (inParams.bSearchDEF)
+                                {
+                                    inParams.SearchResultIndex = si;
+                                    inParams.SearchResultSubStrIndex = sk;
+                                    inParams.ResultString = listView.Items[si].SubItems[j].Text.Substring(sk, inParams.SearchString.Length);
+                                    CurrentlySelectedSubItem = j;
+                                    inParams.SearchContext = CardProps.DEF;
+                                    return;
+                                }
+                                break;
+                            case CardProps.Type:
+                                if (inParams.bSearchType)
+                                {
+                                    inParams.SearchResultIndex = si;
+                                    inParams.SearchResultSubStrIndex = sk;
+                                    inParams.ResultString = listView.Items[si].SubItems[j].Text.Substring(sk, inParams.SearchString.Length);
+                                    CurrentlySelectedSubItem = j;
+                                    inParams.SearchContext = CardProps.Type;
+                                    return;
+                                }
+                                break;
+                            case CardProps.Attr:
+                                if (inParams.bSearchAttr)
+                                {
+                                    inParams.SearchResultIndex = si;
+                                    inParams.SearchResultSubStrIndex = sk;
+                                    inParams.ResultString = listView.Items[si].SubItems[j].Text.Substring(sk, inParams.SearchString.Length);
+                                    CurrentlySelectedSubItem = j;
+                                    inParams.SearchContext = CardProps.Attr;
+                                    return;
+                                }
+                                break;
+                            case CardProps.Rarity:
+                                if (inParams.bSearchRarity)
+                                {
+                                    inParams.SearchResultIndex = si;
+                                    inParams.SearchResultSubStrIndex = sk;
+                                    inParams.ResultString = listView.Items[si].SubItems[j].Text.Substring(sk, inParams.SearchString.Length);
+                                    CurrentlySelectedSubItem = j;
+                                    inParams.SearchContext = CardProps.Rarity;
+                                    return;
+                                }
+                                break;
+                            case CardProps.Password:
+                                if (inParams.bSearchPassword)
+                                {
+                                    inParams.SearchResultIndex = si;
+                                    inParams.SearchResultSubStrIndex = sk;
+                                    inParams.ResultString = listView.Items[si].SubItems[j].Text.Substring(sk, inParams.SearchString.Length);
+                                    CurrentlySelectedSubItem = j;
+                                    inParams.SearchContext = CardProps.Password;
+                                    return;
+                                }
+                                break;
+                            case CardProps.CardExists:
+                                if (inParams.bSearchCardExists)
+                                {
+                                    inParams.SearchResultIndex = si;
+                                    inParams.SearchResultSubStrIndex = sk;
+                                    inParams.ResultString = listView.Items[si].SubItems[j].Text.Substring(sk, inParams.SearchString.Length);
+                                    CurrentlySelectedSubItem = j;
+                                    inParams.SearchContext = CardProps.CardExists;
+                                    return;
+                                }
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    sk = 0;
+                }
+                sj = 0;
+                si++;
+            }
+        }
+
+        void SearchExactCaseless(CardSearchParams inParams, ListView listView)
+        {
+            int si = listView.SelectedIndices[0];
+            int sj = CurrentlySelectedSubItem + 1;
+
+            for (int i = 0; i < listView.Items.Count; i++)
+            {
+                si %= listView.Items.Count;
+
+                for (int j = sj; j < Enum.GetNames(typeof(CardProps)).Length; j++)
+                {
+                    if (listView.Items[si].SubItems[j].Text.ToUpper().Equals(inParams.SearchString.ToUpper()))
+                    {
+                        switch (Enum.ToObject(typeof(CardProps), j))
+                        {
+                            case CardProps.CardID:
+                                if (inParams.bSearchCardID)
+                                {
+                                    inParams.SearchResultIndex = si;
+                                    CurrentlySelectedSubItem = j;
+                                    inParams.SearchContext = CardProps.CardID;
+                                    return;
+                                }
+                                break;
+                            case CardProps.Name:
+                                if (inParams.bSearchName)
+                                {
+                                    inParams.SearchResultIndex = si;
+                                    CurrentlySelectedSubItem = j;
+                                    inParams.SearchContext = CardProps.Name;
+                                    return;
+                                }
+                                break;
+                            case CardProps.Description:
+                                if (inParams.bSearchDescription)
+                                {
+                                    inParams.SearchResultIndex = si;
+                                    CurrentlySelectedSubItem = j;
+                                    inParams.SearchContext = CardProps.Description;
+                                    return;
+                                }
+                                break;
+                            case CardProps.Kind:
+                                if (inParams.bSearchKind)
+                                {
+                                    inParams.SearchResultIndex = si;
+                                    CurrentlySelectedSubItem = j;
+                                    inParams.SearchContext = CardProps.Kind;
+                                    return;
+                                }
+                                break;
+                            case CardProps.Level:
+                                if (inParams.bSearchLevel)
+                                {
+                                    inParams.SearchResultIndex = si;
+                                    CurrentlySelectedSubItem = j;
+                                    inParams.SearchContext = CardProps.Level;
+                                    return;
+                                }
+                                break;
+                            case CardProps.ATK:
+                                if (inParams.bSearchATK)
+                                {
+                                    inParams.SearchResultIndex = si;
+                                    CurrentlySelectedSubItem = j;
+                                    inParams.SearchContext = CardProps.ATK;
+                                    return;
+                                }
+                                break;
+                            case CardProps.DEF:
+                                if (inParams.bSearchDEF)
+                                {
+                                    inParams.SearchResultIndex = si;
+                                    CurrentlySelectedSubItem = j;
+                                    inParams.SearchContext = CardProps.DEF;
+                                    return;
+                                }
+                                break;
+                            case CardProps.Type:
+                                if (inParams.bSearchType)
+                                {
+                                    inParams.SearchResultIndex = si;
+                                    CurrentlySelectedSubItem = j;
+                                    inParams.SearchContext = CardProps.Type;
+                                    return;
+                                }
+                                break;
+                            case CardProps.Attr:
+                                if (inParams.bSearchAttr)
+                                {
+                                    inParams.SearchResultIndex = si;
+                                    CurrentlySelectedSubItem = j;
+                                    inParams.SearchContext = CardProps.Attr;
+                                    return;
+                                }
+                                break;
+                            case CardProps.Rarity:
+                                if (inParams.bSearchRarity)
+                                {
+                                    inParams.SearchResultIndex = si;
+                                    CurrentlySelectedSubItem = j;
+                                    inParams.SearchContext = CardProps.Rarity;
+                                    return;
+                                }
+                                break;
+                            case CardProps.Password:
+                                if (inParams.bSearchPassword)
+                                {
+                                    inParams.SearchResultIndex = si;
+                                    CurrentlySelectedSubItem = j;
+                                    inParams.SearchContext = CardProps.Password;
+                                    return;
+                                }
+                                break;
+                            case CardProps.CardExists:
+                                if (inParams.bSearchCardExists)
+                                {
+                                    inParams.SearchResultIndex = si;
+                                    CurrentlySelectedSubItem = j;
+                                    inParams.SearchContext = CardProps.CardExists;
+                                    return;
+                                }
+                                break;
+                            default:
+                                break;
+                        }
+
+                    }
+                }
+                sj = 0;
+                si++;
+            }
+        }
+
+        public bool Search(CardSearchParams inParams, ListView listView)
+        {
+            if (listView.SelectedIndices.Count <= 0)
+                listView.Items[0].Selected = true;
+
+            if (CurrentlySelectedItem != listView.SelectedIndices[0]) // if we start from a new point, we must reset the virtual subitem selection, otherwise bad things happen...
+            {
+                CurrentlySelectedItem = listView.SelectedIndices[0];
+                CurrentlySelectedSubItem = -1;
+                inParams.SearchResultSubStrIndex = -1;
+            }
+
+            inParams.SearchResultIndex = -1;
+            if (inParams.bMatchWhole)
+            {
+                if (inParams.bMatchCase)
+                    SearchExactCaseSensitive(inParams, listView);
+                else
+                    SearchExactCaseless(inParams, listView);
+            }
+            else
+            {
+                if (inParams.bMatchCase)
+                    SearchCaseSensitive(inParams, listView);
+                else
+                    SearchCaseless(inParams, listView);
+            }
+
+            if (inParams.SearchResultIndex != -1)
+            {
+                CurrentlySelectedItem = inParams.SearchResultIndex;
+                return true;
+            }
+            else
+                return false;
         }
     }
 
