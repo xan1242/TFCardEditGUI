@@ -978,6 +978,9 @@ namespace WindowsFormsApp1
             InstanceID = Guid.NewGuid();
             CurrentCacheDir = "cache\\" + InstanceID + "\\workehp";
             CurrentCacheIni = CurrentCacheDir + ".ini";
+            JapaneseStyle = new Font("Meiryo", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            if (JapaneseStyle.Name != "Meiryo")
+                JapaneseStyle = new Font("MS UI Gothic", 10F, FontStyle.Regular, GraphicsUnit.Point);
         }
 
         bool HandleUnsavedQuestion()
