@@ -20,6 +20,8 @@ namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
     {
+        public Guid InstanceID;
+
         public TFCard[] ImportDB;
         public int ImportedCardsCount;
         public int CurrentlySelectedCard;
@@ -30,6 +32,10 @@ namespace WindowsFormsApp1
 
         string ClipboardURL;
         string CurrentFilename;
+
+        string CurrentCacheDir;
+        string CurrentCacheIni;
+
         char CurrentLang = 'E';
         bool bJapaneseLangDetected = false;
         Font DefaultWestStyle = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -40,7 +46,6 @@ namespace WindowsFormsApp1
         SaveQuestionBox saveQuestionDialog;
 
         CardSearch cardSearch;
-
         CardSearchParams replaceParams;
 
 
@@ -364,160 +369,6 @@ namespace WindowsFormsApp1
 
             }
             DisplayedCardsCount = li;
-        }
-
-        bool FilterCheckMinMaxATK(CardFilterParams filterParams, int ci)
-        {
-            if ((filterParams.MaxATK >= 0) && (filterParams.MinATK >= 0))
-            {
-                if ((ImportDB[ci].ATK <= filterParams.MaxATK) && (ImportDB[ci].ATK >= filterParams.MinATK))
-                    return true;
-                else
-                    return false;
-            }
-            else
-            {
-                if (filterParams.MaxATK >= 0)
-                {
-                    if (ImportDB[ci].ATK <= filterParams.MaxATK)
-                        return true;
-                    else
-                        return false;
-                }
-
-                if (filterParams.MinATK >= 0)
-                {
-                    if (ImportDB[ci].ATK >= filterParams.MinATK)
-                        return true;
-                    else
-                        return false;
-                }
-            }
-            return true;
-        }
-        bool FilterCheckMinMaxDEF(CardFilterParams filterParams, int ci)
-        {
-            if ((filterParams.MaxDEF >= 0) && (filterParams.MinDEF >= 0))
-            {
-                if ((ImportDB[ci].DEF <= filterParams.MaxDEF) && (ImportDB[ci].DEF >= filterParams.MinDEF))
-                    return true;
-                else
-                    return false;
-            }
-            else
-            {
-                if (filterParams.MaxDEF >= 0)
-                {
-                    if (ImportDB[ci].DEF <= filterParams.MaxDEF)
-                        return true;
-                    else
-                        return false;
-                }
-
-                if (filterParams.MinDEF >= 0)
-                {
-                    if (ImportDB[ci].DEF >= filterParams.MinDEF)
-                        return true;
-                    else
-                        return false;
-                }
-            }
-            return true;
-        }
-
-        bool FilterCheckMinMaxLevel(CardFilterParams filterParams, int ci)
-        {
-            if ((filterParams.MaxLevel >= 0) && (filterParams.MinLevel >= 0))
-            {
-                if ((ImportDB[ci].Level <= filterParams.MaxLevel) && (ImportDB[ci].Level >= filterParams.MinLevel))
-                    return true;
-                else
-                    return false;
-            }
-            else
-            {
-                if (filterParams.MaxLevel >= 0)
-                {
-                    if (ImportDB[ci].Level <= filterParams.MaxLevel)
-                        return true;
-                    else
-                        return false;
-                }
-
-                if (filterParams.MinLevel >= 0)
-                {
-                    if (ImportDB[ci].Level >= filterParams.MinLevel)
-                        return true;
-                    else
-                        return false;
-                }
-            }
-            return true;
-        }
-
-
-        bool FilterCheckMinMaxPassword(CardFilterParams filterParams, int ci)
-        {
-            if ((filterParams.MaxPassword >= 0) && (filterParams.MinPassword >= 0))
-            {
-                if ((ImportDB[ci].Password <= filterParams.MaxPassword) && (ImportDB[ci].Password >= filterParams.MinPassword))
-                    return true;
-                else
-                    return false;
-            }
-            else
-            {
-                if (filterParams.MaxPassword >= 0)
-                {
-                    if (ImportDB[ci].Password <= filterParams.MaxPassword)
-                        return true;
-                    else
-                        return false;
-                }
-
-                if (filterParams.MinPassword >= 0)
-                {
-                    if (ImportDB[ci].Password >= filterParams.MinPassword)
-                        return true;
-                    else
-                        return false;
-                }
-            }
-            return true;
-        }
-        bool FilterCheckMinMaxCardID(CardFilterParams filterParams, int ci)
-        {
-            if ((filterParams.MaxCardID >= 0) && (filterParams.MinCardID >= 0))
-            {
-                if ((ImportDB[ci].CardID <= filterParams.MaxCardID) && (ImportDB[ci].CardID >= filterParams.MinCardID))
-                    return true;
-                else
-                    return false;
-            }
-            else
-            {
-                if (filterParams.MaxCardID >= 0)
-                {
-                    if (ImportDB[ci].CardID <= filterParams.MaxCardID)
-                        return true;
-                    else
-                        return false;
-                }
-
-                if (filterParams.MinCardID >= 0)
-                {
-                    if (ImportDB[ci].CardID >= filterParams.MinCardID)
-                        return true;
-                    else
-                        return false;
-                }
-            }
-            return true;
-        }
-
-        bool FilterCheckMinMaxValues(CardFilterParams filterParams, int ci)
-        {
-            return FilterCheckMinMaxATK(filterParams, ci) || FilterCheckMinMaxDEF(filterParams, ci) || FilterCheckMinMaxLevel(filterParams, ci) || FilterCheckMinMaxPassword(filterParams, ci) || FilterCheckMinMaxCardID(filterParams, ci);
         }
 
         bool FilterCheckName(CardFilterParams filterParams, int ci)
@@ -924,19 +775,19 @@ namespace WindowsFormsApp1
 
         void CopyFilesForEHP(string Path)
         {
-            if (File.Exists(Path + "\\CARD_SamePict_" + CurrentLang.ToString() + ".bin") && !File.Exists("workehp\\CARD_SamePict_" + CurrentLang.ToString() + ".bin"))
-                File.Copy(Path + "\\CARD_SamePict_" + CurrentLang.ToString() + ".bin", "workehp\\CARD_SamePict_" + CurrentLang.ToString() + ".bin");
-            if (File.Exists(Path + "\\CARD_Sort_" + CurrentLang.ToString() + ".bin") && !File.Exists("workehp\\CARD_Sort_" + CurrentLang.ToString() + ".bin"))
-                File.Copy(Path + "\\CARD_Sort_" + CurrentLang.ToString() + ".bin", "workehp\\CARD_Sort_" + CurrentLang.ToString() + ".bin");
-            if (File.Exists(Path + "\\CARD_Top_" + CurrentLang.ToString() + ".bin") && !File.Exists("workehp\\CARD_Top_" + CurrentLang.ToString() + ".bin"))
-                File.Copy(Path + "\\CARD_Top_" + CurrentLang.ToString() + ".bin", "workehp\\CARD_Top_" + CurrentLang.ToString() + ".bin");
-            if (File.Exists(Path + "\\DLG_Indx_" + CurrentLang.ToString() + ".bin") && !File.Exists("workehp\\DLG_Indx_" + CurrentLang.ToString() + ".bin"))
-                File.Copy(Path + "\\DLG_Indx_" + CurrentLang.ToString() + ".bin", "workehp\\DLG_Indx_" + CurrentLang.ToString() + ".bin");
-            if (File.Exists(Path + "\\DLG_Text_" + CurrentLang.ToString() + ".bin") && !File.Exists("workehp\\DLG_Text_" + CurrentLang.ToString() + ".bin"))
-                File.Copy(Path + "\\DLG_Text_" + CurrentLang.ToString() + ".bin", "workehp\\DLG_Text_" + CurrentLang.ToString() + ".bin");
+            if (File.Exists(Path + "\\CARD_SamePict_" + CurrentLang.ToString() + ".bin") && !File.Exists(CurrentCacheDir + "\\CARD_SamePict_" + CurrentLang.ToString() + ".bin"))
+                File.Copy(Path + "\\CARD_SamePict_" + CurrentLang.ToString() + ".bin", CurrentCacheDir + "\\CARD_SamePict_" + CurrentLang.ToString() + ".bin");
+            if (File.Exists(Path + "\\CARD_Sort_" + CurrentLang.ToString() + ".bin") && !File.Exists(CurrentCacheDir + "\\CARD_Sort_" + CurrentLang.ToString() + ".bin"))
+                File.Copy(Path + "\\CARD_Sort_" + CurrentLang.ToString() + ".bin", CurrentCacheDir + "\\CARD_Sort_" + CurrentLang.ToString() + ".bin");
+            if (File.Exists(Path + "\\CARD_Top_" + CurrentLang.ToString() + ".bin") && !File.Exists(CurrentCacheDir + "\\CARD_Top_" + CurrentLang.ToString() + ".bin"))
+                File.Copy(Path + "\\CARD_Top_" + CurrentLang.ToString() + ".bin", CurrentCacheDir + "\\CARD_Top_" + CurrentLang.ToString() + ".bin");
+            if (File.Exists(Path + "\\DLG_Indx_" + CurrentLang.ToString() + ".bin") && !File.Exists(CurrentCacheDir + "\\DLG_Indx_" + CurrentLang.ToString() + ".bin"))
+                File.Copy(Path + "\\DLG_Indx_" + CurrentLang.ToString() + ".bin", CurrentCacheDir + "\\DLG_Indx_" + CurrentLang.ToString() + ".bin");
+            if (File.Exists(Path + "\\DLG_Text_" + CurrentLang.ToString() + ".bin") && !File.Exists(CurrentCacheDir + "\\DLG_Text_" + CurrentLang.ToString() + ".bin"))
+                File.Copy(Path + "\\DLG_Text_" + CurrentLang.ToString() + ".bin", CurrentCacheDir + "\\DLG_Text_" + CurrentLang.ToString() + ".bin");
 
-            if (File.Exists(Path + "\\CARD_Genre.bin") && !File.Exists(Path + "workehp\\CARD_Genre.bin"))
-                File.Copy(Path + "\\CARD_Genre.bin", "workehp\\CARD_Genre.bin");
+            if (File.Exists(Path + "\\CARD_Genre.bin") && !File.Exists(Path + CurrentCacheDir + "\\CARD_Genre.bin"))
+                File.Copy(Path + "\\CARD_Genre.bin", CurrentCacheDir + "\\CARD_Genre.bin");
         }
 
         void ImportCardDB(string Filename)
@@ -1001,7 +852,8 @@ namespace WindowsFormsApp1
             {
                 ExportIni.Sections.AddSection(ImportDB[i].CardID.ToString());
                 ExportIni.Sections.GetSectionData(ImportDB[i].CardID.ToString()).Keys.AddKey("Name", ImportDB[i].Name);
-                ExportIni.Sections.GetSectionData(ImportDB[i].CardID.ToString()).Keys.AddKey("Description", ImportDB[i].Description.Replace('\n', '^'));
+
+                ExportIni.Sections.GetSectionData(ImportDB[i].CardID.ToString()).Keys.AddKey("Description", ImportDB[i].Description.Replace('\n', '^').Replace('\r', '˘'));
                 ExportIni.Sections.GetSectionData(ImportDB[i].CardID.ToString()).Keys.AddKey("ATK", ImportDB[i].ATK.ToString());
                 ExportIni.Sections.GetSectionData(ImportDB[i].CardID.ToString()).Keys.AddKey("DEF", ImportDB[i].DEF.ToString());
                 ExportIni.Sections.GetSectionData(ImportDB[i].CardID.ToString()).Keys.AddKey("Password", ImportDB[i].Password.ToString());
@@ -1027,17 +879,17 @@ namespace WindowsFormsApp1
             bool bFileCheckLoop = true;
             if (string.Compare(Path.GetExtension(Filename), ".ehp") == 0)
             {
-                ExportCardDB("workehp.ini", 20);
-                if (!Directory.Exists("workehp"))
-                    Directory.CreateDirectory("workehp");
-                ConvertIniToDB("workehp.ini", "workehp", CurrentLang.ToString());
+                ExportCardDB(CurrentCacheIni, 20);
+                if (!Directory.Exists(CurrentCacheDir))
+                    Directory.CreateDirectory(CurrentCacheDir);
+                ConvertIniToDB(CurrentCacheIni, CurrentCacheDir, CurrentLang.ToString());
                 toolStripProgressBar1.Value += 10;
 
                 // check if all necessary files are in the work folder, if not, ask the user to find them
                 while (bFileCheckLoop)
                 {
                     bFileCheckLoop = false;
-                    if (!File.Exists("workehp\\CARD_SamePict_" + CurrentLang.ToString() + ".bin"))
+                    if (!File.Exists(CurrentCacheDir + "\\CARD_SamePict_" + CurrentLang.ToString() + ".bin"))
                     {
                         bFileCheckLoop = true;
                         toolStripStatusLabel1.Text = "Missing: CARD_SamePict_" + CurrentLang.ToString() + ".bin! Please point to the directory containing the files.";
@@ -1047,7 +899,7 @@ namespace WindowsFormsApp1
                             return;
                         CopyFilesForEHP(Path.GetDirectoryName(openFileDialog2.FileName));
                     }
-                    if (!File.Exists("workehp\\CARD_Sort_" + CurrentLang.ToString() + ".bin"))
+                    if (!File.Exists(CurrentCacheDir + "\\CARD_Sort_" + CurrentLang.ToString() + ".bin"))
                     {
                         bFileCheckLoop = true;
                         toolStripStatusLabel1.Text = "Missing: CARD_Sort_" + CurrentLang.ToString() + ".bin! Please point to the directory containing the files.";
@@ -1057,7 +909,7 @@ namespace WindowsFormsApp1
                             return;
                         CopyFilesForEHP(Path.GetDirectoryName(openFileDialog2.FileName));
                     }
-                    if (!File.Exists("workehp\\CARD_Top_" + CurrentLang.ToString() + ".bin"))
+                    if (!File.Exists(CurrentCacheDir + "\\CARD_Top_" + CurrentLang.ToString() + ".bin"))
                     {
                         bFileCheckLoop = true;
                         toolStripStatusLabel1.Text = "Missing: CARD_Top_" + CurrentLang.ToString() + ".bin! Please point to the directory containing the files.";
@@ -1067,7 +919,7 @@ namespace WindowsFormsApp1
                             return;
                         CopyFilesForEHP(Path.GetDirectoryName(openFileDialog2.FileName));
                     }
-                    if (!File.Exists("workehp\\DLG_Indx_" + CurrentLang.ToString() + ".bin"))
+                    if (!File.Exists(CurrentCacheDir + "\\DLG_Indx_" + CurrentLang.ToString() + ".bin"))
                     {
                         bFileCheckLoop = true;
                         toolStripStatusLabel1.Text = "Missing: DLG_Indx_" + CurrentLang.ToString() + ".bin! Please point to the directory containing the files.";
@@ -1077,7 +929,7 @@ namespace WindowsFormsApp1
                             return;
                         CopyFilesForEHP(Path.GetDirectoryName(openFileDialog2.FileName));
                     }
-                    if (!File.Exists("workehp\\DLG_Text_" + CurrentLang.ToString() + ".bin"))
+                    if (!File.Exists(CurrentCacheDir + "\\DLG_Text_" + CurrentLang.ToString() + ".bin"))
                     {
                         bFileCheckLoop = true;
                         toolStripStatusLabel1.Text = "Missing: DLG_Text_" + CurrentLang.ToString() + ".bin! Please point to the directory containing the files.";
@@ -1087,7 +939,7 @@ namespace WindowsFormsApp1
                             return;
                         CopyFilesForEHP(Path.GetDirectoryName(openFileDialog2.FileName));
                     }
-                    if (!File.Exists("workehp\\CARD_Genre.bin"))
+                    if (!File.Exists(CurrentCacheDir + "\\CARD_Genre.bin"))
                     {
                         bFileCheckLoop = true;
                         toolStripStatusLabel1.Text = "Missing: CARD_Genre.bin! Please point to the directory containing the files.";
@@ -1099,13 +951,13 @@ namespace WindowsFormsApp1
                     }
                 }
 
-                PackEHP("workehp", Filename);
+                PackEHP(CurrentCacheDir, Filename);
                 toolStripProgressBar1.Value += 10;
             }
             else if (string.Compare(Path.GetExtension(Filename), ".bin") == 0)
             {
-                ExportCardDB("workehp.ini", 10);
-                ConvertIniToDB("workehp.ini", Path.GetDirectoryName(Filename), CurrentLang.ToString());
+                ExportCardDB(CurrentCacheIni, 10);
+                ConvertIniToDB(CurrentCacheIni, Path.GetDirectoryName(Filename), CurrentLang.ToString());
                 toolStripProgressBar1.Value += 10;
             }
             else
@@ -1121,6 +973,9 @@ namespace WindowsFormsApp1
             replaceParams = new CardSearchParams();
             replaceParams.bSearchName = true;
             cardSearch = new CardSearch();
+            InstanceID = Guid.NewGuid();
+            CurrentCacheDir = "cache\\" + InstanceID + "\\workehp";
+            CurrentCacheIni = CurrentCacheDir + ".ini";
         }
 
         bool HandleUnsavedQuestion()
@@ -1182,29 +1037,35 @@ namespace WindowsFormsApp1
             CurrentFilename = FileName;
             toolStripStatusLabel1.Text = "Opening: " + FileName;
             CurrentLang = DetectLangFromFilename(FileName);
+            //CurrentCacheDir = "cache\\" + InstanceID + "workehp";
 
             if (string.Compare(Path.GetExtension(FileName), ".ehp") == 0)
             {
-                if (File.Exists("workehp.ini"))
-                    File.Delete("workehp.ini");
-                if (Directory.Exists("workehp"))
-                    Directory.Delete("workehp", true);
+                if (File.Exists(CurrentCacheIni))
+                    File.Delete(CurrentCacheIni);
+                if (Directory.Exists(CurrentCacheDir))
+                {
+                    Directory.Delete(CurrentCacheDir, true);
+                    Directory.CreateDirectory(CurrentCacheDir);
+                }
+                else
+                    Directory.CreateDirectory(CurrentCacheDir);
 
 
                 // invoke the toolchain...
-                ExtractEHP(FileName, "workehp");
-                if (!File.Exists("workehp\\CARD_Name_" + CurrentLang.ToString() + ".bin"))
+                ExtractEHP(FileName, CurrentCacheDir);
+                if (!File.Exists(CurrentCacheDir + "\\CARD_Name_" + CurrentLang.ToString() + ".bin"))
                 {
                     toolStripStatusLabel1.Text = "Invalid EhFolder! Please use only cardinfo_* ehp files.";
-                    if (File.Exists("workehp.ini"))
-                        File.Delete("workehp.ini");
-                    if (Directory.Exists("workehp"))
-                        Directory.Delete("workehp", true);
+                    if (File.Exists(CurrentCacheIni))
+                        File.Delete(CurrentCacheIni);
+                    if (Directory.Exists(CurrentCacheDir))
+                        Directory.Delete(CurrentCacheDir, true);
 
                     return;
                 }
-                ConvertDBToIni("workehp", "workehp.ini", CurrentLang.ToString());
-                ImportCardDB("workehp.ini");
+                ConvertDBToIni(CurrentCacheDir, CurrentCacheIni, CurrentLang.ToString());
+                ImportCardDB(CurrentCacheIni);
             }
             else if (string.Compare(Path.GetExtension(FileName), ".bin") == 0) // opened an extracted folder...
             {
@@ -1236,8 +1097,11 @@ namespace WindowsFormsApp1
                     return;
                 }
 
-                ConvertDBToIni(currentDirectory, "workehp.ini", CurrentLang.ToString());
-                ImportCardDB("workehp.ini");
+
+                if (!Directory.Exists(CurrentCacheDir))
+                    Directory.CreateDirectory(CurrentCacheDir);
+                ConvertDBToIni(currentDirectory, CurrentCacheIni, CurrentLang.ToString());
+                ImportCardDB(CurrentCacheIni);
             }
             else if (string.Compare(Path.GetExtension(FileName), ".ini") == 0)
                 ImportCardDB(FileName); // TODO: add error handling...
@@ -1635,6 +1499,12 @@ namespace WindowsFormsApp1
         private void toolbarToolStripMenuItem_MouseEnter(object sender, EventArgs e)
         {
             toolStripStatusLabel1.Text = "Enable/disable the toolbar";
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (Directory.Exists(CurrentCacheDir))
+                Directory.Delete(CurrentCacheDir, true);
         }
     }
 }
