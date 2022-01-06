@@ -700,6 +700,7 @@ namespace WindowsFormsApp1
                 cardSearch.Replace(searchParams, ImportDB[ci]);
                 UpdateTexts();
                 InitiateCardSearch(searchParams);
+                bUnsavedChangesMade = true;
             }
         }
 
@@ -732,6 +733,8 @@ namespace WindowsFormsApp1
             UpdateTexts();
             UpdateListView(lvUpdateFlags, false);
             toolStripStatusLabel1.Text = "Replaced " + rc + " instances";
+            if (rc > 0)
+                bUnsavedChangesMade = true;
         }
 
         void ExtractEHP(string InFilename, string OutFolder)
