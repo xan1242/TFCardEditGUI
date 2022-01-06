@@ -577,6 +577,7 @@ namespace WindowsFormsApp1
     {
         public int CurrentlySelectedItem = -1;
         public int CurrentlySelectedSubItem = -1;
+        public bool bFirstSearch = true;
 
         void SearchCaseSensitive(CardSearchParams inParams, ListView listView, bool bNoLoop)
         {
@@ -592,7 +593,7 @@ namespace WindowsFormsApp1
                 else
                     si %= listView.Items.Count;
 
-                if (inParams.bSearchCardID && !((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.CardID))) // the second part of condition ensures we move onwards
+                if (inParams.bSearchCardID && (!((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.CardID)) || bFirstSearch)) // the second part of condition ensures we move onwards
                 {
                     if (listView.Items[si].SubItems[(int)CardProps.CardID].Text.Contains(inParams.SearchString))
                     {
@@ -641,7 +642,7 @@ namespace WindowsFormsApp1
                     }
                 }
 
-                if (inParams.bSearchKind && !((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Kind)))
+                if (inParams.bSearchKind && (!((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Kind)) || bFirstSearch))
                 {
                     if (listView.Items[si].SubItems[(int)CardProps.Kind].Text.Contains(inParams.SearchString))
                     {
@@ -654,7 +655,7 @@ namespace WindowsFormsApp1
                     }
                 }
 
-                if (inParams.bSearchLevel && !((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Level)))
+                if (inParams.bSearchLevel && (!((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Level)) || bFirstSearch))
                 {
                     if (listView.Items[si].SubItems[(int)CardProps.Level].Text.Contains(inParams.SearchString))
                     {
@@ -667,7 +668,7 @@ namespace WindowsFormsApp1
                     }
                 }
 
-                if (inParams.bSearchATK && !((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.ATK)))
+                if (inParams.bSearchATK && (!((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.ATK)) || bFirstSearch))
                 {
                     if (listView.Items[si].SubItems[(int)CardProps.ATK].Text.Contains(inParams.SearchString))
                     {
@@ -680,7 +681,7 @@ namespace WindowsFormsApp1
                     }
                 }
 
-                if (inParams.bSearchDEF && !((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.DEF)))
+                if (inParams.bSearchDEF && (!((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.DEF)) || bFirstSearch))
                 {
                     if (listView.Items[si].SubItems[(int)CardProps.DEF].Text.Contains(inParams.SearchString))
                     {
@@ -693,7 +694,7 @@ namespace WindowsFormsApp1
                     }
                 }
 
-                if (inParams.bSearchType && !((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Type)))
+                if (inParams.bSearchType && (!((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Type)) || bFirstSearch))
                 {
                     if (listView.Items[si].SubItems[(int)CardProps.Type].Text.Contains(inParams.SearchString))
                     {
@@ -706,7 +707,7 @@ namespace WindowsFormsApp1
                     }
                 }
 
-                if (inParams.bSearchAttr && !((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Attr)))
+                if (inParams.bSearchAttr && (!((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Attr)) || bFirstSearch))
                 {
                     if (listView.Items[si].SubItems[(int)CardProps.Attr].Text.Contains(inParams.SearchString))
                     {
@@ -719,7 +720,7 @@ namespace WindowsFormsApp1
                     }
                 }
 
-                if (inParams.bSearchIcon && !((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Icon)))
+                if (inParams.bSearchIcon && (!((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Icon)) || bFirstSearch))
                 {
                     if (listView.Items[si].SubItems[(int)CardProps.Icon].Text.Contains(inParams.SearchString))
                     {
@@ -732,7 +733,20 @@ namespace WindowsFormsApp1
                     }
                 }
 
-                if (inParams.bSearchPassword && !((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Password)))
+                if (inParams.bSearchRarity && (!((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Rarity)) || bFirstSearch))
+                {
+                    if (listView.Items[si].SubItems[(int)CardProps.Rarity].Text.Contains(inParams.SearchString))
+                    {
+                        inParams.SearchResultIndex = si;
+                        inParams.SearchResultSubStrIndex = -1;
+                        inParams.ResultString = listView.Items[si].SubItems[(int)CardProps.Rarity].Text;
+                        CurrentlySelectedSubItem = (int)CardProps.Rarity;
+                        inParams.SearchContext = CardProps.Rarity;
+                        return;
+                    }
+                }
+
+                if (inParams.bSearchPassword && (!((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Password)) || bFirstSearch))
                 {
                     if (listView.Items[si].SubItems[(int)CardProps.Password].Text.Contains(inParams.SearchString))
                     {
@@ -745,7 +759,7 @@ namespace WindowsFormsApp1
                     }
                 }
 
-                if (inParams.bSearchCardExists && !((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.CardExists)))
+                if (inParams.bSearchCardExists && (!((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.CardExists)) || bFirstSearch))
                 {
                     if (listView.Items[si].SubItems[(int)CardProps.CardExists].Text.Contains(inParams.SearchString))
                     {
@@ -776,7 +790,7 @@ namespace WindowsFormsApp1
                 else
                     si %= listView.Items.Count;
 
-                if (inParams.bSearchCardID && !((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.CardID))) // the second part of condition ensures we move onwards
+                if (inParams.bSearchCardID && (!((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.CardID)) || bFirstSearch)) // the second part of condition ensures we move onwards
                 {
                     if (listView.Items[si].SubItems[(int)CardProps.CardID].Text.Equals(inParams.SearchString))
                     {
@@ -789,7 +803,7 @@ namespace WindowsFormsApp1
                     }
                 }
 
-                if (inParams.bSearchName && !((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Name)))
+                if (inParams.bSearchName && (!((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Name)) || bFirstSearch))
                 {
                     if (listView.Items[si].SubItems[(int)CardProps.Name].Text.Equals(inParams.SearchString))
                     {
@@ -803,7 +817,7 @@ namespace WindowsFormsApp1
                     }
                 }
 
-                if (inParams.bSearchDescription && !((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Description)))
+                if (inParams.bSearchDescription && (!((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Description)) || bFirstSearch))
                 {
                     if (listView.Items[si].SubItems[(int)CardProps.Description].Text.Equals(inParams.SearchString))
                     {
@@ -817,7 +831,7 @@ namespace WindowsFormsApp1
                     }
                 }
 
-                if (inParams.bSearchKind && !((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Kind)))
+                if (inParams.bSearchKind && (!((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Kind)) || bFirstSearch))
                 {
                     if (listView.Items[si].SubItems[(int)CardProps.Kind].Text.Equals(inParams.SearchString))
                     {
@@ -830,7 +844,7 @@ namespace WindowsFormsApp1
                     }
                 }
 
-                if (inParams.bSearchLevel && !((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Level)))
+                if (inParams.bSearchLevel && (!((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Level)) || bFirstSearch))
                 {
                     if (listView.Items[si].SubItems[(int)CardProps.Level].Text.Equals(inParams.SearchString))
                     {
@@ -843,7 +857,7 @@ namespace WindowsFormsApp1
                     }
                 }
 
-                if (inParams.bSearchATK && !((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.ATK)))
+                if (inParams.bSearchATK && (!((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.ATK)) || bFirstSearch))
                 {
                     if (listView.Items[si].SubItems[(int)CardProps.ATK].Text.Equals(inParams.SearchString))
                     {
@@ -856,7 +870,7 @@ namespace WindowsFormsApp1
                     }
                 }
 
-                if (inParams.bSearchDEF && !((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.DEF)))
+                if (inParams.bSearchDEF && (!((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.DEF)) || bFirstSearch))
                 {
                     if (listView.Items[si].SubItems[(int)CardProps.DEF].Text.Equals(inParams.SearchString))
                     {
@@ -869,7 +883,7 @@ namespace WindowsFormsApp1
                     }
                 }
 
-                if (inParams.bSearchType && !((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Type)))
+                if (inParams.bSearchType && (!((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Type)) || bFirstSearch))
                 {
                     if (listView.Items[si].SubItems[(int)CardProps.Type].Text.Equals(inParams.SearchString))
                     {
@@ -882,7 +896,7 @@ namespace WindowsFormsApp1
                     }
                 }
 
-                if (inParams.bSearchAttr && !((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Attr)))
+                if (inParams.bSearchAttr && (!((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Attr)) || bFirstSearch))
                 {
                     if (listView.Items[si].SubItems[(int)CardProps.Attr].Text.Equals(inParams.SearchString))
                     {
@@ -895,7 +909,7 @@ namespace WindowsFormsApp1
                     }
                 }
 
-                if (inParams.bSearchIcon && !((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Icon)))
+                if (inParams.bSearchIcon && (!((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Icon)) || bFirstSearch))
                 {
                     if (listView.Items[si].SubItems[(int)CardProps.Icon].Text.Equals(inParams.SearchString))
                     {
@@ -908,7 +922,20 @@ namespace WindowsFormsApp1
                     }
                 }
 
-                if (inParams.bSearchPassword && !((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Password)))
+                if (inParams.bSearchRarity && (!((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Rarity)) || bFirstSearch))
+                {
+                    if (listView.Items[si].SubItems[(int)CardProps.Rarity].Text.Equals(inParams.SearchString))
+                    {
+                        inParams.SearchResultIndex = si;
+                        inParams.SearchResultSubStrIndex = -1;
+                        inParams.ResultString = listView.Items[si].SubItems[(int)CardProps.Rarity].Text;
+                        CurrentlySelectedSubItem = (int)CardProps.Rarity;
+                        inParams.SearchContext = CardProps.Rarity;
+                        return;
+                    }
+                }
+
+                if (inParams.bSearchPassword && (!((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Password)) || bFirstSearch))
                 {
                     if (listView.Items[si].SubItems[(int)CardProps.Password].Text.Equals(inParams.SearchString))
                     {
@@ -921,7 +948,7 @@ namespace WindowsFormsApp1
                     }
                 }
 
-                if (inParams.bSearchCardExists && !((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.CardExists)))
+                if (inParams.bSearchCardExists && (!((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.CardExists)) || bFirstSearch))
                 {
                     if (listView.Items[si].SubItems[(int)CardProps.CardExists].Text.Equals(inParams.SearchString))
                     {
@@ -951,7 +978,7 @@ namespace WindowsFormsApp1
                 else
                     si %= listView.Items.Count;
 
-                if (inParams.bSearchCardID && !((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.CardID))) // the second part of condition ensures we move onwards
+                if (inParams.bSearchCardID && (!((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.CardID)) || bFirstSearch)) // the second part of condition ensures we move onwards
                 {
                     if (listView.Items[si].SubItems[(int)CardProps.CardID].Text.ToUpper().Contains(inParams.SearchString.ToUpper()))
                     {
@@ -1000,7 +1027,7 @@ namespace WindowsFormsApp1
                     }
                 }
 
-                if (inParams.bSearchKind && !((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Kind)))
+                if (inParams.bSearchKind && (!((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Kind)) || bFirstSearch))
                 {
                     if (listView.Items[si].SubItems[(int)CardProps.Kind].Text.ToUpper().Contains(inParams.SearchString.ToUpper()))
                     {
@@ -1013,7 +1040,7 @@ namespace WindowsFormsApp1
                     }
                 }
 
-                if (inParams.bSearchLevel && !((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Level)))
+                if (inParams.bSearchLevel && (!((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Level)) || bFirstSearch))
                 {
                     if (listView.Items[si].SubItems[(int)CardProps.Level].Text.ToUpper().Contains(inParams.SearchString.ToUpper()))
                     {
@@ -1026,7 +1053,7 @@ namespace WindowsFormsApp1
                     }
                 }
 
-                if (inParams.bSearchATK && !((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.ATK)))
+                if (inParams.bSearchATK && (!((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.ATK)) || bFirstSearch))
                 {
                     if (listView.Items[si].SubItems[(int)CardProps.ATK].Text.ToUpper().Contains(inParams.SearchString.ToUpper()))
                     {
@@ -1039,7 +1066,7 @@ namespace WindowsFormsApp1
                     }
                 }
 
-                if (inParams.bSearchDEF && !((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.DEF)))
+                if (inParams.bSearchDEF && (!((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.DEF)) || bFirstSearch))
                 {
                     if (listView.Items[si].SubItems[(int)CardProps.DEF].Text.ToUpper().Contains(inParams.SearchString.ToUpper()))
                     {
@@ -1052,7 +1079,7 @@ namespace WindowsFormsApp1
                     }
                 }
 
-                if (inParams.bSearchType && !((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Type)))
+                if (inParams.bSearchType && (!((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Type)) || bFirstSearch))
                 {
                     if (listView.Items[si].SubItems[(int)CardProps.Type].Text.ToUpper().Contains(inParams.SearchString.ToUpper()))
                     {
@@ -1065,7 +1092,7 @@ namespace WindowsFormsApp1
                     }
                 }
 
-                if (inParams.bSearchAttr && !((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Attr)))
+                if (inParams.bSearchAttr && (!((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Attr)) || bFirstSearch))
                 {
                     if (listView.Items[si].SubItems[(int)CardProps.Attr].Text.ToUpper().Contains(inParams.SearchString.ToUpper()))
                     {
@@ -1078,7 +1105,7 @@ namespace WindowsFormsApp1
                     }
                 }
 
-                if (inParams.bSearchIcon && !((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Icon)))
+                if (inParams.bSearchIcon && (!((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Icon)) || bFirstSearch))
                 {
                     if (listView.Items[si].SubItems[(int)CardProps.Icon].Text.ToUpper().Contains(inParams.SearchString.ToUpper()))
                     {
@@ -1091,7 +1118,20 @@ namespace WindowsFormsApp1
                     }
                 }
 
-                if (inParams.bSearchPassword && !((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Password)))
+                if (inParams.bSearchRarity && (!((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Rarity)) || bFirstSearch))
+                {
+                    if (listView.Items[si].SubItems[(int)CardProps.Rarity].Text.ToUpper().Contains(inParams.SearchString.ToUpper()))
+                    {
+                        inParams.SearchResultIndex = si;
+                        inParams.SearchResultSubStrIndex = -1;
+                        inParams.ResultString = listView.Items[si].SubItems[(int)CardProps.Rarity].Text;
+                        CurrentlySelectedSubItem = (int)CardProps.Rarity;
+                        inParams.SearchContext = CardProps.Rarity;
+                        return;
+                    }
+                }
+
+                if (inParams.bSearchPassword && (!((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Password)) || bFirstSearch))
                 {
                     if (listView.Items[si].SubItems[(int)CardProps.Password].Text.ToUpper().Contains(inParams.SearchString.ToUpper()))
                     {
@@ -1104,7 +1144,7 @@ namespace WindowsFormsApp1
                     }
                 }
 
-                if (inParams.bSearchCardExists && !((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.CardExists)))
+                if (inParams.bSearchCardExists && (!((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.CardExists)) || bFirstSearch))
                 {
                     if (listView.Items[si].SubItems[(int)CardProps.CardExists].Text.ToUpper().Contains(inParams.SearchString.ToUpper()))
                     {
@@ -1135,7 +1175,7 @@ namespace WindowsFormsApp1
                 else
                     si %= listView.Items.Count;
 
-                if (inParams.bSearchCardID && !((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.CardID))) // the second part of condition ensures we move onwards
+                if (inParams.bSearchCardID && (!((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.CardID)) || bFirstSearch)) // the second part of condition ensures we move onwards
                 {
                     if (listView.Items[si].SubItems[(int)CardProps.CardID].Text.ToUpper().Equals(inParams.SearchString.ToUpper()))
                     {
@@ -1148,7 +1188,7 @@ namespace WindowsFormsApp1
                     }
                 }
 
-                if (inParams.bSearchName && !((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Name)))
+                if (inParams.bSearchName && (!((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Name)) || bFirstSearch))
                 {
                     if (listView.Items[si].SubItems[(int)CardProps.Name].Text.ToUpper().Equals(inParams.SearchString.ToUpper()))
                     {
@@ -1162,7 +1202,7 @@ namespace WindowsFormsApp1
                     }
                 }
 
-                if (inParams.bSearchDescription && !((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Description)))
+                if (inParams.bSearchDescription && (!((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Description)) || bFirstSearch))
                 {
                     if (listView.Items[si].SubItems[(int)CardProps.Description].Text.ToUpper().Equals(inParams.SearchString.ToUpper()))
                     {
@@ -1176,7 +1216,7 @@ namespace WindowsFormsApp1
                     }
                 }
 
-                if (inParams.bSearchKind && !((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Kind)))
+                if (inParams.bSearchKind && (!((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Kind)) || bFirstSearch))
                 {
                     if (listView.Items[si].SubItems[(int)CardProps.Kind].Text.ToUpper().Equals(inParams.SearchString.ToUpper()))
                     {
@@ -1189,7 +1229,7 @@ namespace WindowsFormsApp1
                     }
                 }
 
-                if (inParams.bSearchLevel && !((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Level)))
+                if (inParams.bSearchLevel && (!((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Level)) || bFirstSearch))
                 {
                     if (listView.Items[si].SubItems[(int)CardProps.Level].Text.ToUpper().Equals(inParams.SearchString.ToUpper()))
                     {
@@ -1202,7 +1242,7 @@ namespace WindowsFormsApp1
                     }
                 }
 
-                if (inParams.bSearchATK && !((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.ATK)))
+                if (inParams.bSearchATK && (!((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.ATK)) || bFirstSearch))
                 {
                     if (listView.Items[si].SubItems[(int)CardProps.ATK].Text.ToUpper().Equals(inParams.SearchString.ToUpper()))
                     {
@@ -1215,7 +1255,7 @@ namespace WindowsFormsApp1
                     }
                 }
 
-                if (inParams.bSearchDEF && !((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.DEF)))
+                if (inParams.bSearchDEF && (!((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.DEF)) || bFirstSearch))
                 {
                     if (listView.Items[si].SubItems[(int)CardProps.DEF].Text.ToUpper().Equals(inParams.SearchString.ToUpper()))
                     {
@@ -1228,7 +1268,7 @@ namespace WindowsFormsApp1
                     }
                 }
 
-                if (inParams.bSearchType && !((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Type)))
+                if (inParams.bSearchType && (!((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Type)) || bFirstSearch))
                 {
                     if (listView.Items[si].SubItems[(int)CardProps.Type].Text.ToUpper().Equals(inParams.SearchString.ToUpper()))
                     {
@@ -1241,7 +1281,7 @@ namespace WindowsFormsApp1
                     }
                 }
 
-                if (inParams.bSearchAttr && !((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Attr)))
+                if (inParams.bSearchAttr && (!((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Attr)) || bFirstSearch))
                 {
                     if (listView.Items[si].SubItems[(int)CardProps.Attr].Text.ToUpper().Equals(inParams.SearchString.ToUpper()))
                     {
@@ -1254,7 +1294,7 @@ namespace WindowsFormsApp1
                     }
                 }
 
-                if (inParams.bSearchIcon && !((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Icon)))
+                if (inParams.bSearchIcon && (!((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Icon)) || bFirstSearch))
                 {
                     if (listView.Items[si].SubItems[(int)CardProps.Icon].Text.ToUpper().Equals(inParams.SearchString.ToUpper()))
                     {
@@ -1267,7 +1307,20 @@ namespace WindowsFormsApp1
                     }
                 }
 
-                if (inParams.bSearchPassword && !((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Password)))
+                if (inParams.bSearchRarity && (!((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Rarity)) || bFirstSearch))
+                {
+                    if (listView.Items[si].SubItems[(int)CardProps.Rarity].Text.ToUpper().Equals(inParams.SearchString.ToUpper()))
+                    {
+                        inParams.SearchResultIndex = si;
+                        inParams.SearchResultSubStrIndex = -1;
+                        inParams.ResultString = listView.Items[si].SubItems[(int)CardProps.Rarity].Text;
+                        CurrentlySelectedSubItem = (int)CardProps.Rarity;
+                        inParams.SearchContext = CardProps.Rarity;
+                        return;
+                    }
+                }
+
+                if (inParams.bSearchPassword && (!((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.Password)) || bFirstSearch))
                 {
                     if (listView.Items[si].SubItems[(int)CardProps.Password].Text.ToUpper().Equals(inParams.SearchString.ToUpper()))
                     {
@@ -1280,7 +1333,7 @@ namespace WindowsFormsApp1
                     }
                 }
 
-                if (inParams.bSearchCardExists && !((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.CardExists)))
+                if (inParams.bSearchCardExists && (!((si == CurrentlySelectedItem) && (inParams.SearchContext == CardProps.CardExists)) || bFirstSearch))
                 {
                     if (listView.Items[si].SubItems[(int)CardProps.CardExists].Text.ToUpper().Equals(inParams.SearchString.ToUpper()))
                     {
@@ -1308,6 +1361,7 @@ namespace WindowsFormsApp1
                 inParams.SearchResultSubStrIndex = -1;
                 inParams.SearchResultSubStrIndex_Name = -1;
                 inParams.SearchResultSubStrIndex_Desc = -1;
+                bFirstSearch = true;
             }
 
             inParams.SearchResultIndex = -1;
@@ -1329,6 +1383,7 @@ namespace WindowsFormsApp1
             if (inParams.SearchResultIndex != -1)
             {
                 CurrentlySelectedItem = inParams.SearchResultIndex;
+                bFirstSearch = false;
                 return true;
             }
             else

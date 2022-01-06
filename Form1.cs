@@ -857,9 +857,11 @@ namespace WindowsFormsApp1
             int ci;
             int rc = 0;
             bool[] lvUpdateFlags = new bool[listView1.Items.Count];
+            
 
             for (int i = 0; i < listView1.Items.Count; i++)
             {
+                cardSearch.bFirstSearch = true;
                 cardSearch.CurrentlySelectedItem = i;
                 cardSearch.CurrentlySelectedSubItem = -1;
                 searchParams.SearchResultSubStrIndex = -1;

@@ -17,6 +17,7 @@ namespace WindowsFormsApp1
         Form1 form1;
         bool bSetNumericAcceptors = false;
         bool bInComboBoxMode = false;
+        bool bStringMatchWholeLastState = false;
 
         public ReplaceBox(CardSearchParams inSearchParams, Form1 inForm1)
         {
@@ -235,7 +236,7 @@ namespace WindowsFormsApp1
                 comboBoxReplace.Visible = false;
                 fastTextBoxFind.Visible = true;
                 fastTextBoxReplace.Visible = true;
-
+                checkBoxMatch.Checked = bStringMatchWholeLastState;
                 bInComboBoxMode = false;
                 fastTextBoxFind.Text = "";
                 fastTextBoxReplace.Text = "";
@@ -254,6 +255,7 @@ namespace WindowsFormsApp1
             else
             {
                 checkBoxCase.Enabled = true;
+                checkBoxMatch.Enabled = true;
             }
         }
 
@@ -263,6 +265,8 @@ namespace WindowsFormsApp1
             fastTextBoxReplace.Visible = false;
             checkBoxCase.Enabled = false;
             checkBoxMatch.Enabled = false;
+            bStringMatchWholeLastState = checkBoxMatch.Checked;
+            checkBoxMatch.Checked = true;
             comboBoxFind.Visible = true;
             comboBoxReplace.Visible = true;
             bInComboBoxMode = true;
