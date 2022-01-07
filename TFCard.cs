@@ -293,7 +293,7 @@ namespace WindowsFormsApp1
         public int Password
         {
             get { return p_Password; }
-            set { p_Password = value; }
+            set { if (value < 0) p_Password = 0; else p_Password = value; }
         }
 
         int p_ATK;
@@ -303,7 +303,7 @@ namespace WindowsFormsApp1
         public int ATK
         {
             get { return p_ATK; }
-            set { p_ATK = value; }
+            set { if (value > 5110) p_ATK = 5110; else if (value < 0) p_ATK = 0; else p_ATK = value; }
         }
 
         int p_DEF;
@@ -313,7 +313,7 @@ namespace WindowsFormsApp1
         public int DEF
         {
             get { return p_DEF; }
-            set { p_DEF = value; }
+            set { if (value > 5110) p_DEF = 5110; else if (value < 0) p_DEF = 0; else p_DEF = value; }
         }
 
         bool p_CardExistFlag;
@@ -355,7 +355,7 @@ namespace WindowsFormsApp1
         public int Level
         {
             get { return p_Level; }
-            set { p_Level = value; }
+            set { if (value < 0) p_Level = 0; else p_Level = value; }
         }
 
         CardIcons p_Icon;
