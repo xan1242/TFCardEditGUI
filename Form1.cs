@@ -263,7 +263,7 @@ namespace WindowsFormsApp1
             if (ImportDB[CurrentlySelectedCard].Kind == CardKinds.Token)
                 label6.Text = "This card cannot be in a Deck.";
             else
-                label6.Text = ImportDB[CurrentlySelectedCard].Password.ToString();
+                label6.Text = string.Format("{0:00000000}", ImportDB[CurrentlySelectedCard].Password);
 
             // update ListView as well...
 

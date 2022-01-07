@@ -293,7 +293,7 @@ namespace WindowsFormsApp1
             this.toolbarToolStripMenuItem.CheckOnClick = true;
             this.toolbarToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.toolbarToolStripMenuItem.Name = "toolbarToolStripMenuItem";
-            this.toolbarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.toolbarToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.toolbarToolStripMenuItem.Text = "&Toolbar";
             this.toolbarToolStripMenuItem.Click += new System.EventHandler(this.toolbarToolStripMenuItem_Click);
             this.toolbarToolStripMenuItem.MouseEnter += new System.EventHandler(this.toolbarToolStripMenuItem_MouseEnter);
@@ -304,7 +304,7 @@ namespace WindowsFormsApp1
             this.statusBarToolStripMenuItem.CheckOnClick = true;
             this.statusBarToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.statusBarToolStripMenuItem.Name = "statusBarToolStripMenuItem";
-            this.statusBarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.statusBarToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.statusBarToolStripMenuItem.Text = "&Status Bar";
             this.statusBarToolStripMenuItem.Click += new System.EventHandler(this.statusBarToolStripMenuItem_Click);
             this.statusBarToolStripMenuItem.MouseEnter += new System.EventHandler(this.statusBarToolStripMenuItem_MouseEnter);
@@ -363,7 +363,7 @@ namespace WindowsFormsApp1
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.aboutToolStripMenuItem.Text = "&About...";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             this.aboutToolStripMenuItem.MouseEnter += new System.EventHandler(this.aboutToolStripMenuItem_MouseHover);
@@ -719,6 +719,7 @@ namespace WindowsFormsApp1
             // olvColumnPassword
             // 
             this.olvColumnPassword.AspectName = "Password";
+            this.olvColumnPassword.AspectToStringFormat = "{0:00000000}";
             this.olvColumnPassword.Text = "Password";
             // 
             // olvColumnCardExists
