@@ -1380,9 +1380,9 @@ namespace WindowsFormsApp1
 
         private void removeFilterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //GenerateListView();
             listView1.ModelFilter = null;
             filterBoxDialog.ResetAllPages();
+            DisplayedCardsCount = listView1.Items.Count;
             toolStripStatusLabel2.Text = "Total card count: " + ImportedCardsCount + " | Displayed: " + DisplayedCardsCount;
             removeFilterToolStripMenuItem.Enabled = false;
             toolStripButtonRemoveFilter.Enabled = false;
@@ -1393,7 +1393,6 @@ namespace WindowsFormsApp1
             toolStrip1.Visible = toolbarToolStripMenuItem.Checked;
             Properties.Settings.Default.ShowToolbar = toolStrip1.Visible;
             Properties.Settings.Default.Save();
-            //ConfigurationManager.AppSettings.Set("ShowToolbar", toolStrip1.Visible.ToString());
         }
 
         private void statusBarToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1401,7 +1400,6 @@ namespace WindowsFormsApp1
             statusStrip1.Visible = statusBarToolStripMenuItem.Checked;
             Properties.Settings.Default.ShowStatusBar = statusStrip1.Visible;
             Properties.Settings.Default.Save();
-            //ConfigurationManager.AppSettings.Set("ShowStatusBar", statusStrip1.Visible.ToString());
         }
 
         private void Form1_DragEnter(object sender, DragEventArgs e)
