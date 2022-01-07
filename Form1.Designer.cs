@@ -592,7 +592,6 @@ namespace WindowsFormsApp1
             this.listView1.UpdateSpaceFillingColumnsWhenDraggingColumnDivider = false;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.UseFiltering = true;
-            this.listView1.UseHotControls = false;
             this.listView1.UseOverlays = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
@@ -636,6 +635,7 @@ namespace WindowsFormsApp1
             // olvColumnType
             // 
             this.olvColumnType.AspectName = "Type";
+            this.olvColumnType.AspectToStringFormat = "";
             this.olvColumnType.Text = "Type";
             this.olvColumnType.Width = 80;
             // 

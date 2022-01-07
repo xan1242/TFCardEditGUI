@@ -118,21 +118,6 @@ namespace WindowsFormsApp1
 
         void ResetAppState()
         {
-            listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            olvColumnCardID,
-            olvColumnName,
-            olvColumnKind,
-            olvColumnLevel,
-            olvColumnATK,
-            olvColumnDEF,
-            olvColumnType,
-            olvColumnAttrib,
-            olvColumnIcon,
-            olvColumnRarity,
-            olvColumnPassword,
-            olvColumnCardExists,
-            olvColumnDescr});
-
             linkLabel1.Enabled = false;
             linkLabel2.Enabled = false;
             textBox1.Enabled = false;
