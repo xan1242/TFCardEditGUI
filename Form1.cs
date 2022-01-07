@@ -756,9 +756,6 @@ namespace WindowsFormsApp1
 
             foreach (IniParser.Model.SectionData s in ParsedIni.Sections)
             {
-                //Console.WriteLine("Importing: [" + s.SectionName + "] " + s.Keys.GetKeyData("Name").Value);
-                //toolStripStatusLabel1.Text = "Importing: [" + s.SectionName + "] " + s.Keys.GetKeyData("Name").Value;
-
                 ImportDB[CardImporterCounter].CardID = Int32.Parse(s.SectionName);
                 ImportDB[CardImporterCounter].Name = s.Keys.GetKeyData("Name").Value;
                 ImportDB[CardImporterCounter].Description = s.Keys.GetKeyData("Description").Value;
@@ -979,11 +976,9 @@ namespace WindowsFormsApp1
 
         private void OpenFile(string FileName)
         {
-            //Console.WriteLine("Importing: " + FileName);
             CurrentFilename = FileName;
             toolStripStatusLabel1.Text = "Opening: " + FileName;
             CurrentLang = DetectLangFromFilename(FileName);
-            //CurrentCacheDir = "cache\\" + InstanceID + "workehp";
 
             if (string.Compare(Path.GetExtension(FileName), ".ehp") == 0)
             {
@@ -999,7 +994,12 @@ namespace WindowsFormsApp1
 
 
                 // invoke the toolchain...
-                ExtractEHP(FileName, CurrentCacheDir);
+                int ehpresult = ExtractEHP(FileName, CurrentCacheDir);
+                if (ehpresult != 0)
+                {
+                    toolStripStatusLabel1.Text = "ERROR: EHP extraction failed! Status code: " + ehpresult;
+                    return;
+                }
                 if (!File.Exists(CurrentCacheDir + "\\CARD_Name_" + CurrentLang.ToString() + ".bin"))
                 {
                     toolStripStatusLabel1.Text = "Invalid EhFolder! Please use only cardinfo_* ehp files.";
@@ -1010,7 +1010,13 @@ namespace WindowsFormsApp1
 
                     return;
                 }
-                ConvertDBToIni(CurrentCacheDir, CurrentCacheIni, CurrentLang.ToString());
+                int tfcardresult = ConvertDBToIni(CurrentCacheDir, CurrentCacheIni, CurrentLang.ToString());
+                if (tfcardresult != 0)
+                {
+                    toolStripStatusLabel1.Text = "ERROR: Card DB decoding failed! Status code: " + tfcardresult;
+                    return;
+                }
+
                 ImportCardDB(CurrentCacheIni);
             }
             else if (string.Compare(Path.GetExtension(FileName), ".bin") == 0) // opened an extracted folder...
@@ -1046,7 +1052,12 @@ namespace WindowsFormsApp1
 
                 if (!Directory.Exists(CurrentCacheDir))
                     Directory.CreateDirectory(CurrentCacheDir);
-                ConvertDBToIni(currentDirectory, CurrentCacheIni, CurrentLang.ToString());
+                int tfcardresult = ConvertDBToIni(currentDirectory, CurrentCacheIni, CurrentLang.ToString());
+                if (tfcardresult != 0)
+                {
+                    toolStripStatusLabel1.Text = "ERROR: Card DB decoding failed! Status code: " + tfcardresult;
+                    return;
+                }
                 ImportCardDB(CurrentCacheIni);
             }
             else if (string.Compare(Path.GetExtension(FileName), ".ini") == 0)
@@ -1056,7 +1067,6 @@ namespace WindowsFormsApp1
                 toolStripStatusLabel1.Text = "Unknown extension: " + Path.GetExtension(FileName);
                 return;
             }
-            // Console.WriteLine("Imported " + ImportedCardsCount + " cards");
             GenerateListView();
             toolStripStatusLabel1.Text = "Imported " + ImportedCardsCount + " cards";
             toolStripStatusLabel2.Text = "Total card count: " + ImportedCardsCount + " | Displayed: " + DisplayedCardsCount;
