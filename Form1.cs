@@ -267,18 +267,18 @@ namespace WindowsFormsApp1
 
             // update ListView as well...
 
-            listView1.SelectedItems[0].SubItems[(int)CardProps.Name].Text = ImportDB[CurrentlySelectedCard].Name;
-            listView1.SelectedItems[0].SubItems[(int)CardProps.Kind].Text = TypeDescriptor.GetConverter(typeof(CardKinds)).ConvertToString(ImportDB[CurrentlySelectedCard].Kind);
-            listView1.SelectedItems[0].SubItems[(int)CardProps.Level].Text = ImportDB[CurrentlySelectedCard].Level.ToString();
-            listView1.SelectedItems[0].SubItems[(int)CardProps.ATK].Text = ImportDB[CurrentlySelectedCard].ATK.ToString();
-            listView1.SelectedItems[0].SubItems[(int)CardProps.DEF].Text = ImportDB[CurrentlySelectedCard].DEF.ToString();
-            listView1.SelectedItems[0].SubItems[(int)CardProps.Type].Text = TypeDescriptor.GetConverter(typeof(CardTypes)).ConvertToString(ImportDB[CurrentlySelectedCard].Type);
-            listView1.SelectedItems[0].SubItems[(int)CardProps.Attr].Text = TypeDescriptor.GetConverter(typeof(CardAttributes)).ConvertToString(ImportDB[CurrentlySelectedCard].Attr);
-            listView1.SelectedItems[0].SubItems[(int)CardProps.Icon].Text = TypeDescriptor.GetConverter(typeof(CardIcons)).ConvertToString(ImportDB[CurrentlySelectedCard].Icon);
-            listView1.SelectedItems[0].SubItems[(int)CardProps.Rarity].Text = TypeDescriptor.GetConverter(typeof(CardRarity)).ConvertToString(ImportDB[CurrentlySelectedCard].Rarity);
-            listView1.SelectedItems[0].SubItems[(int)CardProps.Password].Text = ImportDB[CurrentlySelectedCard].Password.ToString();
-            listView1.SelectedItems[0].SubItems[(int)CardProps.CardExists].Text = ImportDB[CurrentlySelectedCard].CardExistFlag.ToString();
-            listView1.SelectedItems[0].SubItems[(int)CardProps.Description].Text = ImportDB[CurrentlySelectedCard].Description;
+            //listView1.SelectedItems[0].SubItems[(int)CardProps.Name].Text = ImportDB[CurrentlySelectedCard].Name;
+            //listView1.SelectedItems[0].SubItems[(int)CardProps.Kind].Text = TypeDescriptor.GetConverter(typeof(CardKinds)).ConvertToString(ImportDB[CurrentlySelectedCard].Kind);
+            //listView1.SelectedItems[0].SubItems[(int)CardProps.Level].Text = ImportDB[CurrentlySelectedCard].Level.ToString();
+            //listView1.SelectedItems[0].SubItems[(int)CardProps.ATK].Text = ImportDB[CurrentlySelectedCard].ATK.ToString();
+            //listView1.SelectedItems[0].SubItems[(int)CardProps.DEF].Text = ImportDB[CurrentlySelectedCard].DEF.ToString();
+            //listView1.SelectedItems[0].SubItems[(int)CardProps.Type].Text = TypeDescriptor.GetConverter(typeof(CardTypes)).ConvertToString(ImportDB[CurrentlySelectedCard].Type);
+            //listView1.SelectedItems[0].SubItems[(int)CardProps.Attr].Text = TypeDescriptor.GetConverter(typeof(CardAttributes)).ConvertToString(ImportDB[CurrentlySelectedCard].Attr);
+            //listView1.SelectedItems[0].SubItems[(int)CardProps.Icon].Text = TypeDescriptor.GetConverter(typeof(CardIcons)).ConvertToString(ImportDB[CurrentlySelectedCard].Icon);
+            //listView1.SelectedItems[0].SubItems[(int)CardProps.Rarity].Text = TypeDescriptor.GetConverter(typeof(CardRarity)).ConvertToString(ImportDB[CurrentlySelectedCard].Rarity);
+            //listView1.SelectedItems[0].SubItems[(int)CardProps.Password].Text = ImportDB[CurrentlySelectedCard].Password.ToString();
+            //listView1.SelectedItems[0].SubItems[(int)CardProps.CardExists].Text = ImportDB[CurrentlySelectedCard].CardExistFlag.ToString();
+            //listView1.SelectedItems[0].SubItems[(int)CardProps.Description].Text = ImportDB[CurrentlySelectedCard].Description;
         }
 
         void UpdateListView(bool[] UpdateFlags, bool bUpdateAll)
