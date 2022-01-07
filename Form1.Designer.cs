@@ -559,6 +559,7 @@ namespace WindowsFormsApp1
             this.listView1.AllColumns.Add(this.olvColumnPassword);
             this.listView1.AllColumns.Add(this.olvColumnCardExists);
             this.listView1.AllColumns.Add(this.olvColumnDescr);
+            this.listView1.AllowColumnReorder = true;
             this.listView1.AutoArrange = false;
             this.listView1.CellEditUseWholeCell = false;
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -586,11 +587,13 @@ namespace WindowsFormsApp1
             this.listView1.SelectAllOnControlA = false;
             this.listView1.SelectColumnsOnRightClick = false;
             this.listView1.SelectColumnsOnRightClickBehaviour = BrightIdeasSoftware.ObjectListView.ColumnSelectBehaviour.None;
+            this.listView1.ShowCommandMenuOnRightClick = true;
             this.listView1.ShowGroups = false;
             this.listView1.Size = new System.Drawing.Size(912, 709);
             this.listView1.TabIndex = 3;
             this.listView1.UpdateSpaceFillingColumnsWhenDraggingColumnDivider = false;
             this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.UseFilterIndicator = true;
             this.listView1.UseFiltering = true;
             this.listView1.UseOverlays = false;
             this.listView1.View = System.Windows.Forms.View.Details;
