@@ -674,32 +674,36 @@ namespace WindowsFormsApp1
                 bUnsavedChangesMade = true;
         }
 
-        void ExtractEHP(string InFilename, string OutFolder)
+        int ExtractEHP(string InFilename, string OutFolder)
         {
             var ehpprocess = new Process { StartInfo = new ProcessStartInfo { UseShellExecute = false, CreateNoWindow = true, FileName = "ehppack.exe", Arguments = "\"" + InFilename + "\" \"" + OutFolder + "\""} };
             ehpprocess.Start();
             ehpprocess.WaitForExit();
+            return ehpprocess.ExitCode;
         }
 
-        void PackEHP(string InFolder, string OutFilename)
+        int PackEHP(string InFolder, string OutFilename)
         {
             var ehpprocess = new Process { StartInfo = new ProcessStartInfo { UseShellExecute = false, CreateNoWindow = true, FileName = "ehppack.exe", Arguments = "-p \"" + InFolder + "\" \"" + OutFilename + "\"" } };
             ehpprocess.Start();
             ehpprocess.WaitForExit();
+            return ehpprocess.ExitCode;
         }
 
-        void ConvertDBToIni(string InFolder, string OutFilename, string LanguageDesignator)
+        int ConvertDBToIni(string InFolder, string OutFilename, string LanguageDesignator)
         {
             var tfcecli_process = new Process { StartInfo = new ProcessStartInfo { UseShellExecute = false, CreateNoWindow = true, FileName = "TFCardEdit.exe", Arguments = "\"" + InFolder + "\" \"" + OutFilename + "\" " + LanguageDesignator } };
             tfcecli_process.Start();
             tfcecli_process.WaitForExit();
+            return tfcecli_process.ExitCode;
         }
 
-        void ConvertIniToDB(string InFilename, string OutFolder, string LanguageDesignator)
+        int ConvertIniToDB(string InFilename, string OutFolder, string LanguageDesignator)
         {
             var tfcecli_process = new Process { StartInfo = new ProcessStartInfo { UseShellExecute = false, CreateNoWindow = true, FileName = "TFCardEdit.exe", Arguments = "-w \"" + InFilename + "\" \"" + OutFolder + "\" " + LanguageDesignator } };
             tfcecli_process.Start();
             tfcecli_process.WaitForExit();
+            return tfcecli_process.ExitCode;
         }
 
         char DetectLangFromFilename(string Filename)
@@ -1446,6 +1450,87 @@ namespace WindowsFormsApp1
         {
             if (Directory.Exists(CurrentCacheDir))
                 Directory.Delete(CurrentCacheDir, true);
+        }
+
+        private void unpackEhFolderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (openFileDialogEHPunpack.ShowDialog() == DialogResult.OK)
+                if (saveFileDialogEHPunpack.ShowDialog() == DialogResult.OK)
+                {
+                    int ehpresult = ExtractEHP(openFileDialogEHPunpack.FileName, Path.GetDirectoryName(saveFileDialogEHPunpack.FileName));
+                    if (ehpresult == 0)
+                        toolStripStatusLabel1.Text = "[" + Path.GetFileName(openFileDialogEHPunpack.FileName) + "] Unpack complete! Output location: " + Path.GetDirectoryName(saveFileDialogEHPunpack.FileName);
+                    else
+                        toolStripStatusLabel1.Text = "[" + Path.GetFileName(openFileDialogEHPunpack.FileName) + "] Unpack failed! Reason code: " + ehpresult;
+                }
+        }
+
+        private void unpackEhFolderToolStripMenuItem_MouseEnter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "Unpack a EhFolder/EHP archive.";
+        }
+
+        private void packEhFolderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (openFileDialogEHPpack.ShowDialog() == DialogResult.OK)
+            {
+                saveFileDialogEHPpack.FileName = Path.GetDirectoryName(openFileDialogEHPpack.FileName);
+                if (saveFileDialogEHPpack.ShowDialog() == DialogResult.OK)
+                {
+                    int ehpresult = PackEHP(Path.GetDirectoryName(openFileDialogEHPpack.FileName), saveFileDialogEHPpack.FileName);
+                    if (ehpresult == 0)
+                        toolStripStatusLabel1.Text = "[" + Path.GetDirectoryName(openFileDialogEHPpack.FileName) + "] Pack complete! Output location: " + saveFileDialogEHPpack.FileName;
+                    else
+                        toolStripStatusLabel1.Text = "[" + Path.GetDirectoryName(openFileDialogEHPpack.FileName) + "] Pack failed! Reason code: " + ehpresult;
+                }
+            }
+        }
+
+        private void packEhFolderToolStripMenuItem_MouseEnter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "Pack a folder into an EhFolder/EHP archive.";
+        }
+
+        private void decodeCardBinsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (openFileDialogDBfolderOpen.ShowDialog() == DialogResult.OK)
+            {
+                saveFileDialogDBfolderOpen.FileName = Path.GetDirectoryName(openFileDialogDBfolderOpen.FileName);
+                if (saveFileDialogDBfolderOpen.ShowDialog() == DialogResult.OK)
+                {
+                    int tfcardresult = ConvertDBToIni(Path.GetDirectoryName(openFileDialogDBfolderOpen.FileName), saveFileDialogDBfolderOpen.FileName, DetectLangFromFilename(openFileDialogDBfolderOpen.FileName).ToString());
+                    if (tfcardresult == 0)
+                        toolStripStatusLabel1.Text = "[" + Path.GetDirectoryName(openFileDialogDBfolderOpen.FileName) + "] Decode complete! Output location: " + saveFileDialogDBfolderOpen.FileName;
+                    else
+                        toolStripStatusLabel1.Text = "[" + Path.GetDirectoryName(openFileDialogDBfolderOpen.FileName) + "] Decode failed! Reason code: " + tfcardresult;
+                }
+            }
+        }
+
+        private void decodeCardBinsToolStripMenuItem_MouseHover(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "Decode Card DB binaries to an .ini file manually";
+        }
+
+        private void encodeCardBinsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (openFileDialogDBfolderPack.ShowDialog() == DialogResult.OK)
+            {
+                if (saveFileDialogDBfolderPack.ShowDialog() == DialogResult.OK)
+                {
+                    int tfcardresult = ConvertIniToDB(openFileDialogDBfolderPack.FileName, Path.GetDirectoryName(saveFileDialogDBfolderPack.FileName), DetectLangFromFilename(openFileDialogDBfolderPack.FileName).ToString());
+                    if (tfcardresult == 0)
+                        toolStripStatusLabel1.Text = "[" + Path.GetFileName(openFileDialogDBfolderPack.FileName) + "] Encode complete! Output location: " + Path.GetDirectoryName(saveFileDialogDBfolderPack.FileName);
+                    else
+                        toolStripStatusLabel1.Text = "[" + Path.GetFileName(openFileDialogDBfolderPack.FileName) + "] Encode failed! Reason code: " + tfcardresult;
+                }
+            }
+
+        }
+
+        private void encodeCardBinsToolStripMenuItem_MouseEnter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "Pack Card DB .ini to a folder with binaries manually";
         }
     }
 }

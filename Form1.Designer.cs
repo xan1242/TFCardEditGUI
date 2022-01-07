@@ -47,6 +47,11 @@ namespace WindowsFormsApp1
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolbarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.unpackEhFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.packEhFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.decodeCardBinsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.encodeCardBinsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
@@ -103,6 +108,14 @@ namespace WindowsFormsApp1
             this.toolStripButtonFilter = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonRemoveFilter = new System.Windows.Forms.ToolStripButton();
             this.panelMain = new System.Windows.Forms.Panel();
+            this.openFileDialogEHPunpack = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialogEHPunpack = new System.Windows.Forms.SaveFileDialog();
+            this.openFileDialogEHPpack = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialogEHPpack = new System.Windows.Forms.SaveFileDialog();
+            this.openFileDialogDBfolderOpen = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialogDBfolderOpen = new System.Windows.Forms.SaveFileDialog();
+            this.openFileDialogDBfolderPack = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialogDBfolderPack = new System.Windows.Forms.SaveFileDialog();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -130,6 +143,7 @@ namespace WindowsFormsApp1
             this.fileToolStripMenuItem,
             this.editToolStripMenuItem,
             this.viewToolStripMenuItem,
+            this.toolsToolStripMenuItem,
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -279,7 +293,7 @@ namespace WindowsFormsApp1
             this.toolbarToolStripMenuItem.CheckOnClick = true;
             this.toolbarToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.toolbarToolStripMenuItem.Name = "toolbarToolStripMenuItem";
-            this.toolbarToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.toolbarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.toolbarToolStripMenuItem.Text = "&Toolbar";
             this.toolbarToolStripMenuItem.Click += new System.EventHandler(this.toolbarToolStripMenuItem_Click);
             this.toolbarToolStripMenuItem.MouseEnter += new System.EventHandler(this.toolbarToolStripMenuItem_MouseEnter);
@@ -290,10 +304,53 @@ namespace WindowsFormsApp1
             this.statusBarToolStripMenuItem.CheckOnClick = true;
             this.statusBarToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.statusBarToolStripMenuItem.Name = "statusBarToolStripMenuItem";
-            this.statusBarToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.statusBarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.statusBarToolStripMenuItem.Text = "&Status Bar";
             this.statusBarToolStripMenuItem.Click += new System.EventHandler(this.statusBarToolStripMenuItem_Click);
             this.statusBarToolStripMenuItem.MouseEnter += new System.EventHandler(this.statusBarToolStripMenuItem_MouseEnter);
+            // 
+            // toolsToolStripMenuItem
+            // 
+            this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.unpackEhFolderToolStripMenuItem,
+            this.packEhFolderToolStripMenuItem,
+            this.decodeCardBinsToolStripMenuItem,
+            this.encodeCardBinsToolStripMenuItem});
+            this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 26);
+            this.toolsToolStripMenuItem.Text = "Tools";
+            // 
+            // unpackEhFolderToolStripMenuItem
+            // 
+            this.unpackEhFolderToolStripMenuItem.Name = "unpackEhFolderToolStripMenuItem";
+            this.unpackEhFolderToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.unpackEhFolderToolStripMenuItem.Text = "Unpack EhFolder";
+            this.unpackEhFolderToolStripMenuItem.Click += new System.EventHandler(this.unpackEhFolderToolStripMenuItem_Click);
+            this.unpackEhFolderToolStripMenuItem.MouseEnter += new System.EventHandler(this.unpackEhFolderToolStripMenuItem_MouseEnter);
+            // 
+            // packEhFolderToolStripMenuItem
+            // 
+            this.packEhFolderToolStripMenuItem.Name = "packEhFolderToolStripMenuItem";
+            this.packEhFolderToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.packEhFolderToolStripMenuItem.Text = "Pack EhFolder";
+            this.packEhFolderToolStripMenuItem.Click += new System.EventHandler(this.packEhFolderToolStripMenuItem_Click);
+            this.packEhFolderToolStripMenuItem.MouseEnter += new System.EventHandler(this.packEhFolderToolStripMenuItem_MouseEnter);
+            // 
+            // decodeCardBinsToolStripMenuItem
+            // 
+            this.decodeCardBinsToolStripMenuItem.Name = "decodeCardBinsToolStripMenuItem";
+            this.decodeCardBinsToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.decodeCardBinsToolStripMenuItem.Text = "Decode Card DB Bins";
+            this.decodeCardBinsToolStripMenuItem.Click += new System.EventHandler(this.decodeCardBinsToolStripMenuItem_Click);
+            this.decodeCardBinsToolStripMenuItem.MouseEnter += new System.EventHandler(this.decodeCardBinsToolStripMenuItem_MouseHover);
+            // 
+            // encodeCardBinsToolStripMenuItem
+            // 
+            this.encodeCardBinsToolStripMenuItem.Name = "encodeCardBinsToolStripMenuItem";
+            this.encodeCardBinsToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.encodeCardBinsToolStripMenuItem.Text = "Encode Card DB .ini";
+            this.encodeCardBinsToolStripMenuItem.Click += new System.EventHandler(this.encodeCardBinsToolStripMenuItem_Click);
+            this.encodeCardBinsToolStripMenuItem.MouseEnter += new System.EventHandler(this.encodeCardBinsToolStripMenuItem_MouseEnter);
             // 
             // helpToolStripMenuItem
             // 
@@ -306,7 +363,7 @@ namespace WindowsFormsApp1
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.aboutToolStripMenuItem.Text = "&About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             this.aboutToolStripMenuItem.MouseEnter += new System.EventHandler(this.aboutToolStripMenuItem_MouseHover);
@@ -913,6 +970,60 @@ namespace WindowsFormsApp1
             this.panelMain.Size = new System.Drawing.Size(1269, 709);
             this.panelMain.TabIndex = 8;
             // 
+            // openFileDialogEHPunpack
+            // 
+            this.openFileDialogEHPunpack.DefaultExt = "ehp";
+            this.openFileDialogEHPunpack.Filter = "EhFolder|*.ehp|All files|*.*";
+            this.openFileDialogEHPunpack.Title = "Select an EhFolder to extract...";
+            // 
+            // saveFileDialogEHPunpack
+            // 
+            this.saveFileDialogEHPunpack.AddExtension = false;
+            this.saveFileDialogEHPunpack.FileName = "Select a folder for output";
+            this.saveFileDialogEHPunpack.OverwritePrompt = false;
+            this.saveFileDialogEHPunpack.Title = "Select a folder for output...";
+            this.saveFileDialogEHPunpack.ValidateNames = false;
+            // 
+            // openFileDialogEHPpack
+            // 
+            this.openFileDialogEHPpack.AddExtension = false;
+            this.openFileDialogEHPpack.CheckFileExists = false;
+            this.openFileDialogEHPpack.Filter = "All files|*.*";
+            this.openFileDialogEHPpack.Title = "Select a folder (pick any file within the folder)...";
+            this.openFileDialogEHPpack.ValidateNames = false;
+            // 
+            // saveFileDialogEHPpack
+            // 
+            this.saveFileDialogEHPpack.DefaultExt = "ehp";
+            this.saveFileDialogEHPpack.Filter = "EhFolder|*.ehp|All files|*.*";
+            this.saveFileDialogEHPpack.Title = "Select a filename for the EhFolder output...";
+            // 
+            // openFileDialogDBfolderOpen
+            // 
+            this.openFileDialogDBfolderOpen.DefaultExt = "bin";
+            this.openFileDialogDBfolderOpen.FileName = "CARD_Name_E.bin";
+            this.openFileDialogDBfolderOpen.Filter = "CardInfo DB folder|CARD_Name_*.bin|All files|*.*";
+            this.openFileDialogDBfolderOpen.Title = "Select a folder containing the Card DB files...";
+            // 
+            // saveFileDialogDBfolderOpen
+            // 
+            this.saveFileDialogDBfolderOpen.DefaultExt = "ini";
+            this.saveFileDialogDBfolderOpen.Filter = "CardInfo DB ini|*.ini|All files|*.*";
+            // 
+            // openFileDialogDBfolderPack
+            // 
+            this.openFileDialogDBfolderPack.DefaultExt = "ini";
+            this.openFileDialogDBfolderPack.Filter = "CardInfo DB ini|*.ini|All files|*.*";
+            this.openFileDialogDBfolderPack.Title = "Select a CardInfo DB ini file...";
+            // 
+            // saveFileDialogDBfolderPack
+            // 
+            this.saveFileDialogDBfolderPack.AddExtension = false;
+            this.saveFileDialogDBfolderPack.FileName = "Select the output location for the CardInfo DB bin files";
+            this.saveFileDialogDBfolderPack.OverwritePrompt = false;
+            this.saveFileDialogDBfolderPack.Title = "Select the output location for the CardInfo DB bin files...";
+            this.saveFileDialogDBfolderPack.ValidateNames = false;
+            // 
             // Form1
             // 
             this.AllowDrop = true;
@@ -1037,6 +1148,19 @@ namespace WindowsFormsApp1
         private BrightIdeasSoftware.OLVColumn olvColumnPassword;
         private BrightIdeasSoftware.OLVColumn olvColumnCardExists;
         private BrightIdeasSoftware.OLVColumn olvColumnDescr;
+        private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem unpackEhFolderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem packEhFolderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem decodeCardBinsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem encodeCardBinsToolStripMenuItem;
+        private System.Windows.Forms.OpenFileDialog openFileDialogEHPunpack;
+        private System.Windows.Forms.SaveFileDialog saveFileDialogEHPunpack;
+        private System.Windows.Forms.OpenFileDialog openFileDialogEHPpack;
+        private System.Windows.Forms.SaveFileDialog saveFileDialogEHPpack;
+        private System.Windows.Forms.OpenFileDialog openFileDialogDBfolderOpen;
+        private System.Windows.Forms.SaveFileDialog saveFileDialogDBfolderOpen;
+        private System.Windows.Forms.OpenFileDialog openFileDialogDBfolderPack;
+        private System.Windows.Forms.SaveFileDialog saveFileDialogDBfolderPack;
     }
 }
 
