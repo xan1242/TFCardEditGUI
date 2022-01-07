@@ -293,7 +293,7 @@ namespace WindowsFormsApp1
             this.toolbarToolStripMenuItem.CheckOnClick = true;
             this.toolbarToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.toolbarToolStripMenuItem.Name = "toolbarToolStripMenuItem";
-            this.toolbarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.toolbarToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.toolbarToolStripMenuItem.Text = "&Toolbar";
             this.toolbarToolStripMenuItem.Click += new System.EventHandler(this.toolbarToolStripMenuItem_Click);
             this.toolbarToolStripMenuItem.MouseEnter += new System.EventHandler(this.toolbarToolStripMenuItem_MouseEnter);
@@ -304,7 +304,7 @@ namespace WindowsFormsApp1
             this.statusBarToolStripMenuItem.CheckOnClick = true;
             this.statusBarToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.statusBarToolStripMenuItem.Name = "statusBarToolStripMenuItem";
-            this.statusBarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.statusBarToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.statusBarToolStripMenuItem.Text = "&Status Bar";
             this.statusBarToolStripMenuItem.Click += new System.EventHandler(this.statusBarToolStripMenuItem_Click);
             this.statusBarToolStripMenuItem.MouseEnter += new System.EventHandler(this.statusBarToolStripMenuItem_MouseEnter);
@@ -318,37 +318,37 @@ namespace WindowsFormsApp1
             this.encodeCardBinsToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 26);
-            this.toolsToolStripMenuItem.Text = "Tools";
+            this.toolsToolStripMenuItem.Text = "&Tools";
             // 
             // unpackEhFolderToolStripMenuItem
             // 
             this.unpackEhFolderToolStripMenuItem.Name = "unpackEhFolderToolStripMenuItem";
-            this.unpackEhFolderToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
-            this.unpackEhFolderToolStripMenuItem.Text = "Unpack EhFolder";
+            this.unpackEhFolderToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.unpackEhFolderToolStripMenuItem.Text = "&Unpack EhFolder...";
             this.unpackEhFolderToolStripMenuItem.Click += new System.EventHandler(this.unpackEhFolderToolStripMenuItem_Click);
             this.unpackEhFolderToolStripMenuItem.MouseEnter += new System.EventHandler(this.unpackEhFolderToolStripMenuItem_MouseEnter);
             // 
             // packEhFolderToolStripMenuItem
             // 
             this.packEhFolderToolStripMenuItem.Name = "packEhFolderToolStripMenuItem";
-            this.packEhFolderToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
-            this.packEhFolderToolStripMenuItem.Text = "Pack EhFolder";
+            this.packEhFolderToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.packEhFolderToolStripMenuItem.Text = "&Pack EhFolder...";
             this.packEhFolderToolStripMenuItem.Click += new System.EventHandler(this.packEhFolderToolStripMenuItem_Click);
             this.packEhFolderToolStripMenuItem.MouseEnter += new System.EventHandler(this.packEhFolderToolStripMenuItem_MouseEnter);
             // 
             // decodeCardBinsToolStripMenuItem
             // 
             this.decodeCardBinsToolStripMenuItem.Name = "decodeCardBinsToolStripMenuItem";
-            this.decodeCardBinsToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
-            this.decodeCardBinsToolStripMenuItem.Text = "Decode Card DB Bins";
+            this.decodeCardBinsToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.decodeCardBinsToolStripMenuItem.Text = "&Decode Card DB Bins...";
             this.decodeCardBinsToolStripMenuItem.Click += new System.EventHandler(this.decodeCardBinsToolStripMenuItem_Click);
             this.decodeCardBinsToolStripMenuItem.MouseEnter += new System.EventHandler(this.decodeCardBinsToolStripMenuItem_MouseHover);
             // 
             // encodeCardBinsToolStripMenuItem
             // 
             this.encodeCardBinsToolStripMenuItem.Name = "encodeCardBinsToolStripMenuItem";
-            this.encodeCardBinsToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
-            this.encodeCardBinsToolStripMenuItem.Text = "Encode Card DB .ini";
+            this.encodeCardBinsToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.encodeCardBinsToolStripMenuItem.Text = "&Encode Card DB .ini...";
             this.encodeCardBinsToolStripMenuItem.Click += new System.EventHandler(this.encodeCardBinsToolStripMenuItem_Click);
             this.encodeCardBinsToolStripMenuItem.MouseEnter += new System.EventHandler(this.encodeCardBinsToolStripMenuItem_MouseEnter);
             // 
@@ -363,7 +363,7 @@ namespace WindowsFormsApp1
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutToolStripMenuItem.Text = "&About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             this.aboutToolStripMenuItem.MouseEnter += new System.EventHandler(this.aboutToolStripMenuItem_MouseHover);

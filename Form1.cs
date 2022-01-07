@@ -1467,7 +1467,7 @@ namespace WindowsFormsApp1
 
         private void unpackEhFolderToolStripMenuItem_MouseEnter(object sender, EventArgs e)
         {
-            toolStripStatusLabel1.Text = "Unpack a EhFolder/EHP archive.";
+            toolStripStatusLabel1.Text = "Unpack a EhFolder/EHP archive";
         }
 
         private void packEhFolderToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1488,7 +1488,7 @@ namespace WindowsFormsApp1
 
         private void packEhFolderToolStripMenuItem_MouseEnter(object sender, EventArgs e)
         {
-            toolStripStatusLabel1.Text = "Pack a folder into an EhFolder/EHP archive.";
+            toolStripStatusLabel1.Text = "Pack a folder into an EhFolder/EHP archive";
         }
 
         private void decodeCardBinsToolStripMenuItem_Click(object sender, EventArgs e)
