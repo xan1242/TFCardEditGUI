@@ -66,6 +66,20 @@ namespace WindowsFormsApp1
             this.hiraganaCheckBox = new System.Windows.Forms.CheckBox();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.listView1 = new BrightIdeasSoftware.ObjectListView();
+            this.olvColumnCardID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumnName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumnKind = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumnLevel = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumnATK = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumnDEF = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumnType = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumnAttrib = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumnIcon = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumnRarity = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumnPassword = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumnCardExists = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumnDescr = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
@@ -89,20 +103,6 @@ namespace WindowsFormsApp1
             this.toolStripButtonFilter = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonRemoveFilter = new System.Windows.Forms.ToolStripButton();
             this.panelMain = new System.Windows.Forms.Panel();
-            this.listView1 = new BrightIdeasSoftware.ObjectListView();
-            this.olvColumnCardID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvColumnName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvColumnKind = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvColumnLevel = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvColumnATK = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvColumnDEF = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvColumnType = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvColumnAttrib = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvColumnIcon = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvColumnRarity = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvColumnPassword = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvColumnCardExists = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvColumnDescr = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -115,11 +115,11 @@ namespace WindowsFormsApp1
             this.tabControl1.SuspendLayout();
             this.tabDesc.SuspendLayout();
             this.tabActions.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.listView1)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.panelMain.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.listView1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -544,6 +544,135 @@ namespace WindowsFormsApp1
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             this.linkLabel1.MouseEnter += new System.EventHandler(this.linkLabel1_MouseEnter);
             // 
+            // listView1
+            // 
+            this.listView1.AllColumns.Add(this.olvColumnCardID);
+            this.listView1.AllColumns.Add(this.olvColumnName);
+            this.listView1.AllColumns.Add(this.olvColumnKind);
+            this.listView1.AllColumns.Add(this.olvColumnLevel);
+            this.listView1.AllColumns.Add(this.olvColumnATK);
+            this.listView1.AllColumns.Add(this.olvColumnDEF);
+            this.listView1.AllColumns.Add(this.olvColumnType);
+            this.listView1.AllColumns.Add(this.olvColumnAttrib);
+            this.listView1.AllColumns.Add(this.olvColumnIcon);
+            this.listView1.AllColumns.Add(this.olvColumnRarity);
+            this.listView1.AllColumns.Add(this.olvColumnPassword);
+            this.listView1.AllColumns.Add(this.olvColumnCardExists);
+            this.listView1.AllColumns.Add(this.olvColumnDescr);
+            this.listView1.AutoArrange = false;
+            this.listView1.CellEditUseWholeCell = false;
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.olvColumnCardID,
+            this.olvColumnName,
+            this.olvColumnKind,
+            this.olvColumnLevel,
+            this.olvColumnATK,
+            this.olvColumnDEF,
+            this.olvColumnType,
+            this.olvColumnAttrib,
+            this.olvColumnIcon,
+            this.olvColumnRarity,
+            this.olvColumnPassword,
+            this.olvColumnCardExists,
+            this.olvColumnDescr});
+            this.listView1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listView1.FullRowSelect = true;
+            this.listView1.GridLines = true;
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(0, 0);
+            this.listView1.MultiSelect = false;
+            this.listView1.Name = "listView1";
+            this.listView1.SelectAllOnControlA = false;
+            this.listView1.SelectColumnsOnRightClick = false;
+            this.listView1.SelectColumnsOnRightClickBehaviour = BrightIdeasSoftware.ObjectListView.ColumnSelectBehaviour.None;
+            this.listView1.ShowGroups = false;
+            this.listView1.Size = new System.Drawing.Size(912, 709);
+            this.listView1.TabIndex = 3;
+            this.listView1.UpdateSpaceFillingColumnsWhenDraggingColumnDivider = false;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.UseFiltering = true;
+            this.listView1.UseHotControls = false;
+            this.listView1.UseOverlays = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            // 
+            // olvColumnCardID
+            // 
+            this.olvColumnCardID.AspectName = "CardID";
+            this.olvColumnCardID.Text = "ID";
+            this.olvColumnCardID.Width = 38;
+            // 
+            // olvColumnName
+            // 
+            this.olvColumnName.AspectName = "Name";
+            this.olvColumnName.Text = "Name";
+            this.olvColumnName.Width = 250;
+            // 
+            // olvColumnKind
+            // 
+            this.olvColumnKind.AspectName = "Kind";
+            this.olvColumnKind.Text = "Kind";
+            this.olvColumnKind.Width = 78;
+            // 
+            // olvColumnLevel
+            // 
+            this.olvColumnLevel.AspectName = "Level";
+            this.olvColumnLevel.Text = "Level";
+            this.olvColumnLevel.Width = 40;
+            // 
+            // olvColumnATK
+            // 
+            this.olvColumnATK.AspectName = "ATK";
+            this.olvColumnATK.Text = "ATK";
+            this.olvColumnATK.Width = 40;
+            // 
+            // olvColumnDEF
+            // 
+            this.olvColumnDEF.AspectName = "DEF";
+            this.olvColumnDEF.Text = "DEF";
+            this.olvColumnDEF.Width = 40;
+            // 
+            // olvColumnType
+            // 
+            this.olvColumnType.AspectName = "Type";
+            this.olvColumnType.Text = "Type";
+            this.olvColumnType.Width = 80;
+            // 
+            // olvColumnAttrib
+            // 
+            this.olvColumnAttrib.AspectName = "Attr";
+            this.olvColumnAttrib.Text = "Attribute";
+            // 
+            // olvColumnIcon
+            // 
+            this.olvColumnIcon.AspectName = "Icon";
+            this.olvColumnIcon.Text = "Icon";
+            this.olvColumnIcon.Width = 66;
+            // 
+            // olvColumnRarity
+            // 
+            this.olvColumnRarity.AspectName = "Rarity";
+            this.olvColumnRarity.Text = "Rarity";
+            this.olvColumnRarity.Width = 76;
+            // 
+            // olvColumnPassword
+            // 
+            this.olvColumnPassword.AspectName = "Password";
+            this.olvColumnPassword.Text = "Password";
+            // 
+            // olvColumnCardExists
+            // 
+            this.olvColumnCardExists.AspectName = "CardExistFlag";
+            this.olvColumnCardExists.Text = "CardExist";
+            this.olvColumnCardExists.Width = 62;
+            // 
+            // olvColumnDescr
+            // 
+            this.olvColumnDescr.AspectName = "Description";
+            this.olvColumnDescr.Text = "Description";
+            this.olvColumnDescr.Width = 120;
+            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -781,133 +910,6 @@ namespace WindowsFormsApp1
             this.panelMain.Size = new System.Drawing.Size(1269, 709);
             this.panelMain.TabIndex = 8;
             // 
-            // listView1
-            // 
-            this.listView1.AllColumns.Add(this.olvColumnCardID);
-            this.listView1.AllColumns.Add(this.olvColumnName);
-            this.listView1.AllColumns.Add(this.olvColumnKind);
-            this.listView1.AllColumns.Add(this.olvColumnLevel);
-            this.listView1.AllColumns.Add(this.olvColumnATK);
-            this.listView1.AllColumns.Add(this.olvColumnDEF);
-            this.listView1.AllColumns.Add(this.olvColumnType);
-            this.listView1.AllColumns.Add(this.olvColumnAttrib);
-            this.listView1.AllColumns.Add(this.olvColumnIcon);
-            this.listView1.AllColumns.Add(this.olvColumnRarity);
-            this.listView1.AllColumns.Add(this.olvColumnPassword);
-            this.listView1.AllColumns.Add(this.olvColumnCardExists);
-            this.listView1.AllColumns.Add(this.olvColumnDescr);
-            this.listView1.AutoArrange = false;
-            this.listView1.CellEditUseWholeCell = false;
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.olvColumnCardID,
-            this.olvColumnName,
-            this.olvColumnKind,
-            this.olvColumnLevel,
-            this.olvColumnATK,
-            this.olvColumnDEF,
-            this.olvColumnType,
-            this.olvColumnAttrib,
-            this.olvColumnIcon,
-            this.olvColumnRarity,
-            this.olvColumnPassword,
-            this.olvColumnCardExists,
-            this.olvColumnDescr});
-            this.listView1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView1.FullRowSelect = true;
-            this.listView1.GridLines = true;
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(0, 0);
-            this.listView1.MultiSelect = false;
-            this.listView1.Name = "listView1";
-            this.listView1.SelectAllOnControlA = false;
-            this.listView1.ShowGroups = false;
-            this.listView1.Size = new System.Drawing.Size(912, 709);
-            this.listView1.TabIndex = 3;
-            this.listView1.UpdateSpaceFillingColumnsWhenDraggingColumnDivider = false;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.UseFiltering = true;
-            this.listView1.UseHotControls = false;
-            this.listView1.UseOverlays = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
-            // 
-            // olvColumnCardID
-            // 
-            this.olvColumnCardID.AspectName = "CardID";
-            this.olvColumnCardID.Text = "ID";
-            this.olvColumnCardID.Width = 38;
-            // 
-            // olvColumnName
-            // 
-            this.olvColumnName.AspectName = "Name";
-            this.olvColumnName.Text = "Name";
-            this.olvColumnName.Width = 250;
-            // 
-            // olvColumnKind
-            // 
-            this.olvColumnKind.AspectName = "Kind";
-            this.olvColumnKind.Text = "Kind";
-            this.olvColumnKind.Width = 78;
-            // 
-            // olvColumnLevel
-            // 
-            this.olvColumnLevel.AspectName = "Level";
-            this.olvColumnLevel.Text = "Level";
-            this.olvColumnLevel.Width = 40;
-            // 
-            // olvColumnATK
-            // 
-            this.olvColumnATK.AspectName = "ATK";
-            this.olvColumnATK.Text = "ATK";
-            this.olvColumnATK.Width = 40;
-            // 
-            // olvColumnDEF
-            // 
-            this.olvColumnDEF.AspectName = "DEF";
-            this.olvColumnDEF.Text = "DEF";
-            this.olvColumnDEF.Width = 40;
-            // 
-            // olvColumnType
-            // 
-            this.olvColumnType.AspectName = "Type";
-            this.olvColumnType.Text = "Type";
-            this.olvColumnType.Width = 80;
-            // 
-            // olvColumnAttrib
-            // 
-            this.olvColumnAttrib.AspectName = "Attr";
-            this.olvColumnAttrib.Text = "Attribute";
-            // 
-            // olvColumnIcon
-            // 
-            this.olvColumnIcon.AspectName = "Icon";
-            this.olvColumnIcon.Text = "Icon";
-            this.olvColumnIcon.Width = 66;
-            // 
-            // olvColumnRarity
-            // 
-            this.olvColumnRarity.AspectName = "Rarity";
-            this.olvColumnRarity.Text = "Rarity";
-            this.olvColumnRarity.Width = 76;
-            // 
-            // olvColumnPassword
-            // 
-            this.olvColumnPassword.AspectName = "Password";
-            this.olvColumnPassword.Text = "Password";
-            // 
-            // olvColumnCardExists
-            // 
-            this.olvColumnCardExists.AspectName = "CardExistFlag";
-            this.olvColumnCardExists.Text = "CardExist";
-            this.olvColumnCardExists.Width = 62;
-            // 
-            // olvColumnDescr
-            // 
-            this.olvColumnDescr.AspectName = "Description";
-            this.olvColumnDescr.Text = "Description";
-            this.olvColumnDescr.Width = 120;
-            // 
             // Form1
             // 
             this.AllowDrop = true;
@@ -946,13 +948,13 @@ namespace WindowsFormsApp1
             this.tabDesc.PerformLayout();
             this.tabActions.ResumeLayout(false);
             this.tabActions.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.listView1)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.contextMenuStrip1.ResumeLayout(false);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.panelMain.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.listView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -15,6 +15,7 @@ using System.Diagnostics;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Configuration;
 using System.Collections.Specialized;
+using BrightIdeasSoftware;
 
 namespace WindowsFormsApp1
 {
@@ -341,323 +342,272 @@ namespace WindowsFormsApp1
 
         void GenerateListView()
         {
-            /*int li = 0;
-
-            if (listView1.Items.Count != 0)
-            {
-                listView1.Clear();
-                listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-                olvColumnCardID,
-                olvColumnName,
-                olvColumnKind,
-                olvColumnLevel,
-                olvColumnATK,
-                olvColumnDEF,
-                olvColumnType,
-                olvColumnAttrib,
-                olvColumnIcon,
-                olvColumnRarity,
-                olvColumnPassword,
-                olvColumnCardExists,
-                olvColumnDescr});
-            }
-
-            for (int i = 0; i < ImportedCardsCount; i++)
-            {
-                AddListViewItem(li, i);
-                li++;
-            }
-
-            DisplayedCardsCount = li;*/
             listView1.SetObjects(ImportDB);
+            DisplayedCardsCount = listView1.Items.Count;
         }
 
-        bool FilterCheckName(CardFilterParams filterParams, int ci)
+        bool FilterCheckName(CardFilterParams filterParams, TFCard card)
         {
             if (filterParams.MatchCase)
             {
                 if (filterParams.MatchExact)
                 {
-                    if (ImportDB[ci].Name.Equals(filterParams.Name))
+                    if (card.Name.Equals(filterParams.Name))
                         return true;
                 }
-                else if (ImportDB[ci].Name.Contains(filterParams.Name))
+                else if (card.Name.Contains(filterParams.Name))
                     return true;
             }
             if (filterParams.MatchExact)
             {
-                if (ImportDB[ci].Name.ToUpper().Equals(filterParams.Name.ToUpper()))
+                if (card.Name.ToUpper().Equals(filterParams.Name.ToUpper()))
                     return true;
             }
-            else if (ImportDB[ci].Name.ToUpper().Contains(filterParams.Name.ToUpper()))
+            else if (card.Name.ToUpper().Contains(filterParams.Name.ToUpper()))
                 return true;
 
             return false;
         }
 
-        bool FilterCheckKinds(CardFilterParams filterParams, int ci)
+        bool FilterCheckKinds(CardFilterParams filterParams, TFCard card)
         {
-            if ((ImportDB[ci].Kind == CardKinds.Normal) && filterParams.Kind[(int)CardKinds.Normal])
+            if ((card.Kind == CardKinds.Normal) && filterParams.Kind[(int)CardKinds.Normal])
                 return true;
 
-            if (((ImportDB[ci].Kind == CardKinds.Effect) || (ImportDB[ci].Kind == CardKinds.Toon) || (ImportDB[ci].Kind == CardKinds.Spirit) || (ImportDB[ci].Kind == CardKinds.Union)) && filterParams.Kind[(int)CardKinds.Effect])
+            if (((card.Kind == CardKinds.Effect) || (card.Kind == CardKinds.Toon) || (card.Kind == CardKinds.Spirit) || (card.Kind == CardKinds.Union)) && filterParams.Kind[(int)CardKinds.Effect])
                 return true;
 
-            if (((ImportDB[ci].Kind == CardKinds.Fusion) || (ImportDB[ci].Kind == CardKinds.FusionEffect)) && filterParams.Kind[(int)CardKinds.Fusion])
+            if (((card.Kind == CardKinds.Fusion) || (card.Kind == CardKinds.FusionEffect)) && filterParams.Kind[(int)CardKinds.Fusion])
                 return true;
 
-            if (((ImportDB[ci].Kind == CardKinds.Ritual) || (ImportDB[ci].Kind == CardKinds.RitualEffect)) && filterParams.Kind[(int)CardKinds.Ritual])
+            if (((card.Kind == CardKinds.Ritual) || (card.Kind == CardKinds.RitualEffect)) && filterParams.Kind[(int)CardKinds.Ritual])
                 return true;
 
-            if ((ImportDB[ci].Kind == CardKinds.Token) && filterParams.Kind[(int)CardKinds.Token])
+            if ((card.Kind == CardKinds.Token) && filterParams.Kind[(int)CardKinds.Token])
                 return true;
 
-            if ((ImportDB[ci].Kind == CardKinds.Toon) && filterParams.Kind[(int)CardKinds.Toon])
+            if ((card.Kind == CardKinds.Toon) && filterParams.Kind[(int)CardKinds.Toon])
                 return true;
 
-            if ((ImportDB[ci].Kind == CardKinds.Spirit) && filterParams.Kind[(int)CardKinds.Spirit])
+            if ((card.Kind == CardKinds.Spirit) && filterParams.Kind[(int)CardKinds.Spirit])
                 return true;
 
-            if ((ImportDB[ci].Kind == CardKinds.Union) && filterParams.Kind[(int)CardKinds.Union])
+            if ((card.Kind == CardKinds.Union) && filterParams.Kind[(int)CardKinds.Union])
                 return true;
 
-            if ((ImportDB[ci].Kind == CardKinds.Spell) && filterParams.Kind[(int)CardKinds.Spell])
+            if ((card.Kind == CardKinds.Spell) && filterParams.Kind[(int)CardKinds.Spell])
                 return true;
 
-            if ((ImportDB[ci].Kind == CardKinds.Trap) && filterParams.Kind[(int)CardKinds.Trap])
+            if ((card.Kind == CardKinds.Trap) && filterParams.Kind[(int)CardKinds.Trap])
                 return true;
 
             return false;
         }
 
-        bool FilterCheckTypes(CardFilterParams filterParams, int ci)
+        bool FilterCheckTypes(CardFilterParams filterParams, TFCard card)
         {
-            if ((ImportDB[ci].Type == CardTypes.Dragon) && filterParams.Type[(int)CardTypes.Dragon])
+            if ((card.Type == CardTypes.Dragon) && filterParams.Type[(int)CardTypes.Dragon])
                 return true;
 
-            if ((ImportDB[ci].Type == CardTypes.Zombie) && filterParams.Type[(int)CardTypes.Zombie])
+            if ((card.Type == CardTypes.Zombie) && filterParams.Type[(int)CardTypes.Zombie])
                 return true;
 
-            if ((ImportDB[ci].Type == CardTypes.Fiend) && filterParams.Type[(int)CardTypes.Fiend])
+            if ((card.Type == CardTypes.Fiend) && filterParams.Type[(int)CardTypes.Fiend])
                 return true;
 
-            if ((ImportDB[ci].Type == CardTypes.Pyro) && filterParams.Type[(int)CardTypes.Pyro])
+            if ((card.Type == CardTypes.Pyro) && filterParams.Type[(int)CardTypes.Pyro])
                 return true;
 
-            if ((ImportDB[ci].Type == CardTypes.SeaSerpent) && filterParams.Type[(int)CardTypes.SeaSerpent])
+            if ((card.Type == CardTypes.SeaSerpent) && filterParams.Type[(int)CardTypes.SeaSerpent])
                 return true;
 
-            if ((ImportDB[ci].Type == CardTypes.Rock) && filterParams.Type[(int)CardTypes.Rock])
+            if ((card.Type == CardTypes.Rock) && filterParams.Type[(int)CardTypes.Rock])
                 return true;
 
-            if ((ImportDB[ci].Type == CardTypes.Machine) && filterParams.Type[(int)CardTypes.Machine])
+            if ((card.Type == CardTypes.Machine) && filterParams.Type[(int)CardTypes.Machine])
                 return true;
 
-            if ((ImportDB[ci].Type == CardTypes.Fish) && filterParams.Type[(int)CardTypes.Fish])
+            if ((card.Type == CardTypes.Fish) && filterParams.Type[(int)CardTypes.Fish])
                 return true;
 
-            if ((ImportDB[ci].Type == CardTypes.Dinosaur) && filterParams.Type[(int)CardTypes.Dinosaur])
+            if ((card.Type == CardTypes.Dinosaur) && filterParams.Type[(int)CardTypes.Dinosaur])
                 return true;
 
-            if ((ImportDB[ci].Type == CardTypes.Insect) && filterParams.Type[(int)CardTypes.Insect])
+            if ((card.Type == CardTypes.Insect) && filterParams.Type[(int)CardTypes.Insect])
                 return true;
 
-            if ((ImportDB[ci].Type == CardTypes.Beast) && filterParams.Type[(int)CardTypes.Beast])
+            if ((card.Type == CardTypes.Beast) && filterParams.Type[(int)CardTypes.Beast])
                 return true;
 
-            if ((ImportDB[ci].Type == CardTypes.BeastWarrior) && filterParams.Type[(int)CardTypes.BeastWarrior])
+            if ((card.Type == CardTypes.BeastWarrior) && filterParams.Type[(int)CardTypes.BeastWarrior])
                 return true;
 
-            if ((ImportDB[ci].Type == CardTypes.Plant) && filterParams.Type[(int)CardTypes.Plant])
+            if ((card.Type == CardTypes.Plant) && filterParams.Type[(int)CardTypes.Plant])
                 return true;
 
-            if ((ImportDB[ci].Type == CardTypes.Aqua) && filterParams.Type[(int)CardTypes.Aqua])
+            if ((card.Type == CardTypes.Aqua) && filterParams.Type[(int)CardTypes.Aqua])
                 return true;
 
-            if ((ImportDB[ci].Type == CardTypes.Warrior) && filterParams.Type[(int)CardTypes.Warrior])
+            if ((card.Type == CardTypes.Warrior) && filterParams.Type[(int)CardTypes.Warrior])
                 return true;
 
-            if ((ImportDB[ci].Type == CardTypes.WingedBeast) && filterParams.Type[(int)CardTypes.WingedBeast])
+            if ((card.Type == CardTypes.WingedBeast) && filterParams.Type[(int)CardTypes.WingedBeast])
                 return true;
 
-            if ((ImportDB[ci].Type == CardTypes.Fairy) && filterParams.Type[(int)CardTypes.Fairy])
+            if ((card.Type == CardTypes.Fairy) && filterParams.Type[(int)CardTypes.Fairy])
                 return true;
 
-            if ((ImportDB[ci].Type == CardTypes.Spellcaster) && filterParams.Type[(int)CardTypes.Spellcaster])
+            if ((card.Type == CardTypes.Spellcaster) && filterParams.Type[(int)CardTypes.Spellcaster])
                 return true;
 
-            if ((ImportDB[ci].Type == CardTypes.Thunder) && filterParams.Type[(int)CardTypes.Thunder])
+            if ((card.Type == CardTypes.Thunder) && filterParams.Type[(int)CardTypes.Thunder])
                 return true;
 
-            if ((ImportDB[ci].Type == CardTypes.Reptile) && filterParams.Type[(int)CardTypes.Reptile])
+            if ((card.Type == CardTypes.Reptile) && filterParams.Type[(int)CardTypes.Reptile])
                 return true;
 
-            if ((ImportDB[ci].Type == CardTypes.DivineBeast) && filterParams.Type[(int)CardTypes.DivineBeast])
+            if ((card.Type == CardTypes.DivineBeast) && filterParams.Type[(int)CardTypes.DivineBeast])
                 return true;
 
-            if ((ImportDB[ci].Type == CardTypes.Spell) && filterParams.Type[(int)CardTypes.Spell])
+            if ((card.Type == CardTypes.Spell) && filterParams.Type[(int)CardTypes.Spell])
                 return true;
 
-            if ((ImportDB[ci].Type == CardTypes.Trap) && filterParams.Type[(int)CardTypes.Trap])
+            if ((card.Type == CardTypes.Trap) && filterParams.Type[(int)CardTypes.Trap])
                 return true;
 
-            if ((ImportDB[ci].Type == CardTypes.None) && filterParams.Type[(int)CardTypes.None])
+            if ((card.Type == CardTypes.None) && filterParams.Type[(int)CardTypes.None])
                 return true;
 
             return false;
         }
 
-        bool FilterCheckAttr(CardFilterParams filterParams, int ci)
+        bool FilterCheckAttr(CardFilterParams filterParams, TFCard card)
         {
-            if ((ImportDB[ci].Attr == CardAttributes.LIGHT) && filterParams.Attr[(int)CardAttributes.LIGHT])
+            if ((card.Attr == CardAttributes.LIGHT) && filterParams.Attr[(int)CardAttributes.LIGHT])
                 return true;
-            if ((ImportDB[ci].Attr == CardAttributes.DARK) && filterParams.Attr[(int)CardAttributes.DARK])
+            if ((card.Attr == CardAttributes.DARK) && filterParams.Attr[(int)CardAttributes.DARK])
                 return true;
-            if ((ImportDB[ci].Attr == CardAttributes.WATER) && filterParams.Attr[(int)CardAttributes.WATER])
+            if ((card.Attr == CardAttributes.WATER) && filterParams.Attr[(int)CardAttributes.WATER])
                 return true;
-            if ((ImportDB[ci].Attr == CardAttributes.FIRE) && filterParams.Attr[(int)CardAttributes.FIRE])
+            if ((card.Attr == CardAttributes.FIRE) && filterParams.Attr[(int)CardAttributes.FIRE])
                 return true;
-            if ((ImportDB[ci].Attr == CardAttributes.EARTH) && filterParams.Attr[(int)CardAttributes.EARTH])
+            if ((card.Attr == CardAttributes.EARTH) && filterParams.Attr[(int)CardAttributes.EARTH])
                 return true;
-            if ((ImportDB[ci].Attr == CardAttributes.WIND) && filterParams.Attr[(int)CardAttributes.WIND])
+            if ((card.Attr == CardAttributes.WIND) && filterParams.Attr[(int)CardAttributes.WIND])
                 return true;
-            if ((ImportDB[ci].Attr == CardAttributes.DIVINE) && filterParams.Attr[(int)CardAttributes.DIVINE])
+            if ((card.Attr == CardAttributes.DIVINE) && filterParams.Attr[(int)CardAttributes.DIVINE])
                 return true;
-            if ((ImportDB[ci].Attr == CardAttributes.SPELL) && filterParams.Attr[(int)CardAttributes.SPELL])
+            if ((card.Attr == CardAttributes.SPELL) && filterParams.Attr[(int)CardAttributes.SPELL])
                 return true;
-            if ((ImportDB[ci].Attr == CardAttributes.TRAP) && filterParams.Attr[(int)CardAttributes.TRAP])
+            if ((card.Attr == CardAttributes.TRAP) && filterParams.Attr[(int)CardAttributes.TRAP])
                 return true;
-            if ((ImportDB[ci].Attr == CardAttributes.None) && filterParams.Attr[(int)CardAttributes.None])
+            if ((card.Attr == CardAttributes.None) && filterParams.Attr[(int)CardAttributes.None])
                 return true;
 
             return false;
         }
-        bool FilterCheckIcon(CardFilterParams filterParams, int ci)
+        bool FilterCheckIcon(CardFilterParams filterParams, TFCard card)
         {
-            if ((ImportDB[ci].Icon == CardIcons.Counter) && filterParams.Icon[(int)CardIcons.Counter])
+            if ((card.Icon == CardIcons.Counter) && filterParams.Icon[(int)CardIcons.Counter])
                 return true;
-            if ((ImportDB[ci].Icon == CardIcons.Field) && filterParams.Icon[(int)CardIcons.Field])
+            if ((card.Icon == CardIcons.Field) && filterParams.Icon[(int)CardIcons.Field])
                 return true;
-            if ((ImportDB[ci].Icon == CardIcons.Equip) && filterParams.Icon[(int)CardIcons.Equip])
+            if ((card.Icon == CardIcons.Equip) && filterParams.Icon[(int)CardIcons.Equip])
                 return true;
-            if ((ImportDB[ci].Icon == CardIcons.Continuous) && filterParams.Icon[(int)CardIcons.Continuous])
+            if ((card.Icon == CardIcons.Continuous) && filterParams.Icon[(int)CardIcons.Continuous])
                 return true;
-            if ((ImportDB[ci].Icon == CardIcons.QuickPlay) && filterParams.Icon[(int)CardIcons.QuickPlay])
+            if ((card.Icon == CardIcons.QuickPlay) && filterParams.Icon[(int)CardIcons.QuickPlay])
                 return true;
-            if ((ImportDB[ci].Icon == CardIcons.RitualSpell) && filterParams.Icon[(int)CardIcons.RitualSpell])
+            if ((card.Icon == CardIcons.RitualSpell) && filterParams.Icon[(int)CardIcons.RitualSpell])
                 return true;
-            if ((ImportDB[ci].Icon == CardIcons.None) && filterParams.Icon[(int)CardIcons.None])
+            if ((card.Icon == CardIcons.None) && filterParams.Icon[(int)CardIcons.None])
                 return true;
             return false;
         }
 
-        bool FilterCheckRarity(CardFilterParams filterParams, int ci)
+        bool FilterCheckRarity(CardFilterParams filterParams, TFCard card)
         {
-            if ((ImportDB[ci].Rarity == CardRarity.Common) && filterParams.Rarity[(int)CardRarity.Common])
+            if ((card.Rarity == CardRarity.Common) && filterParams.Rarity[(int)CardRarity.Common])
                 return true;
-            if ((ImportDB[ci].Rarity == CardRarity.Rare) && filterParams.Rarity[(int)CardRarity.Rare])
+            if ((card.Rarity == CardRarity.Rare) && filterParams.Rarity[(int)CardRarity.Rare])
                 return true;
-            if ((ImportDB[ci].Rarity == CardRarity.SuperRare) && filterParams.Rarity[(int)CardRarity.SuperRare])
+            if ((card.Rarity == CardRarity.SuperRare) && filterParams.Rarity[(int)CardRarity.SuperRare])
                 return true;
-            if ((ImportDB[ci].Rarity == CardRarity.UltraRare) && filterParams.Rarity[(int)CardRarity.UltraRare])
+            if ((card.Rarity == CardRarity.UltraRare) && filterParams.Rarity[(int)CardRarity.UltraRare])
                 return true;
-            if ((ImportDB[ci].Rarity == CardRarity.UltimateRare) && filterParams.Rarity[(int)CardRarity.UltimateRare])
+            if ((card.Rarity == CardRarity.UltimateRare) && filterParams.Rarity[(int)CardRarity.UltimateRare])
                 return true;
             return false;
         }
 
-        void FilterListView(CardFilterParams filterParams) // TODO: MAKE THIS WITH VIRTUAL LISTVIEW!!!
+        void FilterListView(CardFilterParams filterParams)
         {
-            int li = 0;
-            int ci; // curr. card index
-            int[] cids = new int[DisplayedCardsCount];
-            int cidcopycounter = 0;
-            bool bAdding = true;
+            ModelFilter defaultFilter = new ModelFilter(delegate (object x) { return true; });
+            ModelFilter filterCardIDmin = defaultFilter;
+            ModelFilter filterCardIDmax = defaultFilter;
+            ModelFilter filterName = defaultFilter;
+            ModelFilter filterKind = defaultFilter;
+            ModelFilter filterLevelmin = defaultFilter;
+            ModelFilter filterLevelmax = defaultFilter;
+            ModelFilter filterATKmin = defaultFilter;
+            ModelFilter filterATKmax = defaultFilter;
+            ModelFilter filterDEFmin = defaultFilter;
+            ModelFilter filterDEFmax = defaultFilter;
+            ModelFilter filterAttr = defaultFilter;
+            ModelFilter filterIcon = defaultFilter;
+            ModelFilter filterRarity = defaultFilter;
+            ModelFilter filterPassMin = defaultFilter;
+            ModelFilter filterPassMax = defaultFilter;
+            ModelFilter filterCardExist = filterName = new ModelFilter(delegate (object x) { return ((TFCard)x).CardExistFlag == filterParams.CardExists; }); ;
+            ModelFilter filterType = defaultFilter;
 
-            // copy card IDs from the listview before clearing them...
-            foreach (ListViewItem item in listView1.Items)
-            {
-                cids[cidcopycounter] = Int32.Parse(item.SubItems[0].Text);
-                cidcopycounter++;
-            }
+            if (!string.IsNullOrEmpty(filterParams.Name))
+                filterName = new ModelFilter(delegate (object x) { return FilterCheckName(filterParams, (TFCard)x); });
 
-            listView1.Clear();
-            listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            olvColumnCardID,
-            olvColumnName,
-            olvColumnKind,
-            olvColumnLevel,
-            olvColumnATK,
-            olvColumnDEF,
-            olvColumnType,
-            olvColumnAttrib,
-            olvColumnIcon,
-            olvColumnRarity,
-            olvColumnPassword,
-            olvColumnCardExists,
-            olvColumnDescr});
+            if (filterParams.bAreAnyFiltersEnabled_Kind())
+                filterKind = new ModelFilter(delegate (object x) { return FilterCheckKinds(filterParams, (TFCard)x); });
 
-            for (int i = 0; i < DisplayedCardsCount; i++)
-            {
-                ci = SearchCardIndexByID(cids[i]);
+            if (filterParams.bAreAnyFiltersEnabled_Type())
+                filterType = new ModelFilter(delegate (object x) { return FilterCheckTypes(filterParams, (TFCard)x); });
 
-                if (!string.IsNullOrEmpty(filterParams.Name) && !FilterCheckName(filterParams, ci))
-                    bAdding = false;
+            if (filterParams.bAreAnyFiltersEnabled_Attr())
+                filterAttr = new ModelFilter(delegate (object x) { return FilterCheckAttr(filterParams, (TFCard)x); });
 
-                if (filterParams.bAreAnyFiltersEnabled_Kind() && !FilterCheckKinds(filterParams, ci))
-                    bAdding = false;
+            if (filterParams.bAreAnyFiltersEnabled_Icon())
+                filterIcon = new ModelFilter(delegate (object x) { return FilterCheckIcon(filterParams, (TFCard)x); });
 
-                if (filterParams.bAreAnyFiltersEnabled_Type() && !FilterCheckTypes(filterParams, ci))
-                    bAdding = false;
+            if (filterParams.bAreAnyFiltersEnabled_Rarity())
+                filterRarity = new ModelFilter(delegate (object x) { return FilterCheckRarity(filterParams, (TFCard)x); });
 
-                if (filterParams.bAreAnyFiltersEnabled_Attr() && !FilterCheckAttr(filterParams, ci))
-                    bAdding = false;
+            if (filterParams.MaxATK >= 0)
+                filterATKmax = new ModelFilter(delegate (object x) { return ((TFCard)x).ATK <= filterParams.MaxATK; });
+            if (filterParams.MinATK >= 0)
+                filterATKmin = new ModelFilter(delegate (object x) { return ((TFCard)x).ATK >= filterParams.MinATK; });
 
-                if (filterParams.bAreAnyFiltersEnabled_Icon() && !FilterCheckIcon(filterParams, ci))
-                    bAdding = false;
+            if (filterParams.MaxDEF >= 0)
+                filterDEFmax = new ModelFilter(delegate (object x) { return ((TFCard)x).DEF <= filterParams.MaxDEF; });
+            if (filterParams.MinDEF >= 0)
+                filterDEFmin = new ModelFilter(delegate (object x) { return ((TFCard)x).DEF >= filterParams.MinDEF; });
 
-                if (filterParams.bAreAnyFiltersEnabled_Rarity() && !FilterCheckRarity(filterParams, ci))
-                    bAdding = false;
+            if (filterParams.MaxLevel >= 0)
+                filterLevelmax = new ModelFilter(delegate (object x) { return ((TFCard)x).Level <= filterParams.MaxLevel; });
+            if (filterParams.MinLevel >= 0)
+                filterLevelmin = new ModelFilter(delegate (object x) { return ((TFCard)x).Level >= filterParams.MinLevel; });
 
-                if (filterParams.MaxATK >= 0 && !(ImportDB[ci].ATK <= filterParams.MaxATK))
-                    bAdding = false;
-                if (filterParams.MinATK >= 0 && !(ImportDB[ci].ATK >= filterParams.MinATK))
-                    bAdding = false;
+            if (filterParams.MaxPassword >= 0)
+                filterPassMax = new ModelFilter(delegate (object x) { return ((TFCard)x).Password <= filterParams.MaxPassword; });
+            if (filterParams.MinPassword >= 0)
+                filterPassMin = new ModelFilter(delegate (object x) { return ((TFCard)x).Password >= filterParams.MinPassword; });
 
-                if (filterParams.MaxDEF >= 0 && !(ImportDB[ci].DEF <= filterParams.MaxDEF))
-                    bAdding = false;
-                if (filterParams.MinDEF >= 0 && !(ImportDB[ci].DEF >= filterParams.MinDEF))
-                    bAdding = false;
+            if (filterParams.MaxCardID >= 0)
+                filterCardIDmax = new ModelFilter(delegate (object x) { return ((TFCard)x).CardID <= filterParams.MaxCardID; });
+            if (filterParams.MinCardID >= 0)
+                filterCardIDmin = new ModelFilter(delegate (object x) { return ((TFCard)x).CardID >= filterParams.MinCardID; });
 
-                if (filterParams.MaxLevel >= 0 && !(ImportDB[ci].Level <= filterParams.MaxLevel))
-                    bAdding = false;
-                if (filterParams.MinLevel >= 0 && !(ImportDB[ci].Level >= filterParams.MinLevel))
-                    bAdding = false;
+            var filterTotal = new CompositeAllFilter(new List<IModelFilter> { filterCardIDmin, filterCardIDmax, filterName, filterKind, filterLevelmin, filterLevelmax, filterATKmin, filterATKmax, filterDEFmin, filterDEFmax, filterAttr, filterIcon, filterRarity, filterPassMin, filterPassMax, filterCardExist, filterType });
 
-                if (filterParams.MaxPassword >= 0 && !(ImportDB[ci].Password <= filterParams.MaxPassword))
-                    bAdding = false;
-                if (filterParams.MinPassword >= 0 && !(ImportDB[ci].Password >= filterParams.MinPassword))
-                    bAdding = false;
-
-                if (filterParams.MaxCardID >= 0 && !(ImportDB[ci].CardID <= filterParams.MaxCardID))
-                    bAdding = false;
-                if (filterParams.MinCardID >= 0 && !(ImportDB[ci].CardID >= filterParams.MinCardID))
-                    bAdding = false;
-
-                if (ImportDB[ci].CardExistFlag != filterParams.CardExists)
-                    bAdding = false;
-
-                if (bAdding)
-                {
-                    //listView1.ListFilter
-                    AddListViewItem(li, ci);
-                    li++;
-                }
-
-                bAdding = true;
-            }
-
-            DisplayedCardsCount = li;
+            listView1.ModelFilter = filterTotal;
+            DisplayedCardsCount = listView1.Items.Count;
         }
 
         public bool InitiateCardSearch(CardSearchParams searchParams)
@@ -1430,7 +1380,7 @@ namespace WindowsFormsApp1
 
         private void filterToolStripMenuItem_MouseHover(object sender, EventArgs e)
         {
-            toolStripStatusLabel1.Text = "Filter / narrow down the currently visible entries (stackable)";
+            toolStripStatusLabel1.Text = "Filter / narrow down the currently visible entries";
         }
 
         private void removeFilterToolStripMenuItem_MouseHover(object sender, EventArgs e)
@@ -1445,7 +1395,8 @@ namespace WindowsFormsApp1
 
         private void removeFilterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            GenerateListView();
+            //GenerateListView();
+            listView1.ModelFilter = null;
             filterBoxDialog.ResetAllPages();
             toolStripStatusLabel2.Text = "Total card count: " + ImportedCardsCount + " | Displayed: " + DisplayedCardsCount;
             removeFilterToolStripMenuItem.Enabled = false;
