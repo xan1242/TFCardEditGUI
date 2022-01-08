@@ -4,6 +4,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.32002.261
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFCardEditGUI", "TFCardEditGUI.csproj", "{FF067653-356B-45A7-99C0-4E8CE85A5C4A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{73737374-9963-4D7E-B035-705727C33C96} = {73737374-9963-4D7E-B035-705727C33C96}
+		{E44AD98D-228D-4B6D-975B-B2D391E8FDE8} = {E44AD98D-228D-4B6D-975B-B2D391E8FDE8}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TFCardEdit", "TFCardEdit\TFCardEdit.vcxproj", "{73737374-9963-4D7E-B035-705727C33C96}"
 EndProject
@@ -11,42 +15,32 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ehppack", "ehppack\ehppack\
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
 		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
-		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FF067653-356B-45A7-99C0-4E8CE85A5C4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FF067653-356B-45A7-99C0-4E8CE85A5C4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF067653-356B-45A7-99C0-4E8CE85A5C4A}.Debug|x64.ActiveCfg = Debug|Any CPU
 		{FF067653-356B-45A7-99C0-4E8CE85A5C4A}.Debug|x64.Build.0 = Debug|Any CPU
 		{FF067653-356B-45A7-99C0-4E8CE85A5C4A}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{FF067653-356B-45A7-99C0-4E8CE85A5C4A}.Debug|x86.Build.0 = Debug|Any CPU
-		{FF067653-356B-45A7-99C0-4E8CE85A5C4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FF067653-356B-45A7-99C0-4E8CE85A5C4A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FF067653-356B-45A7-99C0-4E8CE85A5C4A}.Release|x64.ActiveCfg = Release|Any CPU
 		{FF067653-356B-45A7-99C0-4E8CE85A5C4A}.Release|x64.Build.0 = Release|Any CPU
 		{FF067653-356B-45A7-99C0-4E8CE85A5C4A}.Release|x86.ActiveCfg = Release|Any CPU
 		{FF067653-356B-45A7-99C0-4E8CE85A5C4A}.Release|x86.Build.0 = Release|Any CPU
-		{73737374-9963-4D7E-B035-705727C33C96}.Debug|Any CPU.ActiveCfg = Debug|Win32
 		{73737374-9963-4D7E-B035-705727C33C96}.Debug|x64.ActiveCfg = Debug|x64
 		{73737374-9963-4D7E-B035-705727C33C96}.Debug|x64.Build.0 = Debug|x64
 		{73737374-9963-4D7E-B035-705727C33C96}.Debug|x86.ActiveCfg = Debug|Win32
 		{73737374-9963-4D7E-B035-705727C33C96}.Debug|x86.Build.0 = Debug|Win32
-		{73737374-9963-4D7E-B035-705727C33C96}.Release|Any CPU.ActiveCfg = Release|Win32
 		{73737374-9963-4D7E-B035-705727C33C96}.Release|x64.ActiveCfg = Release|x64
 		{73737374-9963-4D7E-B035-705727C33C96}.Release|x64.Build.0 = Release|x64
 		{73737374-9963-4D7E-B035-705727C33C96}.Release|x86.ActiveCfg = Release|Win32
 		{73737374-9963-4D7E-B035-705727C33C96}.Release|x86.Build.0 = Release|Win32
-		{E44AD98D-228D-4B6D-975B-B2D391E8FDE8}.Debug|Any CPU.ActiveCfg = Debug|Win32
 		{E44AD98D-228D-4B6D-975B-B2D391E8FDE8}.Debug|x64.ActiveCfg = Debug|x64
 		{E44AD98D-228D-4B6D-975B-B2D391E8FDE8}.Debug|x64.Build.0 = Debug|x64
 		{E44AD98D-228D-4B6D-975B-B2D391E8FDE8}.Debug|x86.ActiveCfg = Debug|Win32
 		{E44AD98D-228D-4B6D-975B-B2D391E8FDE8}.Debug|x86.Build.0 = Debug|Win32
-		{E44AD98D-228D-4B6D-975B-B2D391E8FDE8}.Release|Any CPU.ActiveCfg = Release|Win32
 		{E44AD98D-228D-4B6D-975B-B2D391E8FDE8}.Release|x64.ActiveCfg = Release|x64
 		{E44AD98D-228D-4B6D-975B-B2D391E8FDE8}.Release|x64.Build.0 = Release|x64
 		{E44AD98D-228D-4B6D-975B-B2D391E8FDE8}.Release|x86.ActiveCfg = Release|Win32
