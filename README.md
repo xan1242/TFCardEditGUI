@@ -25,6 +25,12 @@ You can also *technically* add cards manually in the .ini file.
 
 You **can** add normal monsters which will work fine. You must also provide the game with card art, which you can do with my [CIPTool](https://github.com/xan1242/CIPTool) utility. (this will be implemented later directly into this app as well)
 
+## Screenshot gallery
+
+[You can find it here.](https://github.com/xan1242/TFCardEditGUI/blob/master/EXAMPLES.md)
+
+
+
 ## TODO list (backend)
 
 - support for Huffman compression/decompression (Tag Force 2+)
