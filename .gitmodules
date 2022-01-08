@@ -1,0 +1,6 @@
+[submodule "TFCardEdit"]
+	path = TFCardEdit
+	url = https://github.com/xan1242/TFCardEdit
+[submodule "ehppack"]
+	path = ehppack
+	url = https://github.com/xan1242/ehppack
