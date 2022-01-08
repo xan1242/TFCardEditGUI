@@ -193,7 +193,7 @@
     </PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>copy /Y TFCardEdit\Release\TFCardEdit.exe %25OutDir%25
-copy /Y ehppack\Release\ehppack.exe %25OutDir%25</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
 </Project>
