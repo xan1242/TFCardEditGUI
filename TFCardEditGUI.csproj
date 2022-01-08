@@ -189,12 +189,11 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>msbuild TFCardEdit\TFCardEdit.sln -p:Configuration=Release -p:Platform=x86 -noLogo
-msbuild ehppack\ehppack.sln -p:Configuration=Release -p:Platform=x86 -noLogo
-</PreBuildEvent>
+    <PreBuildEvent>
+    </PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>copy TFCardEdit\Release\TFCardEdit.exe %25OutDir%25
-copy ehppack\Release\ehppack.exe %25OutDir%25</PostBuildEvent>
+    <PostBuildEvent>copy /Y TFCardEdit\Release\TFCardEdit.exe %25OutDir%25
+copy /Y ehppack\Release\ehppack.exe %25OutDir%25</PostBuildEvent>
   </PropertyGroup>
 </Project>
