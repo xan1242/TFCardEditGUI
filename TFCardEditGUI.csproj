@@ -195,7 +195,7 @@
   <PropertyGroup>
     <PostBuildEvent>@echo off
 REM copy the built core utility binaries to the output binary directory of the C# project
-if exist $(SolutionDir)$(ConfigurationName)\TFCardEdit$(TargetExt) (copy $(SolutionDir)$(ConfigurationName)\TFCardEdit$(TargetExt) $(OutDir) /Y)
-if exist $(SolutionDir)$(ConfigurationName)\ehppack$(TargetExt) (copy $(SolutionDir)$(ConfigurationName)\ehppack$(TargetExt) $(OutDir) /Y)</PostBuildEvent>
+if exist $(SolutionDir)$(ConfigurationName)\TFCardEdit$(TargetExt) (copy $(SolutionDir)$(ConfigurationName)\TFCardEdit$(TargetExt) $(SolutionDir)$(OutDir) /Y)
+if exist $(SolutionDir)$(ConfigurationName)\ehppack$(TargetExt) (copy $(SolutionDir)$(ConfigurationName)\ehppack$(TargetExt) $(SolutionDir)$(OutDir) /Y)</PostBuildEvent>
   </PropertyGroup>
 </Project>
