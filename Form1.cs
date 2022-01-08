@@ -1458,8 +1458,8 @@ namespace WindowsFormsApp1
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (Directory.Exists(CurrentCacheDir))
-                Directory.Delete(CurrentCacheDir, true);
+            if (Directory.Exists("cache"))
+                Directory.Delete("cache", true);
         }
 
         private void unpackEhFolderToolStripMenuItem_Click(object sender, EventArgs e)
