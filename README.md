@@ -61,7 +61,7 @@ You **can** add normal monsters which will work fine. You must also provide the 
 ## The magic behind this utility
 
 - [TFCardEdit](https://github.com/xan1242/TFCardEdit) - the actual backend code to this utility which converts the database binary files back and forth to/from a text .ini file
-- [ehppack](https://github.com/xan1242/ehppack) - EhFolder archiving utility which can unpack/repack the EhFolder achives found in Tag Force games allowing for seamless access to the card database
+- [ehppack](https://github.com/xan1242/ehppack) - EhFolder archiving utility which can unpack/repack the EhFolder archives found in Tag Force games allowing for seamless access to the card database
 - And in the future (when card art gets added) - [CIPTool](https://github.com/xan1242/CIPTool) - utility for unpacking/repacking the card images for Tag Force games
 
 ## Third party stuff
